@@ -8,36 +8,35 @@ import { SEOHead } from '@/components/seo/SEOHead';
 const timeline = [
   {
     year: '2025',
-    title: 'Geodata Processing with Python & ML',
-    org: 'ISRO Certification',
-    description: 'Completed advanced training in geodata processing combining satellite data analysis with machine learning techniques.',
+    title: 'Started MCA',
+    org: 'Rajagiri College of Social Sciences',
+    description: 'Pursuing Master of Computer Applications with focus on embedded systems and AI-driven robotics research.',
   },
   {
-    year: '2024',
-    title: 'Patent Published — UROV-SHM',
-    org: 'Indian Patent Office',
-    description: 'Published patent for Underwater Remotely Operated Vehicle for Structural Health Monitoring. Application No. 202241040473 A.',
-  },
-  {
-    year: '2024',
-    title: 'Embedded Systems Engineer',
+    year: '2025',
+    title: 'Part-time Embedded Systems Engineer',
     org: 'i4 Marine Technologies',
-    description: 'Building autonomous marine vehicles, ROV systems, and IoT telemetry platforms for underwater infrastructure inspection.',
-  },
-  {
-    year: '2024',
-    title: 'AI-Machine Learning Developer Certification',
-    org: 'Kerala ASAP',
-    description: 'Certified in AI/ML development covering TensorFlow, neural networks, and practical deployment.',
+    description: 'Resigned from full-time role and continuing part-time, contributing to marine robotics and IoT telemetry systems.',
   },
   {
     year: '2023',
-    title: 'Started MCA',
-    org: 'Rajagiri College of Social Science',
-    description: 'Pursuing Master of Computer Applications with focus on embedded systems and AI-driven robotics research.',
+    title: 'Embedded Systems Engineer',
+    org: 'i4 Marine Technologies',
+    description: 'Joined as a full-time Embedded Systems Engineer, building autonomous marine vehicles, ROV systems, and IoT platforms.',
+  },
+  {
+    year: '2023',
+    title: 'Robotics Intern (8 Months)',
+    org: 'Srishti Robotics',
+    description: 'Completed an 8-month internship working on robotics systems, gaining hands-on experience in embedded development.',
+  },
+  {
+    year: '2023',
+    title: 'Completed B.Voc in IT',
+    org: 'University Graduation',
+    description: 'Graduated with a Bachelor of Vocation in Information Technology, building a strong foundation in software and hardware systems.',
   },
 ];
-
 /**
  * About page with photographer biography and professional information
  * Features split layout with portrait video and comprehensive biography
