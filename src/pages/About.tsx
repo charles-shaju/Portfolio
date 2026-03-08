@@ -158,6 +158,99 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      {/* Resume Section */}
+      <section id="resume" className="py-16 md:py-24 px-6 lg:px-8 border-t border-border">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            className="space-y-8"
+            initial={{ opacity: 0.8, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <div className="text-center space-y-4">
+              <h2 className="text-4xl md:text-5xl font-light tracking-wide">
+                Résumé
+              </h2>
+              <p className="text-lg text-muted-foreground font-light">
+                A snapshot of my experience, skills, and credentials
+              </p>
+            </div>
+
+            <Separator />
+
+            {/* Resume Summary Card */}
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Left - Quick Info */}
+              <div className="space-y-6">
+                <div className="flex items-start gap-3">
+                  <GraduationCap className="size-5 text-muted-foreground mt-0.5" />
+                  <div>
+                    <p className="text-sm font-light tracking-wide text-muted-foreground">Education</p>
+                    <p className="font-light text-foreground">{photographerInfo.education}</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <MapPin className="size-5 text-muted-foreground mt-0.5" />
+                  <div>
+                    <p className="text-sm font-light tracking-wide text-muted-foreground">Location</p>
+                    <p className="font-light text-foreground">{photographerInfo.location}</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Award className="size-5 text-muted-foreground mt-0.5" />
+                  <div>
+                    <p className="text-sm font-light tracking-wide text-muted-foreground">Certifications</p>
+                    <ul className="space-y-1">
+                      {photographerInfo.certifications.map((cert, i) => (
+                        <li key={i} className="font-light text-foreground text-sm">
+                          {cert.title} — <span className="text-muted-foreground">{cert.issuer}, {cert.year}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+                {photographerInfo.patent && (
+                  <div className="flex items-start gap-3">
+                    <FileText className="size-5 text-muted-foreground mt-0.5" />
+                    <div>
+                      <p className="text-sm font-light tracking-wide text-muted-foreground">Patent</p>
+                      <p className="font-light text-foreground text-sm">{photographerInfo.patent.title}</p>
+                      <p className="text-xs text-muted-foreground mt-1">Application No. {photographerInfo.patent.applicationNo} · {photographerInfo.patent.date}</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Right - Availability + Download */}
+              <div className="space-y-6">
+                <div className="p-6 border border-border rounded-sm bg-accent/30 space-y-4">
+                  <h3 className="text-lg font-light tracking-wide">Current Status</h3>
+                  <p className="text-sm font-light text-muted-foreground leading-relaxed">
+                    {photographerInfo.availability}
+                  </p>
+                  <Button
+                    asChild
+                    size="lg"
+                    className="w-full gap-2"
+                  >
+                    <a
+                      href="https://charles-shaju.github.io/assets/media/Charles%20Shjau%20Resume.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download
+                    >
+                      <Download className="size-4" />
+                      Download Résumé (PDF)
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
       </div>
     </>
   );
