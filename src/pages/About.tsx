@@ -50,23 +50,12 @@ export default function About() {
               transition={{ duration: 0.4 }}
             >
               <div className="aspect-[3/4] relative overflow-hidden rounded-sm bg-muted">
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  poster="https://images.pexels.com/videos/3888252/afro-hair-fashion-model-3888252.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200"
+                <img
+                  src={photographerInfo.portraitImage}
+                  alt={`Portrait of ${photographerInfo.name}`}
                   className="absolute inset-0 w-full h-full object-cover"
-                  onError={(e) => {
-                    const target = e.currentTarget;
-                    target.style.display = 'none';
-                  }}
-                >
-                  <source src="https://videos.pexels.com/video-files/3888252/3888252-sd_426_226_25fps.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-                {/* Video from Pexels */}
+                  loading="lazy"
+                />
               </div>
               
               {/* Social Links */}
