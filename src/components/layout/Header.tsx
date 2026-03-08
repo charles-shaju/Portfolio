@@ -24,8 +24,24 @@ const navLinks = [
  */
 export function Header() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { isScrolled } = useScrollPosition();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleNavClick = (path: string) => (e: React.MouseEvent) => {
+    if (path.includes('#')) {
+      e.preventDefault();
+      const [pathname, hash] = path.split('#');
+      if (location.pathname === pathname) {
+        document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        navigate(pathname);
+        setTimeout(() => {
+          document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+      }
+    }
+  };
   
   // Header is transparent only on homepage hero when not scrolled
   const isTransparent = location.pathname === '/' && !isScrolled;
