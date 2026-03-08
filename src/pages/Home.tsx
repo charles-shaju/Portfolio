@@ -78,12 +78,12 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.8 }}>
                 
-                <Link
-                  to="/portfolio"
-                  className="px-6 py-2.5 border border-[rgba(0,210,211,0.5)] text-[rgb(0,210,211)] text-sm font-light tracking-wide rounded-sm hover:bg-[rgba(0,210,211,0.1)] transition-colors">
-                  
-                  View Projects
-                </Link>
+                
+
+
+
+
+                
                 <Link
                   to="/contact"
                   className="px-6 py-2.5 text-white/70 text-sm font-light tracking-wide hover:text-white transition-colors">
