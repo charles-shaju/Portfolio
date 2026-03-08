@@ -32,7 +32,7 @@ export default function Home() {
             src="/videos/hero-bg.mp4"
           />
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[hsl(210,30%,8%)]/40 via-[hsl(210,30%,8%)]/30 to-[hsl(210,30%,8%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[hsl(210,30%,8%)]/70 via-[hsl(210,30%,8%)]/60 to-[hsl(210,30%,8%)]" />
 
           {/* Hero Content */}
           <div className="relative h-full flex flex-col items-center justify-center px-6">
