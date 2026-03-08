@@ -41,13 +41,13 @@ export function Footer() {
                 <Linkedin className="size-5" />
               </a>
             )}
-            {photographerInfo.socialLinks.behance && (
+            {photographerInfo.socialLinks.github && (
               <a
-                href={photographerInfo.socialLinks.behance}
+                href={photographerInfo.socialLinks.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="Behance"
+                aria-label="GitHub"
               >
                 <svg
                   className="size-5"
