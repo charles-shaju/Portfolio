@@ -191,14 +191,14 @@ export function ContactForm() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent className="bg-popover z-50">
-                  <SelectItem value="editorial" className="font-light">
-                    Editorial
+                  <SelectItem value="robotics" className="font-light">
+                    Robotics / Marine
                   </SelectItem>
-                  <SelectItem value="commercial" className="font-light">
-                    Commercial
+                  <SelectItem value="iot" className="font-light">
+                    IoT / Embedded Systems
                   </SelectItem>
-                  <SelectItem value="personal" className="font-light">
-                    Personal
+                  <SelectItem value="collaboration" className="font-light">
+                    Collaboration / Other
                   </SelectItem>
                 </SelectContent>
               </Select>
