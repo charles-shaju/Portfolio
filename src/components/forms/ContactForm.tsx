@@ -69,24 +69,12 @@ export function ContactForm() {
     setIsSubmitting(true);
     
     try {
-      // Formspree integration - replace YOUR_FORM_ID with your actual form ID
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          projectType: data.projectType,
-          message: data.message,
-          _subject: `New ${data.projectType} inquiry from ${data.name}`,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to send message');
-      }
+      const subject = encodeURIComponent(`New ${data.projectType} inquiry from ${data.name}`);
+      const body = encodeURIComponent(
+        `Name: ${data.name}\nEmail: ${data.email}\nProject Type: ${data.projectType}\n\nMessage:\n${data.message}`
+      );
+      
+      window.open(`mailto:${photographerInfo.email}?subject=${subject}&body=${body}`, '_self');
 
       // Show success state
       setIsSuccess(true);
@@ -98,7 +86,7 @@ export function ContactForm() {
       }, 5000);
     } catch (error) {
       form.setError('root', {
-        message: 'Failed to send message. Please try again.',
+        message: 'Failed to open email client. Please try again.',
       });
     } finally {
       setIsSubmitting(false);
