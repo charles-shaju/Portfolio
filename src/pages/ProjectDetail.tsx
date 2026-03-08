@@ -126,8 +126,8 @@ export default function ProjectDetail() {
         </section>
 
         {/* Image Gallery */}
-        <section className="py-12 md:py-16">
-          <div className="space-y-8 md:space-y-12">
+        <section className="py-12 md:py-16 px-6 lg:px-8">
+          <div className="max-w-5xl mx-auto space-y-8 md:space-y-12">
             {project.images.map((image, index) => (
               <ScrollReveal key={image.id} delay={index * 0.1}>
                 <ImageWithLightbox
