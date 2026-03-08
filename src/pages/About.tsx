@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
-import { Instagram, Linkedin } from 'lucide-react';
+import { Instagram, Linkedin, Download, FileText, MapPin, GraduationCap, Award } from 'lucide-react';
 import { photographerInfo } from '@/data/photographer';
+import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { SEOHead } from '@/components/seo/SEOHead';
 
