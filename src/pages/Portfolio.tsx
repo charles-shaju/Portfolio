@@ -25,12 +25,12 @@ export default function Portfolio() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4">
-              Portfolio
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground font-light tracking-wide max-w-2xl mx-auto">
-              A curated collection of photography spanning diverse subjects and styles
-            </p>
+             <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4">
+               Projects
+             </h1>
+             <p className="text-lg md:text-xl text-muted-foreground font-light tracking-wide max-w-2xl mx-auto">
+               A curated collection of robotics, IoT, and embedded systems projects
+             </p>
           </motion.div>
         </div>
       </section>
