@@ -35,7 +35,7 @@ const contactFormSchema = z.object({
     .trim()
     .email({ message: 'Please enter a valid email address' })
     .max(255, { message: 'Email must be less than 255 characters' }),
-  projectType: z.enum(['editorial', 'commercial', 'personal'], {
+  projectType: z.enum(['robotics', 'iot', 'collaboration'], {
     required_error: 'Please select a project type',
   }),
   message: z
@@ -191,14 +191,14 @@ export function ContactForm() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent className="bg-popover z-50">
-                  <SelectItem value="editorial" className="font-light">
-                    Editorial
+                  <SelectItem value="robotics" className="font-light">
+                    Robotics / Marine
                   </SelectItem>
-                  <SelectItem value="commercial" className="font-light">
-                    Commercial
+                  <SelectItem value="iot" className="font-light">
+                    IoT / Embedded Systems
                   </SelectItem>
-                  <SelectItem value="personal" className="font-light">
-                    Personal
+                  <SelectItem value="collaboration" className="font-light">
+                    Collaboration / Other
                   </SelectItem>
                 </SelectContent>
               </Select>

@@ -13,7 +13,7 @@ export default function Portfolio() {
     <>
       <SEOHead 
         title="Portfolio"
-        description="Browse my complete photography portfolio featuring portraits, landscapes, editorial work, architecture, and documentary projects."
+        description="Browse my complete project portfolio featuring robotics, IoT, embedded systems, AI, and marine technology projects."
       />
       
       <div className="min-h-screen">
@@ -25,12 +25,12 @@ export default function Portfolio() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4">
-              Portfolio
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground font-light tracking-wide max-w-2xl mx-auto">
-              A curated collection of photography spanning diverse subjects and styles
-            </p>
+             <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4">
+               Projects
+             </h1>
+             <p className="text-lg md:text-xl text-muted-foreground font-light tracking-wide max-w-2xl mx-auto">
+               A curated collection of robotics, IoT, and embedded systems projects
+             </p>
           </motion.div>
         </div>
       </section>

@@ -107,22 +107,22 @@ export default function ProjectDetail() {
 
           {/* Technical Details */}
           <div className="grid md:grid-cols-2 gap-6 pt-4">
-            {project.camera && (
+            {project.techStack && project.techStack.length > 0 && (
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-sm font-light tracking-wide uppercase text-muted-foreground">
                   <Camera className="size-4" />
-                  <span>Camera</span>
+                  <span>Tech Stack</span>
                 </div>
-                <p className="font-light text-foreground">{project.camera}</p>
+                <p className="font-light text-foreground">{project.techStack.join(', ')}</p>
               </div>
             )}
-            {project.client && (
+            {project.location && (
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-sm font-light tracking-wide uppercase text-muted-foreground">
                   <User className="size-4" />
-                  <span>Client</span>
+                  <span>Location</span>
                 </div>
-                <p className="font-light text-foreground">{project.client}</p>
+                <p className="font-light text-foreground">{project.location}</p>
               </div>
             )}
           </div>

@@ -1,9 +1,8 @@
 /**
- * Core TypeScript interfaces for Frame Portfolio
- * Based on SPECIFICATION.md data model requirements
+ * Core TypeScript interfaces for Charles Shaju's Portfolio
  */
 
-export type ProjectCategory = 'portraits' | 'landscapes' | 'editorial' | 'architecture' | 'documentary';
+export type ProjectCategory = 'robotics' | 'iot' | 'embedded' | 'ai' | 'marine';
 
 export type AspectRatio = 'portrait' | 'landscape' | 'square';
 
@@ -23,29 +22,35 @@ export interface Project {
   coverImage: string;
   images: ProjectImage[];
   description: string;
-  client?: string;
-  camera?: string;
+  techStack?: string[];
   location?: string;
   slug: string;
 }
 
-export interface PhotographerInfo {
+export interface PersonInfo {
   name: string;
   tagline: string;
   heroIntroduction: string;
   biography: string;
   approach: string;
-  awards: string[];
-  clients: string[];
+  skills: {
+    languages: string[];
+    frameworks: string[];
+    tools: string[];
+    hardware: string[];
+  };
+  certifications: { title: string; issuer: string; year: string }[];
+  patent?: { title: string; description: string; applicationNo: string; date: string };
   education: string;
   location: string;
   email: string;
-  phone: string;
   availability: string;
   socialLinks: {
     instagram?: string;
     linkedin?: string;
-    behance?: string;
+    github?: string;
+    twitter?: string;
+    medium?: string;
   };
   portraitImage: string;
 }
@@ -53,7 +58,10 @@ export interface PhotographerInfo {
 export interface ContactSubmission {
   name: string;
   email: string;
-  projectType: 'editorial' | 'commercial' | 'personal';
+  projectType: 'robotics' | 'iot' | 'collaboration';
   message: string;
   timestamp: Date;
 }
+
+// Legacy alias for backward compatibility
+export type PhotographerInfo = PersonInfo;
