@@ -142,7 +142,10 @@ export function Header() {
                     <Link
                       key={link.path}
                       to={link.path}
-                      onClick={() => setMobileMenuOpen(false)}
+                      onClick={(e) => {
+                        handleNavClick(link.path)(e);
+                        setMobileMenuOpen(false);
+                      }}
                       className="text-lg leading-7 font-light tracking-wide text-foreground hover:text-foreground/80"
                     >
                       {link.name}
