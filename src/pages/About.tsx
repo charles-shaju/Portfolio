@@ -213,12 +213,11 @@ export default function About() {
             <div className="relative">
               {/* Animated vertical line */}
               <motion.div
-                className="absolute left-4 md:left-1/2 top-0 w-px bg-foreground/20 md:-translate-x-px origin-top"
+                className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-foreground/20 md:-translate-x-px origin-top"
                 initial={{ scaleY: 0 }}
                 whileInView={{ scaleY: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 1.5, ease: "easeInOut" }}
-                style={{ bottom: 0 }}
               />
 
               {timeline.map((item, index) => {
