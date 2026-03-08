@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -13,6 +13,7 @@ const navLinks = [
   { name: 'Home', path: '/' },
   { name: 'Portfolio', path: '/portfolio' },
   { name: 'About', path: '/about' },
+  { name: 'Résumé', path: '/about#resume' },
   { name: 'Contact', path: '/contact' },
 ];
 
@@ -23,8 +24,24 @@ const navLinks = [
  */
 export function Header() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { isScrolled } = useScrollPosition();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleNavClick = (path: string) => (e: React.MouseEvent) => {
+    if (path.includes('#')) {
+      e.preventDefault();
+      const [pathname, hash] = path.split('#');
+      if (location.pathname === pathname) {
+        document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        navigate(pathname);
+        setTimeout(() => {
+          document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+      }
+    }
+  };
   
   // Header is transparent only on homepage hero when not scrolled
   const isTransparent = location.pathname === '/' && !isScrolled;
@@ -73,6 +90,7 @@ export function Header() {
                 >
                   <Link
                     to={link.path}
+                    onClick={handleNavClick(link.path)}
                     className={cn(
                       "relative text-lg leading-7 font-light tracking-wide transition-colors duration-300",
                       isTransparent
@@ -124,7 +142,10 @@ export function Header() {
                     <Link
                       key={link.path}
                       to={link.path}
-                      onClick={() => setMobileMenuOpen(false)}
+                      onClick={(e) => {
+                        handleNavClick(link.path)(e);
+                        setMobileMenuOpen(false);
+                      }}
                       className="text-lg leading-7 font-light tracking-wide text-foreground hover:text-foreground/80"
                     >
                       {link.name}
