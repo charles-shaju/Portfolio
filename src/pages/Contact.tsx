@@ -97,21 +97,18 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Phone */}
+                {/* Availability */}
                 <div className="flex items-start gap-4">
                   <div className="p-3 rounded-sm bg-accent">
                     <Phone className="size-5 text-muted-foreground" />
                   </div>
                   <div className="space-y-1">
                     <p className="text-sm font-light tracking-wide text-muted-foreground">
-                      Phone
+                      Availability
                     </p>
-                    <a
-                      href={`tel:${photographerInfo.phone}`}
-                      className="text-base md:text-lg font-light hover:text-muted-foreground transition-colors"
-                    >
-                      {photographerInfo.phone}
-                    </a>
+                    <p className="text-base md:text-lg font-light">
+                      {photographerInfo.availability}
+                    </p>
                   </div>
                 </div>
 
