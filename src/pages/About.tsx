@@ -1,9 +1,42 @@
 import { motion } from 'framer-motion';
-import { Instagram, Linkedin, Download, FileText, MapPin, GraduationCap, Award } from 'lucide-react';
+import { Instagram, Linkedin, Download, FileText, MapPin, GraduationCap, Award, Briefcase } from 'lucide-react';
 import { photographerInfo } from '@/data/photographer';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { SEOHead } from '@/components/seo/SEOHead';
+
+const timeline = [
+  {
+    year: '2025',
+    title: 'Geodata Processing with Python & ML',
+    org: 'ISRO Certification',
+    description: 'Completed advanced training in geodata processing combining satellite data analysis with machine learning techniques.',
+  },
+  {
+    year: '2024',
+    title: 'Patent Published — UROV-SHM',
+    org: 'Indian Patent Office',
+    description: 'Published patent for Underwater Remotely Operated Vehicle for Structural Health Monitoring. Application No. 202241040473 A.',
+  },
+  {
+    year: '2024',
+    title: 'Embedded Systems Engineer',
+    org: 'i4 Marine Technologies',
+    description: 'Building autonomous marine vehicles, ROV systems, and IoT telemetry platforms for underwater infrastructure inspection.',
+  },
+  {
+    year: '2024',
+    title: 'AI-Machine Learning Developer Certification',
+    org: 'Kerala ASAP',
+    description: 'Certified in AI/ML development covering TensorFlow, neural networks, and practical deployment.',
+  },
+  {
+    year: '2023',
+    title: 'Started MCA',
+    org: 'Rajagiri College of Social Science',
+    description: 'Pursuing Master of Computer Applications with focus on embedded systems and AI-driven robotics research.',
+  },
+];
 
 /**
  * About page with photographer biography and professional information
@@ -156,6 +189,57 @@ export default function About() {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Timeline Section */}
+      <section className="py-16 md:py-24 px-6 lg:px-8 border-t border-border">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            className="space-y-10"
+            initial={{ opacity: 0.8, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <div className="text-center space-y-4">
+              <h2 className="text-4xl md:text-5xl font-light tracking-wide">
+                Journey
+              </h2>
+              <p className="text-lg text-muted-foreground font-light">
+                Key milestones and career highlights
+              </p>
+            </div>
+
+            <div className="relative">
+              {/* Vertical line */}
+              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px" />
+
+              {timeline.map((item, index) => (
+                <motion.div
+                  key={index}
+                  className={`relative flex items-start gap-6 mb-10 last:mb-0 ${
+                    index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                  }`}
+                  initial={{ opacity: 0.8, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.08 }}
+                >
+                  {/* Dot */}
+                  <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-foreground border-2 border-background -translate-x-1.5 md:-translate-x-1.5 mt-1.5 z-10" />
+
+                  {/* Content */}
+                  <div className={`ml-12 md:ml-0 md:w-[calc(50%-2rem)] ${index % 2 === 0 ? 'md:pr-8 md:text-right' : 'md:pl-8'}`}>
+                    <span className="text-xs font-light tracking-widest uppercase text-muted-foreground">{item.year}</span>
+                    <h3 className="text-lg font-light tracking-wide text-foreground mt-1">{item.title}</h3>
+                    <p className="text-sm font-light text-muted-foreground mt-0.5">{item.org}</p>
+                    <p className="text-sm font-light text-muted-foreground mt-2 leading-relaxed">{item.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
