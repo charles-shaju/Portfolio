@@ -29,7 +29,6 @@ export default function Home() {
             loop
             playsInline
             className="absolute inset-0 w-full h-full object-cover"
-            style={{ playbackRate: 0.5 }}
             ref={(el) => { if (el) el.playbackRate = 0.5; }}
             src="/videos/hero-bg.mp4"
           />
