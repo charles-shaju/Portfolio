@@ -105,6 +105,38 @@ export default function Home() {
           </div>
         </section>
 
+
+        {/* Stats Bar */}
+        <section className="py-16 md:py-20 px-6 lg:px-8 border-b border-border bg-accent/30">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+              {[
+                { value: '3+', label: 'Years Experience' },
+                { value: '5', label: 'Projects Built' },
+                { value: '1', label: 'Patent Published' },
+                { value: '2', label: 'Certifications' },
+              ].map((stat, index) => (
+                <ScrollReveal key={stat.label} delay={index * 0.1}>
+                  <div className="text-center space-y-2">
+                    <motion.span
+                      className="block text-4xl md:text-5xl font-extralight tracking-wide text-foreground"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.15 }}
+                    >
+                      {stat.value}
+                    </motion.span>
+                    <p className="text-sm md:text-base font-light tracking-wide text-muted-foreground uppercase">
+                      {stat.label}
+                    </p>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Introduction Section */}
         <section className="py-24 md:py-32 px-6 lg:px-8 bg-background">
           <div className="max-w-4xl mx-auto text-center space-y-8">
@@ -121,7 +153,6 @@ export default function Home() {
                 <Link
                   to="/about"
                   className="inline-flex items-center gap-2 text-base font-light tracking-wide text-foreground hover:text-muted-foreground transition-colors group">
-                  
                   <span>Learn More About Me</span>
                   <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                 </Link>
