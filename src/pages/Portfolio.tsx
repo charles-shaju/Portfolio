@@ -13,7 +13,7 @@ export default function Portfolio() {
     <>
       <SEOHead 
         title="Portfolio"
-        description="Browse my complete photography portfolio featuring portraits, landscapes, editorial work, architecture, and documentary projects."
+        description="Browse my complete project portfolio featuring robotics, IoT, embedded systems, AI, and marine technology projects."
       />
       
       <div className="min-h-screen">
