@@ -221,44 +221,66 @@ export default function About() {
                 style={{ bottom: 0 }}
               />
 
-              {timeline.map((item, index) => (
-                <motion.div
-                  key={index}
-                  className={`relative flex items-start gap-6 mb-10 last:mb-0 ${
-                    index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                  }`}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
-                >
-                  {/* Animated Dot */}
+              {timeline.map((item, index) => {
+                // Even index = left side (slide outward to left), Odd = right side (slide outward to right)
+                const isLeft = index % 2 === 0;
+                return (
                   <motion.div
-                    className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-foreground border-2 border-background -translate-x-1.5 md:-translate-x-1.5 mt-1.5 z-10"
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.15 + 0.2, type: "spring", stiffness: 300 }}
-                  />
+                    key={index}
+                    className={`relative flex items-start gap-6 mb-10 last:mb-0 ${
+                      isLeft ? 'md:flex-row' : 'md:flex-row-reverse'
+                    }`}
+                    initial={{ opacity: 0, x: 0 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
+                  >
+                    {/* Animated Dot */}
+                    <motion.div
+                      className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-foreground border-2 border-background -translate-x-1.5 md:-translate-x-1.5 mt-1.5 z-10"
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.15 + 0.2, type: "spring", stiffness: 300 }}
+                    />
 
-                  {/* Pulse ring on dot */}
-                  <motion.div
-                    className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full border border-foreground/30 -translate-x-1.5 md:-translate-x-1.5 mt-1.5 z-[9]"
-                    initial={{ scale: 0, opacity: 0 }}
-                    whileInView={{ scale: [1, 2.5], opacity: [0.6, 0] }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: index * 0.15 + 0.3 }}
-                  />
+                    {/* Horizontal connector line from dot to card */}
+                    <motion.div
+                      className={`hidden md:block absolute top-[0.65rem] h-px bg-foreground/20 ${
+                        isLeft ? 'right-1/2 left-auto w-8 mr-[0.35rem]' : 'left-1/2 w-8 ml-[0.35rem]'
+                      }`}
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      viewport={{ once: true }}
+                      style={{ transformOrigin: isLeft ? 'right' : 'left' }}
+                      transition={{ duration: 0.4, delay: index * 0.15 + 0.3 }}
+                    />
 
-                  {/* Content */}
-                  <div className={`ml-12 md:ml-0 md:w-[calc(50%-2rem)] ${index % 2 === 0 ? 'md:pr-8 md:text-right' : 'md:pl-8'}`}>
-                    <span className="text-xs font-light tracking-widest uppercase text-muted-foreground">{item.year}</span>
-                    <h3 className="text-lg font-light tracking-wide text-foreground mt-1">{item.title}</h3>
-                    <p className="text-sm font-light text-muted-foreground mt-0.5">{item.org}</p>
-                    <p className="text-sm font-light text-muted-foreground mt-2 leading-relaxed">{item.description}</p>
-                  </div>
-                </motion.div>
-              ))}
+                    {/* Pulse ring on dot */}
+                    <motion.div
+                      className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full border border-foreground/30 -translate-x-1.5 md:-translate-x-1.5 mt-1.5 z-[9]"
+                      initial={{ scale: 0, opacity: 0 }}
+                      whileInView={{ scale: [1, 2.5], opacity: [0.6, 0] }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, delay: index * 0.15 + 0.3 }}
+                    />
+
+                    {/* Content - slides outward from center */}
+                    <motion.div
+                      className={`ml-12 md:ml-0 md:w-[calc(50%-2rem)] ${isLeft ? 'md:pr-8 md:text-right' : 'md:pl-8'}`}
+                      initial={{ opacity: 0, x: isLeft ? 30 : -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.5, delay: index * 0.15 + 0.3, ease: "easeOut" }}
+                    >
+                      <span className="text-xs font-light tracking-widest uppercase text-muted-foreground">{item.year}</span>
+                      <h3 className="text-lg font-light tracking-wide text-foreground mt-1">{item.title}</h3>
+                      <p className="text-sm font-light text-muted-foreground mt-0.5">{item.org}</p>
+                      <p className="text-sm font-light text-muted-foreground mt-2 leading-relaxed">{item.description}</p>
+                    </motion.div>
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.div>
         </div>
