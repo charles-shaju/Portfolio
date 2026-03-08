@@ -22,6 +22,14 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
 function AnimatedRoutes() {
   const location = useLocation();
 
