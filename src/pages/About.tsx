@@ -211,8 +211,15 @@ export default function About() {
             </div>
 
             <div className="relative">
-              {/* Vertical line */}
-              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px" />
+              {/* Animated vertical line */}
+              <motion.div
+                className="absolute left-4 md:left-1/2 top-0 w-px bg-foreground/20 md:-translate-x-px origin-top"
+                initial={{ scaleY: 0 }}
+                whileInView={{ scaleY: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1.5, ease: "easeInOut" }}
+                style={{ bottom: 0 }}
+              />
 
               {timeline.map((item, index) => (
                 <motion.div
@@ -220,13 +227,28 @@ export default function About() {
                   className={`relative flex items-start gap-6 mb-10 last:mb-0 ${
                     index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                   }`}
-                  initial={{ opacity: 0.8, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.08 }}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
                 >
-                  {/* Dot */}
-                  <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-foreground border-2 border-background -translate-x-1.5 md:-translate-x-1.5 mt-1.5 z-10" />
+                  {/* Animated Dot */}
+                  <motion.div
+                    className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-foreground border-2 border-background -translate-x-1.5 md:-translate-x-1.5 mt-1.5 z-10"
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.15 + 0.2, type: "spring", stiffness: 300 }}
+                  />
+
+                  {/* Pulse ring on dot */}
+                  <motion.div
+                    className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full border border-foreground/30 -translate-x-1.5 md:-translate-x-1.5 mt-1.5 z-[9]"
+                    initial={{ scale: 0, opacity: 0 }}
+                    whileInView={{ scale: [1, 2.5], opacity: [0.6, 0] }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: index * 0.15 + 0.3 }}
+                  />
 
                   {/* Content */}
                   <div className={`ml-12 md:ml-0 md:w-[calc(50%-2rem)] ${index % 2 === 0 ? 'md:pr-8 md:text-right' : 'md:pl-8'}`}>
