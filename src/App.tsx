@@ -98,6 +98,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <ScrollToTop />
             <SkipToContent />
             <Layout>
               <Suspense fallback={<LoadingFallback />}>
