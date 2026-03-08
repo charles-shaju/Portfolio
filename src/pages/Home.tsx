@@ -33,23 +33,23 @@ export default function Home() {
               className="text-center space-y-6 max-w-4xl"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-            >
-              <motion.div
-                className="inline-block mb-4 px-4 py-1.5 border border-[rgba(0,210,211,0.3)] rounded-full text-xs font-light tracking-widest uppercase text-[rgb(0,210,211)]"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.1 }}
-              >
-                Embedded Systems · IoT · Robotics
-              </motion.div>
+              transition={{ duration: 1, ease: "easeOut" }}>
+              
+              
+
+
+
+
+
+
+              
 
               <motion.h1
                 className="text-5xl md:text-7xl lg:text-8xl font-extralight tracking-widest text-white uppercase"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.2 }}
-              >
+                transition={{ duration: 1, delay: 0.2 }}>
+                
                 {photographerInfo.name.toUpperCase()}
               </motion.h1>
               
@@ -57,8 +57,8 @@ export default function Home() {
                 className="text-xl md:text-2xl font-light tracking-wide text-white/80"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.4 }}
-              >
+                transition={{ duration: 1, delay: 0.4 }}>
+                
                 {photographerInfo.tagline}
               </motion.p>
 
@@ -66,8 +66,8 @@ export default function Home() {
                 className="text-base md:text-lg font-light leading-relaxed text-white/60 max-w-2xl mx-auto"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.6 }}
-              >
+                transition={{ duration: 1, delay: 0.6 }}>
+                
                 {photographerInfo.heroIntroduction}
               </motion.p>
 
@@ -76,18 +76,18 @@ export default function Home() {
                 className="flex flex-wrap items-center justify-center gap-4 pt-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.8 }}
-              >
+                transition={{ duration: 1, delay: 0.8 }}>
+                
                 <Link
                   to="/portfolio"
-                  className="px-6 py-2.5 border border-[rgba(0,210,211,0.5)] text-[rgb(0,210,211)] text-sm font-light tracking-wide rounded-sm hover:bg-[rgba(0,210,211,0.1)] transition-colors"
-                >
+                  className="px-6 py-2.5 border border-[rgba(0,210,211,0.5)] text-[rgb(0,210,211)] text-sm font-light tracking-wide rounded-sm hover:bg-[rgba(0,210,211,0.1)] transition-colors">
+                  
                   View Projects
                 </Link>
                 <Link
                   to="/contact"
-                  className="px-6 py-2.5 text-white/70 text-sm font-light tracking-wide hover:text-white transition-colors"
-                >
+                  className="px-6 py-2.5 text-white/70 text-sm font-light tracking-wide hover:text-white transition-colors">
+                  
                   Get in Touch →
                 </Link>
               </motion.div>
@@ -98,8 +98,8 @@ export default function Home() {
               className="absolute bottom-12"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.2, duration: 0.8 }}
-            >
+              transition={{ delay: 1.2, duration: 0.8 }}>
+              
               <ScrollIndicator />
             </motion.div>
           </div>
@@ -120,8 +120,8 @@ export default function Home() {
                 </div>
                 <Link
                   to="/about"
-                  className="inline-flex items-center gap-2 text-base font-light tracking-wide text-foreground hover:text-muted-foreground transition-colors group"
-                >
+                  className="inline-flex items-center gap-2 text-base font-light tracking-wide text-foreground hover:text-muted-foreground transition-colors group">
+                  
                   <span>Learn More About Me</span>
                   <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                 </Link>
@@ -144,23 +144,23 @@ export default function Home() {
           </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
-            {featuredProjects.map((project, index) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                aspectRatio="landscape"
-                showCategory={true}
-                index={index}
-              />
-            ))}
+            {featuredProjects.map((project, index) =>
+            <ProjectCard
+              key={project.id}
+              project={project}
+              aspectRatio="landscape"
+              showCategory={true}
+              index={index} />
+
+            )}
           </div>
 
           <ScrollReveal delay={0.4}>
             <div className="flex justify-center mt-16 px-6">
               <Link
                 to="/portfolio"
-                className="group inline-flex items-center gap-2 text-lg font-light tracking-wide text-foreground hover:text-muted-foreground transition-colors"
-              >
+                className="group inline-flex items-center gap-2 text-lg font-light tracking-wide text-foreground hover:text-muted-foreground transition-colors">
+                
                 <span>View All Projects</span>
                 <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
               </Link>
@@ -168,6 +168,6 @@ export default function Home() {
           </ScrollReveal>
         </section>
       </div>
-    </>
-  );
+    </>);
+
 }
