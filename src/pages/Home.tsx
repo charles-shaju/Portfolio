@@ -143,7 +143,7 @@ export default function Home() {
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 px-6 lg:px-8 max-w-7xl mx-auto">
             {featuredProjects.map((project, index) =>
             <ProjectCard
               key={project.id}
