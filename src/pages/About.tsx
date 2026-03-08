@@ -159,7 +159,132 @@ export default function About() {
         </div>
       </section>
 
-      {/* Resume Section */}
+      {/* Achievements Section */}
+      <section id="achievements" className="py-16 md:py-24 px-6 lg:px-8 border-t border-border">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            className="space-y-12"
+            initial={{ opacity: 0.8, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <div className="text-center space-y-4">
+              <h2 className="text-4xl md:text-5xl font-light tracking-wide">
+                Achievements
+              </h2>
+              <p className="text-lg text-muted-foreground font-light">
+                Credentials, certifications, and published work
+              </p>
+            </div>
+
+            {/* Patent */}
+            {photographerInfo.patent && (
+              <motion.div
+                className="p-8 border border-border rounded-sm bg-accent/20 space-y-4"
+                initial={{ opacity: 0.8, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-sm bg-primary text-primary-foreground">
+                    <FileText className="size-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-light tracking-widest uppercase text-muted-foreground">Published Patent</p>
+                    <p className="text-sm text-muted-foreground">Indian Application No. {photographerInfo.patent.applicationNo} · {photographerInfo.patent.date}</p>
+                  </div>
+                </div>
+                <h3 className="text-xl md:text-2xl font-light tracking-wide text-foreground">
+                  {photographerInfo.patent.title}
+                </h3>
+                <p className="text-base font-light leading-relaxed text-muted-foreground">
+                  {photographerInfo.patent.description}
+                </p>
+              </motion.div>
+            )}
+
+            {/* Certifications Grid */}
+            <div>
+              <h3 className="text-2xl font-light tracking-wide mb-6">Certifications</h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                {photographerInfo.certifications.map((cert, index) => (
+                  <motion.div
+                    key={index}
+                    className="group p-6 border border-border rounded-sm hover:bg-accent/30 transition-colors space-y-3"
+                    initial={{ opacity: 0.8, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: 0.1 * index }}
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="p-2.5 rounded-sm bg-accent">
+                        <Award className="size-5 text-muted-foreground group-hover:text-foreground transition-colors" />
+                      </div>
+                      <span className="text-sm font-light text-muted-foreground">{cert.year}</span>
+                    </div>
+                    <h4 className="text-lg font-light tracking-wide text-foreground">
+                      {cert.title}
+                    </h4>
+                    <p className="text-sm font-light text-muted-foreground">
+                      Issued by {cert.issuer}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Skills Overview */}
+            <div>
+              <h3 className="text-2xl font-light tracking-wide mb-6">Technical Skills</h3>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-4">
+                  <h4 className="text-sm font-light tracking-widest uppercase text-muted-foreground">Languages</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {photographerInfo.skills.languages.map((skill) => (
+                      <span key={skill} className="px-3 py-1.5 text-sm font-light border border-border rounded-sm bg-accent/20 text-foreground">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <h4 className="text-sm font-light tracking-widest uppercase text-muted-foreground">Frameworks & Libraries</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {photographerInfo.skills.frameworks.map((skill) => (
+                      <span key={skill} className="px-3 py-1.5 text-sm font-light border border-border rounded-sm bg-accent/20 text-foreground">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <h4 className="text-sm font-light tracking-widest uppercase text-muted-foreground">Tools & Software</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {photographerInfo.skills.tools.map((skill) => (
+                      <span key={skill} className="px-3 py-1.5 text-sm font-light border border-border rounded-sm bg-accent/20 text-foreground">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <h4 className="text-sm font-light tracking-widest uppercase text-muted-foreground">Hardware & Embedded</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {photographerInfo.skills.hardware.map((skill) => (
+                      <span key={skill} className="px-3 py-1.5 text-sm font-light border border-border rounded-sm bg-accent/20 text-foreground">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       <section id="resume" className="py-16 md:py-24 px-6 lg:px-8 border-t border-border">
         <div className="max-w-4xl mx-auto">
           <motion.div
