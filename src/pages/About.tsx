@@ -1,9 +1,42 @@
 import { motion } from 'framer-motion';
-import { Instagram, Linkedin, Download, FileText, MapPin, GraduationCap, Award } from 'lucide-react';
+import { Instagram, Linkedin, Download, FileText, MapPin, GraduationCap, Award, Briefcase } from 'lucide-react';
 import { photographerInfo } from '@/data/photographer';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { SEOHead } from '@/components/seo/SEOHead';
+
+const timeline = [
+  {
+    year: '2025',
+    title: 'Geodata Processing with Python & ML',
+    org: 'ISRO Certification',
+    description: 'Completed advanced training in geodata processing combining satellite data analysis with machine learning techniques.',
+  },
+  {
+    year: '2024',
+    title: 'Patent Published — UROV-SHM',
+    org: 'Indian Patent Office',
+    description: 'Published patent for Underwater Remotely Operated Vehicle for Structural Health Monitoring. Application No. 202241040473 A.',
+  },
+  {
+    year: '2024',
+    title: 'Embedded Systems Engineer',
+    org: 'i4 Marine Technologies',
+    description: 'Building autonomous marine vehicles, ROV systems, and IoT telemetry platforms for underwater infrastructure inspection.',
+  },
+  {
+    year: '2024',
+    title: 'AI-Machine Learning Developer Certification',
+    org: 'Kerala ASAP',
+    description: 'Certified in AI/ML development covering TensorFlow, neural networks, and practical deployment.',
+  },
+  {
+    year: '2023',
+    title: 'Started MCA',
+    org: 'Rajagiri College of Social Science',
+    description: 'Pursuing Master of Computer Applications with focus on embedded systems and AI-driven robotics research.',
+  },
+];
 
 /**
  * About page with photographer biography and professional information
