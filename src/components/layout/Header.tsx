@@ -90,6 +90,7 @@ export function Header() {
                 >
                   <Link
                     to={link.path}
+                    onClick={handleNavClick(link.path)}
                     className={cn(
                       "relative text-lg leading-7 font-light tracking-wide transition-colors duration-300",
                       isTransparent
