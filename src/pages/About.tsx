@@ -31,7 +31,7 @@ export default function About() {
               About
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground font-light tracking-wide">
-              Photographer & Visual Storyteller
+              Embedded Systems Engineer & Robotics Enthusiast
             </p>
           </motion.div>
         </div>
