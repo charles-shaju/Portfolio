@@ -73,7 +73,12 @@ export function Header() {
                 >
                   <Link
                     to={link.path}
-                    className="relative text-lg leading-7 font-light tracking-wide text-white transition-colors duration-300 hover:text-white/80"
+                    className={cn(
+                      "relative text-lg leading-7 font-light tracking-wide transition-colors duration-300",
+                      isTransparent
+                        ? "text-white hover:text-white/80"
+                        : "text-foreground hover:text-foreground/80"
+                    )}
                   >
                     {link.name}
                     {/* Active underline */}
