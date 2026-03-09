@@ -53,7 +53,7 @@ export function ImageWithLightbox({
           src={image.src}
           alt={image.alt}
           className={cn(
-            'absolute inset-0 w-full h-full object-cover transition-all duration-700',
+            'absolute inset-0 w-full h-full object-contain transition-all duration-700',
             isLoaded ? 'opacity-100' : 'opacity-0',
             isHovered && 'scale-105'
           )}
