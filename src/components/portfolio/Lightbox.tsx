@@ -150,7 +150,7 @@ export function Lightbox({
                 key={currentImage.id}
                 src={currentImage.src}
                 alt={currentImage.alt}
-                className="max-w-full max-h-full object-contain"
+                className="max-w-full max-h-full object-cover object-top"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
