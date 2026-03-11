@@ -1,5 +1,5 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
+import { useRef, useState } from 'react';
 import { Instagram, Linkedin, Download, FileText, MapPin, GraduationCap, Award, Briefcase } from 'lucide-react';
 import { photographerInfo } from '@/data/photographer';
 import { Button } from '@/components/ui/button';
@@ -8,22 +8,10 @@ import { SEOHead } from '@/components/seo/SEOHead';
 
 const timeline = [
   {
-    year: '2025',
-    title: 'Started MCA',
-    org: 'Rajagiri College of Social Sciences',
-    description: 'Pursuing Master of Computer Applications with focus on embedded systems and AI-driven robotics research.',
-  },
-  {
-    year: '2025',
-    title: 'Part-time Embedded Systems Engineer',
-    org: 'i4 Marine Technologies',
-    description: 'Resigned from full-time role and continuing part-time, contributing to marine robotics and IoT telemetry systems.',
-  },
-  {
     year: '2023',
-    title: 'Embedded Systems Engineer',
-    org: 'i4 Marine Technologies',
-    description: 'Joined as a full-time Embedded Systems Engineer, building autonomous marine vehicles, ROV systems, and IoT platforms.',
+    title: 'Completed B.Voc in IT',
+    org: 'University Graduation',
+    description: 'Graduated with a Bachelor of Vocation in Information Technology, building a strong foundation in software and hardware systems.',
   },
   {
     year: '2023',
@@ -33,9 +21,21 @@ const timeline = [
   },
   {
     year: '2023',
-    title: 'Completed B.Voc in IT',
-    org: 'University Graduation',
-    description: 'Graduated with a Bachelor of Vocation in Information Technology, building a strong foundation in software and hardware systems.',
+    title: 'Embedded Systems Engineer',
+    org: 'i4 Marine Technologies',
+    description: 'Joined as a full-time Embedded Systems Engineer, building autonomous marine vehicles, ROV systems, and IoT platforms.',
+  },
+  {
+    year: '2025',
+    title: 'Part-time Embedded Systems Engineer',
+    org: 'i4 Marine Technologies',
+    description: 'Resigned from full-time role and continuing part-time, contributing to marine robotics and IoT telemetry systems.',
+  },
+  {
+    year: '2025',
+    title: 'Started MCA',
+    org: 'Rajagiri College of Social Sciences',
+    description: 'Pursuing Master of Computer Applications with focus on embedded systems and AI-driven robotics research.',
   },
 ];
 
@@ -47,6 +47,22 @@ function TimelineSection() {
   });
 
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+  // Track which items the line has reached
+  const [revealedItems, setRevealedItems] = useState<number[]>([]);
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    const totalItems = timeline.length;
+    const revealed: number[] = [];
+    for (let i = 0; i < totalItems; i++) {
+      // Each item triggers when the line reaches its proportional position
+      const threshold = (i + 0.5) / totalItems;
+      if (latest >= threshold) {
+        revealed.push(i);
+      }
+    }
+    setRevealedItems(revealed);
+  });
 
   return (
     <section className="py-16 md:py-24 px-6 lg:px-8 border-t border-border">
@@ -71,7 +87,7 @@ function TimelineSection() {
             {/* Static faint background line */}
             <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-foreground/10 md:-translate-x-px" />
 
-            {/* Animated growing line - shoots down like a trail */}
+            {/* Animated growing line */}
             <motion.div
               className="absolute left-4 md:left-1/2 top-0 w-px bg-foreground md:-translate-x-px origin-top z-[1]"
               style={{ height: lineHeight }}
@@ -82,24 +98,20 @@ function TimelineSection() {
 
             {timeline.map((item, index) => {
               const isLeft = index % 2 === 0;
+              const isRevealed = revealedItems.includes(index);
               return (
-                <motion.div
+                <div
                   key={index}
                   className={`relative flex items-start gap-6 mb-10 last:mb-0 ${
                     isLeft ? 'md:flex-row' : 'md:flex-row-reverse'
                   }`}
-                  initial={{ opacity: 0, x: 0 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
                 >
                   {/* Dot */}
                   <motion.div
                     className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-foreground border-2 border-background -translate-x-1.5 md:-translate-x-1.5 mt-1.5 z-10"
                     initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.15 + 0.2, type: "spring", stiffness: 300 }}
+                    animate={isRevealed ? { scale: 1 } : { scale: 0 }}
+                    transition={{ duration: 0.4, type: "spring", stiffness: 300 }}
                   />
 
                   {/* Horizontal connector */}
@@ -108,35 +120,34 @@ function TimelineSection() {
                       isLeft ? 'right-1/2 left-auto w-8 mr-[0.35rem]' : 'left-1/2 w-8 ml-[0.35rem]'
                     }`}
                     initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: 1 }}
-                    viewport={{ once: true }}
+                    animate={isRevealed ? { scaleX: 1 } : { scaleX: 0 }}
                     style={{ transformOrigin: isLeft ? 'right' : 'left' }}
-                    transition={{ duration: 0.4, delay: index * 0.15 + 0.3 }}
+                    transition={{ duration: 0.4, delay: 0.1 }}
                   />
 
                   {/* Pulse ring */}
-                  <motion.div
-                    className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full border border-foreground/30 -translate-x-1.5 md:-translate-x-1.5 mt-1.5 z-[9]"
-                    initial={{ scale: 0, opacity: 0 }}
-                    whileInView={{ scale: [1, 2.5], opacity: [0.6, 0] }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: index * 0.15 + 0.3 }}
-                  />
+                  {isRevealed && (
+                    <motion.div
+                      className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full border border-foreground/30 -translate-x-1.5 md:-translate-x-1.5 mt-1.5 z-[9]"
+                      initial={{ scale: 1, opacity: 0.6 }}
+                      animate={{ scale: 2.5, opacity: 0 }}
+                      transition={{ duration: 0.8 }}
+                    />
+                  )}
 
-                  {/* Content - slides in from left or right */}
+                  {/* Content - slides in from left or right, only when line reaches it */}
                   <motion.div
                     className={`ml-12 md:ml-0 md:w-[calc(50%-2rem)] ${isLeft ? 'md:pr-8 md:text-right' : 'md:pl-8'}`}
                     initial={{ opacity: 0, x: isLeft ? 30 : -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.5, delay: index * 0.15 + 0.3, ease: "easeOut" }}
+                    animate={isRevealed ? { opacity: 1, x: 0 } : { opacity: 0, x: isLeft ? 30 : -30 }}
+                    transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
                   >
                     <span className="text-xs font-light tracking-widest uppercase text-muted-foreground">{item.year}</span>
                     <h3 className="text-lg font-light tracking-wide text-foreground mt-1">{item.title}</h3>
                     <p className="text-sm font-light text-muted-foreground mt-0.5">{item.org}</p>
                     <p className="text-sm font-light text-muted-foreground mt-2 leading-relaxed">{item.description}</p>
                   </motion.div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
