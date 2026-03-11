@@ -97,21 +97,6 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Availability */}
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-sm bg-accent">
-                    <Phone className="size-5 text-muted-foreground" />
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-sm font-light tracking-wide text-muted-foreground">
-                      Availability
-                    </p>
-                    <p className="text-base md:text-lg font-light">
-                      {photographerInfo.availability}
-                    </p>
-                  </div>
-                </div>
-
                 {/* Location */}
                 <div className="flex items-start gap-4">
                   <div className="p-3 rounded-sm bg-accent">
