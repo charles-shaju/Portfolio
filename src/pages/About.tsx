@@ -8,22 +8,10 @@ import { SEOHead } from '@/components/seo/SEOHead';
 
 const timeline = [
   {
-    year: '2025',
-    title: 'Started MCA',
-    org: 'Rajagiri College of Social Sciences',
-    description: 'Pursuing Master of Computer Applications with focus on embedded systems and AI-driven robotics research.',
-  },
-  {
-    year: '2025',
-    title: 'Part-time Embedded Systems Engineer',
-    org: 'i4 Marine Technologies',
-    description: 'Resigned from full-time role and continuing part-time, contributing to marine robotics and IoT telemetry systems.',
-  },
-  {
     year: '2023',
-    title: 'Embedded Systems Engineer',
-    org: 'i4 Marine Technologies',
-    description: 'Joined as a full-time Embedded Systems Engineer, building autonomous marine vehicles, ROV systems, and IoT platforms.',
+    title: 'Completed B.Voc in IT',
+    org: 'University Graduation',
+    description: 'Graduated with a Bachelor of Vocation in Information Technology, building a strong foundation in software and hardware systems.',
   },
   {
     year: '2023',
@@ -33,9 +21,21 @@ const timeline = [
   },
   {
     year: '2023',
-    title: 'Completed B.Voc in IT',
-    org: 'University Graduation',
-    description: 'Graduated with a Bachelor of Vocation in Information Technology, building a strong foundation in software and hardware systems.',
+    title: 'Embedded Systems Engineer',
+    org: 'i4 Marine Technologies',
+    description: 'Joined as a full-time Embedded Systems Engineer, building autonomous marine vehicles, ROV systems, and IoT platforms.',
+  },
+  {
+    year: '2025',
+    title: 'Part-time Embedded Systems Engineer',
+    org: 'i4 Marine Technologies',
+    description: 'Resigned from full-time role and continuing part-time, contributing to marine robotics and IoT telemetry systems.',
+  },
+  {
+    year: '2025',
+    title: 'Started MCA',
+    org: 'Rajagiri College of Social Sciences',
+    description: 'Pursuing Master of Computer Applications with focus on embedded systems and AI-driven robotics research.',
   },
 ];
 
