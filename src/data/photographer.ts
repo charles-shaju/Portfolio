@@ -14,7 +14,7 @@ I thrive on projects involving real-time systems, robotics, automation, underwat
 Whether working on underwater ROVs, autonomous surface vehicles, or IoT telemetry systems, I strive to build solutions that solve real problems and push the boundaries of what embedded systems can achieve.`,
   skills: {
     languages: ['Python', 'C / C++', 'Java', 'SQL', 'Bash / Shell scripting'],
-    frameworks: ['TensorFlow', 'Node.js', 'OpenCV', 'MAVSDK / DroneKit'],
+    frameworks: ['TensorFlow', 'OpenCV', 'Django', 'MATLAB'],
     tools: ['Git & GitHub', 'VS Code', 'QGroundControl', 'KiCad', 'Linux', 'Serial/UART/I2C/SPI debugging'],
     hardware: [
       'ESP32 / ESP8266', 'Raspberry Pi', 'Pixhawk (MAVLink, ArduPilot)',
