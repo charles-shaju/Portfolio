@@ -43,16 +43,16 @@ function TimelineSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 80%", "end 20%"],
+    offset: ["start 70%", "end 40%"],
   });
 
   const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <section className="py-16 md:py-24 px-6 lg:px-8 border-t border-border">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-3xl mx-auto">
         <motion.div
-          className="space-y-16"
+          className="space-y-10"
           initial={{ opacity: 0.8, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -68,75 +68,75 @@ function TimelineSection() {
           </div>
 
           <div className="relative" ref={containerRef}>
-            {/* Static background line */}
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px" />
+            {/* Static faint background line */}
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-foreground/10 md:-translate-x-px" />
 
-            {/* Animated growing line */}
+            {/* Animated growing line - shoots down like a trail */}
             <motion.div
               className="absolute left-4 md:left-1/2 top-0 w-px bg-foreground md:-translate-x-px origin-top z-[1]"
               style={{ height: lineHeight }}
-            />
+            >
+              {/* Glowing tip */}
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-6 bg-foreground/40 blur-sm rounded-full" />
+            </motion.div>
 
             {timeline.map((item, index) => {
               const isLeft = index % 2 === 0;
               return (
-                <div
+                <motion.div
                   key={index}
-                  className="relative mb-16 last:mb-0 md:flex md:items-start"
+                  className={`relative flex items-start gap-6 mb-10 last:mb-0 ${
+                    isLeft ? 'md:flex-row' : 'md:flex-row-reverse'
+                  }`}
+                  initial={{ opacity: 0, x: 0 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
                 >
                   {/* Dot */}
                   <motion.div
-                    className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-background border-2 border-foreground -translate-x-2 md:-translate-x-2 mt-1 z-10"
+                    className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-foreground border-2 border-background -translate-x-1.5 md:-translate-x-1.5 mt-1.5 z-10"
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.4, type: "spring", stiffness: 300 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.15 + 0.2, type: "spring", stiffness: 300 }}
                   />
 
-                  {/* Pulse effect */}
+                  {/* Horizontal connector */}
                   <motion.div
-                    className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full border border-foreground/30 -translate-x-2 md:-translate-x-2 mt-1 z-[9]"
+                    className={`hidden md:block absolute top-[0.65rem] h-px bg-foreground/20 ${
+                      isLeft ? 'right-1/2 left-auto w-8 mr-[0.35rem]' : 'left-1/2 w-8 ml-[0.35rem]'
+                    }`}
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                    style={{ transformOrigin: isLeft ? 'right' : 'left' }}
+                    transition={{ duration: 0.4, delay: index * 0.15 + 0.3 }}
+                  />
+
+                  {/* Pulse ring */}
+                  <motion.div
+                    className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full border border-foreground/30 -translate-x-1.5 md:-translate-x-1.5 mt-1.5 z-[9]"
                     initial={{ scale: 0, opacity: 0 }}
-                    whileInView={{ scale: [1, 3], opacity: [0.5, 0] }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 1, delay: 0.2 }}
+                    whileInView={{ scale: [1, 2.5], opacity: [0.6, 0] }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: index * 0.15 + 0.3 }}
                   />
 
-                  {/* Left spacer on mobile, content positioning on desktop */}
-                  {/* Desktop: even items go left, odd items go right */}
-                  <div className="hidden md:block md:w-1/2" />
-
-                  {/* Content card */}
+                  {/* Content - slides in from left or right */}
                   <motion.div
-                    className={`
-                      ml-12 md:ml-0
-                      md:w-1/2
-                      ${isLeft 
-                        ? 'md:absolute md:left-0 md:w-[calc(50%-2rem)] md:text-right md:pr-4' 
-                        : 'md:absolute md:right-0 md:w-[calc(50%-2rem)] md:pl-4'
-                      }
-                    `}
-                    initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
+                    className={`ml-12 md:ml-0 md:w-[calc(50%-2rem)] ${isLeft ? 'md:pr-8 md:text-right' : 'md:pl-8'}`}
+                    initial={{ opacity: 0, x: isLeft ? 30 : -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.5, delay: index * 0.15 + 0.3, ease: "easeOut" }}
                   >
-                    <div className="p-5 rounded-sm border border-border bg-card hover:bg-accent/30 transition-colors">
-                      <span className="text-xs font-light tracking-widest uppercase text-muted-foreground">
-                        {item.year}
-                      </span>
-                      <h3 className="text-lg font-light tracking-wide text-foreground mt-1">
-                        {item.title}
-                      </h3>
-                      <p className="text-sm font-light text-muted-foreground mt-0.5">
-                        {item.org}
-                      </p>
-                      <p className="text-sm font-light text-muted-foreground mt-2 leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
+                    <span className="text-xs font-light tracking-widest uppercase text-muted-foreground">{item.year}</span>
+                    <h3 className="text-lg font-light tracking-wide text-foreground mt-1">{item.title}</h3>
+                    <p className="text-sm font-light text-muted-foreground mt-0.5">{item.org}</p>
+                    <p className="text-sm font-light text-muted-foreground mt-2 leading-relaxed">{item.description}</p>
                   </motion.div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
