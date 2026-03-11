@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import { Instagram, Linkedin, Download, FileText, MapPin, GraduationCap, Award, Briefcase } from 'lucide-react';
 import { photographerInfo } from '@/data/photographer';
 import { Button } from '@/components/ui/button';
