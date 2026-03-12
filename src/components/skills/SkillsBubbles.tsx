@@ -149,7 +149,7 @@ function Bubble({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => onCategoryClick(bubble.category)}
-      whileHover={{ scale: 1.18, zIndex: 20 }}
+      whileHover={{ zIndex: 20 }}
       title={bubble.name}
     >
       {/* Bubble shine highlight */}
