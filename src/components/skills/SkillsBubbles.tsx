@@ -108,7 +108,7 @@ function Bubble({
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === 'dark';
 
-  const size = bubble.name.length > 15 ? 70 : bubble.name.length > 10 ? 60 : 52;
+  const size = bubble.name.length > 15 ? 78 : bubble.name.length > 10 ? 68 : 58;
 
   const targetX = isExploded ? bubble.baseX + explodeOffset.x : bubble.baseX;
   const targetY = isExploded ? bubble.baseY + explodeOffset.y : bubble.baseY;
