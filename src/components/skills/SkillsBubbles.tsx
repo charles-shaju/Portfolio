@@ -40,10 +40,10 @@ const TECH_ICONS: Record<string, string> = {
 };
 
 const CATEGORY_COLORS: Record<string, { h: number; s: number; l: number }> = {
-  languages: { h: 250, s: 60, l: 55 },
-  frameworks: { h: 220, s: 60, l: 50 },
-  tools: { h: 160, s: 50, l: 45 },
-  hardware: { h: 30, s: 70, l: 50 },
+  languages: { h: 250, s: 50, l: 70 },
+  frameworks: { h: 220, s: 50, l: 68 },
+  tools: { h: 160, s: 40, l: 65 },
+  hardware: { h: 30, s: 55, l: 68 },
 };
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -108,7 +108,7 @@ function Bubble({
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === 'dark';
 
-  const size = bubble.name.length > 15 ? 70 : bubble.name.length > 10 ? 60 : 52;
+  const size = bubble.name.length > 15 ? 78 : bubble.name.length > 10 ? 68 : 58;
 
   const targetX = isExploded ? bubble.baseX + explodeOffset.x : bubble.baseX;
   const targetY = isExploded ? bubble.baseY + explodeOffset.y : bubble.baseY;
@@ -127,17 +127,12 @@ function Bubble({
         height: size,
         marginLeft: -size / 2,
         marginTop: -size / 2,
-        // Bubble-like gradient: white highlight to category color
         background: isHovered
           ? isDark
-            ? 'radial-gradient(circle at 35% 30%, hsl(0 0% 100% / 0.95), hsl(0 0% 85% / 0.9))'
-            : 'radial-gradient(circle at 35% 30%, hsl(0 0% 15% / 0.95), hsl(0 0% 5% / 0.9))'
+            ? `radial-gradient(circle at 30% 25%, hsl(0 0% 100% / 0.85), hsl(${catColor.h} ${catColor.s}% 90%) 70%)`
+            : `radial-gradient(circle at 30% 25%, hsl(${catColor.h} ${catColor.s}% 15% / 0.9), hsl(${catColor.h} ${catColor.s}% 25%) 70%)`
           : `radial-gradient(circle at 30% 25%, hsl(0 0% 100% / 0.7), hsl(${catColor.h} ${catColor.s}% ${catColor.l}%) 70%)`,
-        boxShadow: isHovered
-          ? isDark
-            ? '0 4px 20px hsl(0 0% 100% / 0.3), inset 0 -2px 6px hsl(0 0% 100% / 0.1)'
-            : '0 4px 20px hsl(0 0% 0% / 0.3), inset 0 -2px 6px hsl(0 0% 0% / 0.1)'
-          : `0 4px 15px hsl(${catColor.h} ${catColor.s}% ${catColor.l}% / 0.35), inset 0 -3px 8px hsl(${catColor.h} ${catColor.s}% ${catColor.l + 15}% / 0.3), inset 0 2px 4px hsl(0 0% 100% / 0.4)`,
+        boxShadow: `0 4px 15px hsl(${catColor.h} ${catColor.s}% ${catColor.l}% / 0.25), inset 0 -3px 8px hsl(${catColor.h} ${catColor.s}% ${catColor.l + 10}% / 0.2), inset 0 2px 4px hsl(0 0% 100% / 0.4)`,
         animation: `bubble-float-${index % 4} ${floatDuration}s ease-in-out ${floatDelay}s infinite`,
       }}
       initial={{ x: bubble.baseX, y: bubble.baseY, scale: 0 }}
@@ -154,7 +149,7 @@ function Bubble({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => onCategoryClick(bubble.category)}
-      whileHover={{ scale: 1.18, zIndex: 20 }}
+      whileHover={{ zIndex: 20 }}
       title={bubble.name}
     >
       {/* Bubble shine highlight */}
@@ -170,26 +165,19 @@ function Bubble({
         }}
       />
 
-      {/* Content: icon by default, name on hover */}
-      {isHovered ? (
-        <span
-          className="text-center font-medium leading-tight pointer-events-none z-10"
-          style={{
-            fontSize: bubble.name.length > 15 ? '7px' : bubble.name.length > 10 ? '8px' : '9px',
-            padding: '4px',
-            color: isDark ? 'hsl(0 0% 0%)' : 'hsl(0 0% 100%)',
-          }}
-        >
-          {bubble.name}
-        </span>
-      ) : (
-        <span
-          className="pointer-events-none z-10"
-          style={{ fontSize: size * 0.4 }}
-        >
-          {bubble.icon}
-        </span>
-      )}
+      {/* Always show text */}
+      <span
+        className="text-center font-medium leading-tight pointer-events-none z-10"
+        style={{
+          fontSize: bubble.name.length > 15 ? '7px' : bubble.name.length > 10 ? '8px' : '9px',
+          padding: '4px',
+          color: isHovered
+            ? isDark ? 'hsl(0 0% 0%)' : 'hsl(0 0% 100%)'
+            : `hsl(${catColor.h} ${catColor.s}% 20%)`,
+        }}
+      >
+        {bubble.name}
+      </span>
     </motion.div>
   );
 }
