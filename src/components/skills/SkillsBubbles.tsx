@@ -165,26 +165,19 @@ function Bubble({
         }}
       />
 
-      {/* Content: icon by default, name on hover */}
-      {isHovered ? (
-        <span
-          className="text-center font-medium leading-tight pointer-events-none z-10"
-          style={{
-            fontSize: bubble.name.length > 15 ? '7px' : bubble.name.length > 10 ? '8px' : '9px',
-            padding: '4px',
-            color: isDark ? 'hsl(0 0% 0%)' : 'hsl(0 0% 100%)',
-          }}
-        >
-          {bubble.name}
-        </span>
-      ) : (
-        <span
-          className="pointer-events-none z-10"
-          style={{ fontSize: size * 0.4 }}
-        >
-          {bubble.icon}
-        </span>
-      )}
+      {/* Always show text */}
+      <span
+        className="text-center font-medium leading-tight pointer-events-none z-10"
+        style={{
+          fontSize: bubble.name.length > 15 ? '7px' : bubble.name.length > 10 ? '8px' : '9px',
+          padding: '4px',
+          color: isHovered
+            ? isDark ? 'hsl(0 0% 0%)' : 'hsl(0 0% 100%)'
+            : `hsl(${catColor.h} ${catColor.s}% 20%)`,
+        }}
+      >
+        {bubble.name}
+      </span>
     </motion.div>
   );
 }
