@@ -8,13 +8,42 @@ interface SkillBubble {
   category: string;
   baseX: number;
   baseY: number;
+  icon: string;
 }
 
-const CATEGORY_COLORS: Record<string, string> = {
-  languages: 'hsl(var(--primary))',
-  frameworks: 'hsl(220, 60%, 50%)',
-  tools: 'hsl(160, 50%, 45%)',
-  hardware: 'hsl(30, 70%, 50%)',
+// Simple text-based icons/abbreviations for tech stacks
+const TECH_ICONS: Record<string, string> = {
+  'Python': '🐍',
+  'C / C++': '⚙️',
+  'Java': '☕',
+  'SQL': '🗃️',
+  'Bash / Shell scripting': '💻',
+  'TensorFlow': '🧠',
+  'OpenCV': '👁️',
+  'Django': '🌐',
+  'MATLAB': '📊',
+  'Git & GitHub': '🔀',
+  'VS Code': '📝',
+  'QGroundControl': '🛩️',
+  'KiCad': '🔧',
+  'Linux': '🐧',
+  'Serial/UART/I2C/SPI debugging': '🔌',
+  'ESP32 / ESP8266': '📡',
+  'Raspberry Pi': '🍓',
+  'Pixhawk (MAVLink, ArduPilot)': '✈️',
+  'LoRa modules (SX1276/SX1278)': '📻',
+  'Sonar systems': '🔊',
+  'IMU, GPS, Barometer sensors': '🧭',
+  'BLDC motors + ESCs': '⚡',
+  'Underwater cameras': '📸',
+  'Custom ROVs & ASVs': '🤖',
+};
+
+const CATEGORY_COLORS: Record<string, { h: number; s: number; l: number }> = {
+  languages: { h: 250, s: 60, l: 55 },
+  frameworks: { h: 220, s: 60, l: 50 },
+  tools: { h: 160, s: 50, l: 45 },
+  hardware: { h: 30, s: 70, l: 50 },
 };
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -55,6 +84,7 @@ function arrangeBubblesInCluster(
       category,
       baseX: centerX + Math.cos(angle) * r,
       baseY: centerY + Math.sin(angle) * r,
+      icon: TECH_ICONS[skill] || '💡',
     });
   });
 
@@ -63,76 +93,103 @@ function arrangeBubblesInCluster(
 
 function Bubble({
   bubble,
+  index,
   isExploded,
   explodeOffset,
   onCategoryClick,
-  containerRect,
 }: {
   bubble: SkillBubble;
+  index: number;
   isExploded: boolean;
   explodeOffset: { x: number; y: number };
   onCategoryClick: (cat: string) => void;
-  containerRect: DOMRect | null;
 }) {
   const [isHovered, setIsHovered] = useState(false);
   const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === 'dark';
 
-  const size = bubble.name.length > 15 ? 70 : bubble.name.length > 10 ? 60 : 50;
+  const size = bubble.name.length > 15 ? 70 : bubble.name.length > 10 ? 60 : 52;
 
   const targetX = isExploded ? bubble.baseX + explodeOffset.x : bubble.baseX;
   const targetY = isExploded ? bubble.baseY + explodeOffset.y : bubble.baseY;
 
-  const bgColor = isHovered
-    ? resolvedTheme === 'dark'
-      ? 'hsl(0, 0%, 100%)'
-      : 'hsl(0, 0%, 0%)'
-    : CATEGORY_COLORS[bubble.category];
+  const catColor = CATEGORY_COLORS[bubble.category];
 
-  const textColor = isHovered
-    ? resolvedTheme === 'dark'
-      ? 'hsl(0, 0%, 0%)'
-      : 'hsl(0, 0%, 100%)'
-    : 'hsl(0, 0%, 100%)';
+  // Idle floating offset using CSS animation
+  const floatDelay = (index * 0.7) % 3;
+  const floatDuration = 3 + (index % 3);
 
   return (
     <motion.div
-      className="absolute flex items-center justify-center rounded-full cursor-pointer select-none shadow-md"
+      className="absolute flex items-center justify-center rounded-full cursor-pointer select-none"
       style={{
         width: size,
         height: size,
         marginLeft: -size / 2,
         marginTop: -size / 2,
+        // Bubble-like gradient: white highlight to category color
+        background: isHovered
+          ? isDark
+            ? 'radial-gradient(circle at 35% 30%, hsl(0 0% 100% / 0.95), hsl(0 0% 85% / 0.9))'
+            : 'radial-gradient(circle at 35% 30%, hsl(0 0% 15% / 0.95), hsl(0 0% 5% / 0.9))'
+          : `radial-gradient(circle at 30% 25%, hsl(0 0% 100% / 0.7), hsl(${catColor.h} ${catColor.s}% ${catColor.l}%) 70%)`,
+        boxShadow: isHovered
+          ? isDark
+            ? '0 4px 20px hsl(0 0% 100% / 0.3), inset 0 -2px 6px hsl(0 0% 100% / 0.1)'
+            : '0 4px 20px hsl(0 0% 0% / 0.3), inset 0 -2px 6px hsl(0 0% 0% / 0.1)'
+          : `0 4px 15px hsl(${catColor.h} ${catColor.s}% ${catColor.l}% / 0.35), inset 0 -3px 8px hsl(${catColor.h} ${catColor.s}% ${catColor.l + 15}% / 0.3), inset 0 2px 4px hsl(0 0% 100% / 0.4)`,
+        animation: `bubble-float-${index % 4} ${floatDuration}s ease-in-out ${floatDelay}s infinite`,
       }}
       initial={{ x: bubble.baseX, y: bubble.baseY, scale: 0 }}
       animate={{
         x: targetX,
         y: targetY,
         scale: 1,
-        backgroundColor: bgColor,
-        color: textColor,
       }}
       transition={{
-        x: { type: 'spring', stiffness: 40, damping: 12, mass: 1.5 },
-        y: { type: 'spring', stiffness: 40, damping: 12, mass: 1.5 },
+        x: { type: 'spring', stiffness: isExploded ? 40 : 8, damping: isExploded ? 12 : 6, mass: 1.5 },
+        y: { type: 'spring', stiffness: isExploded ? 40 : 8, damping: isExploded ? 12 : 6, mass: 1.5 },
         scale: { type: 'spring', stiffness: 200, damping: 15 },
-        backgroundColor: { duration: 0.2 },
-        color: { duration: 0.2 },
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => onCategoryClick(bubble.category)}
-      whileHover={{ scale: 1.15, zIndex: 20 }}
+      whileHover={{ scale: 1.18, zIndex: 20 }}
       title={bubble.name}
     >
-      <span
-        className="text-center font-light leading-tight pointer-events-none"
+      {/* Bubble shine highlight */}
+      <div
+        className="absolute rounded-full pointer-events-none"
         style={{
-          fontSize: bubble.name.length > 15 ? '7px' : bubble.name.length > 10 ? '8px' : '9px',
-          padding: '4px',
+          width: size * 0.35,
+          height: size * 0.25,
+          top: '15%',
+          left: '20%',
+          background: 'linear-gradient(180deg, hsl(0 0% 100% / 0.6) 0%, hsl(0 0% 100% / 0) 100%)',
+          borderRadius: '50%',
         }}
-      >
-        {bubble.name}
-      </span>
+      />
+
+      {/* Content: icon by default, name on hover */}
+      {isHovered ? (
+        <span
+          className="text-center font-medium leading-tight pointer-events-none z-10"
+          style={{
+            fontSize: bubble.name.length > 15 ? '7px' : bubble.name.length > 10 ? '8px' : '9px',
+            padding: '4px',
+            color: isDark ? 'hsl(0 0% 0%)' : 'hsl(0 0% 100%)',
+          }}
+        >
+          {bubble.name}
+        </span>
+      ) : (
+        <span
+          className="pointer-events-none z-10"
+          style={{ fontSize: size * 0.4 }}
+        >
+          {bubble.icon}
+        </span>
+      )}
     </motion.div>
   );
 }
@@ -143,7 +200,6 @@ export default function SkillsBubbles() {
   const [bubbles, setBubbles] = useState<SkillBubble[]>([]);
   const [explodedCategory, setExplodedCategory] = useState<string | null>(null);
   const [explodeOffsets, setExplodeOffsets] = useState<Record<string, { x: number; y: number }[]>>({});
-  const reformTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Measure container
   useEffect(() => {
@@ -176,28 +232,38 @@ export default function SkillsBubbles() {
 
   const handleCategoryClick = useCallback(
     (category: string) => {
-      // Generate random explode offsets for the clicked category
       const categoryBubbles = bubbles.filter((b) => b.category === category);
       const offsets = categoryBubbles.map(() => ({
-        x: (Math.random() - 0.5) * 250,
-        y: (Math.random() - 0.5) * 250,
+        x: (Math.random() - 0.5) * 300,
+        y: (Math.random() - 0.5) * 300,
       }));
 
       setExplodeOffsets((prev) => ({ ...prev, [category]: offsets }));
       setExplodedCategory(category);
 
-      // Clear any previous reform timer
-      if (reformTimerRef.current) clearTimeout(reformTimerRef.current);
-
-      // Reform after 2.5 seconds
-      reformTimerRef.current = setTimeout(() => {
-        setExplodedCategory(null);
-      }, 2500);
+      // Slowly reduce offsets over time for gradual reform
+      let step = 0;
+      const totalSteps = 20;
+      const interval = setInterval(() => {
+        step++;
+        const factor = 1 - step / totalSteps;
+        setExplodeOffsets((prev) => ({
+          ...prev,
+          [category]: offsets.map((o) => ({
+            x: o.x * factor,
+            y: o.y * factor,
+          })),
+        }));
+        if (step >= totalSteps) {
+          clearInterval(interval);
+          setExplodedCategory(null);
+        }
+      }, 250); // 250ms * 20 steps = 5 seconds to fully reform
     },
     [bubbles]
   );
 
-  const getExplodeOffset = (bubble: SkillBubble, index: number) => {
+  const getExplodeOffset = (bubble: SkillBubble) => {
     if (explodedCategory !== bubble.category) return { x: 0, y: 0 };
     const categoryBubbles = bubbles.filter((b) => b.category === bubble.category);
     const catIndex = categoryBubbles.indexOf(bubble);
@@ -206,27 +272,51 @@ export default function SkillsBubbles() {
 
   return (
     <div className="space-y-6">
+      <style>{`
+        @keyframes bubble-float-0 {
+          0%, 100% { transform: translate(0, 0); }
+          50% { transform: translate(3px, -5px); }
+        }
+        @keyframes bubble-float-1 {
+          0%, 100% { transform: translate(0, 0); }
+          50% { transform: translate(-4px, 3px); }
+        }
+        @keyframes bubble-float-2 {
+          0%, 100% { transform: translate(0, 0); }
+          50% { transform: translate(5px, 4px); }
+        }
+        @keyframes bubble-float-3 {
+          0%, 100% { transform: translate(0, 0); }
+          50% { transform: translate(-3px, -4px); }
+        }
+      `}</style>
+
       <h3 className="text-2xl font-light tracking-wide text-center">Technical Skills</h3>
 
       {/* Category Legend */}
       <div className="flex flex-wrap justify-center gap-4 mb-4">
-        {Object.entries(CATEGORY_LABELS).map(([key, label]) => (
-          <button
-            key={key}
-            onClick={() => handleCategoryClick(key)}
-            className="flex items-center gap-2 text-sm font-light text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-          >
-            <span
-              className="w-3 h-3 rounded-full"
-              style={{ backgroundColor: CATEGORY_COLORS[key] }}
-            />
-            {label}
-          </button>
-        ))}
+        {Object.entries(CATEGORY_LABELS).map(([key, label]) => {
+          const c = CATEGORY_COLORS[key];
+          return (
+            <button
+              key={key}
+              onClick={() => handleCategoryClick(key)}
+              className="flex items-center gap-2 text-sm font-light text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+            >
+              <span
+                className="w-3 h-3 rounded-full"
+                style={{
+                  background: `radial-gradient(circle at 30% 25%, hsl(0 0% 100% / 0.6), hsl(${c.h} ${c.s}% ${c.l}%) 70%)`,
+                }}
+              />
+              {label}
+            </button>
+          );
+        })}
       </div>
 
       <p className="text-center text-xs text-muted-foreground font-light">
-        Click a cluster or label to explode it
+        Hover to see names · Click a cluster to scatter
       </p>
 
       {/* Bubble Container */}
@@ -239,10 +329,10 @@ export default function SkillsBubbles() {
           <Bubble
             key={`${bubble.category}-${bubble.name}`}
             bubble={bubble}
+            index={i}
             isExploded={explodedCategory === bubble.category}
-            explodeOffset={getExplodeOffset(bubble, i)}
+            explodeOffset={getExplodeOffset(bubble)}
             onCategoryClick={handleCategoryClick}
-            containerRect={containerRect}
           />
         ))}
       </div>
