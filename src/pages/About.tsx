@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Instagram, Linkedin, Download, FileText, MapPin, GraduationCap, Award, Briefcase } from 'lucide-react';
+import SkillsBubbles from '@/components/skills/SkillsBubbles';
 import { photographerInfo } from '@/data/photographer';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -389,52 +390,8 @@ export default function About() {
               </div>
             </div>
 
-            {/* Skills Overview */}
-            <div>
-              <h3 className="text-2xl font-light tracking-wide mb-6">Technical Skills</h3>
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="space-y-4">
-                  <h4 className="text-sm font-light tracking-widest uppercase text-muted-foreground">Languages</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {photographerInfo.skills.languages.map((skill) => (
-                      <span key={skill} className="px-3 py-1.5 text-sm font-light border border-border rounded-sm bg-accent/20 text-foreground">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <h4 className="text-sm font-light tracking-widest uppercase text-muted-foreground">Frameworks & Libraries</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {photographerInfo.skills.frameworks.map((skill) => (
-                      <span key={skill} className="px-3 py-1.5 text-sm font-light border border-border rounded-sm bg-accent/20 text-foreground">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <h4 className="text-sm font-light tracking-widest uppercase text-muted-foreground">Tools & Software</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {photographerInfo.skills.tools.map((skill) => (
-                      <span key={skill} className="px-3 py-1.5 text-sm font-light border border-border rounded-sm bg-accent/20 text-foreground">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <h4 className="text-sm font-light tracking-widest uppercase text-muted-foreground">Hardware & Embedded</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {photographerInfo.skills.hardware.map((skill) => (
-                      <span key={skill} className="px-3 py-1.5 text-sm font-light border border-border rounded-sm bg-accent/20 text-foreground">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+            {/* Skills Bubbles */}
+            <SkillsBubbles />
           </motion.div>
         </div>
       </section>
