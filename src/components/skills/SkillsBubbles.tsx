@@ -40,10 +40,10 @@ const TECH_ICONS: Record<string, string> = {
 };
 
 const CATEGORY_COLORS: Record<string, { h: number; s: number; l: number }> = {
-  languages: { h: 250, s: 60, l: 55 },
-  frameworks: { h: 220, s: 60, l: 50 },
-  tools: { h: 160, s: 50, l: 45 },
-  hardware: { h: 30, s: 70, l: 50 },
+  languages: { h: 250, s: 50, l: 70 },
+  frameworks: { h: 220, s: 50, l: 68 },
+  tools: { h: 160, s: 40, l: 65 },
+  hardware: { h: 30, s: 55, l: 68 },
 };
 
 const CATEGORY_LABELS: Record<string, string> = {
