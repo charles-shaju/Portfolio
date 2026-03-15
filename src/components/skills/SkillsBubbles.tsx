@@ -121,19 +121,12 @@ function Bubble({
 
   return (
     <motion.div
-      className="absolute flex items-center justify-center rounded-full cursor-pointer select-none"
+      className="absolute"
       style={{
         width: size,
         height: size,
         marginLeft: -size / 2,
         marginTop: -size / 2,
-        background: isHovered
-          ? isDark
-            ? `radial-gradient(circle at 30% 25%, hsl(0 0% 100% / 0.85), hsl(${catColor.h} ${catColor.s}% 90%) 70%)`
-            : `radial-gradient(circle at 30% 25%, hsl(${catColor.h} ${catColor.s}% 15% / 0.9), hsl(${catColor.h} ${catColor.s}% 25%) 70%)`
-          : `radial-gradient(circle at 30% 25%, hsl(0 0% 100% / 0.7), hsl(${catColor.h} ${catColor.s}% ${catColor.l}%) 70%)`,
-        boxShadow: `0 4px 15px hsl(${catColor.h} ${catColor.s}% ${catColor.l}% / 0.25), inset 0 -3px 8px hsl(${catColor.h} ${catColor.s}% ${catColor.l + 10}% / 0.2), inset 0 2px 4px hsl(0 0% 100% / 0.4)`,
-        animation: `bubble-float-${index % 4} ${floatDuration}s ease-in-out ${floatDelay}s infinite`,
       }}
       initial={{ x: bubble.baseX, y: bubble.baseY, scale: 0 }}
       animate={{
@@ -146,12 +139,23 @@ function Bubble({
         y: { type: 'spring', stiffness: isExploded ? 40 : 8, damping: isExploded ? 12 : 6, mass: 1.5 },
         scale: { type: 'spring', stiffness: 200, damping: 15 },
       }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onClick={() => onCategoryClick(bubble.category)}
-      whileHover={{ zIndex: 20 }}
-      title={bubble.name}
     >
+      <div
+        className="w-full h-full flex items-center justify-center rounded-full cursor-pointer select-none"
+        style={{
+          background: isHovered
+            ? isDark
+              ? `radial-gradient(circle at 30% 25%, hsl(0 0% 100% / 0.85), hsl(${catColor.h} ${catColor.s}% 90%) 70%)`
+              : `radial-gradient(circle at 30% 25%, hsl(${catColor.h} ${catColor.s}% 15% / 0.9), hsl(${catColor.h} ${catColor.s}% 25%) 70%)`
+            : `radial-gradient(circle at 30% 25%, hsl(0 0% 100% / 0.7), hsl(${catColor.h} ${catColor.s}% ${catColor.l}%) 70%)`,
+          boxShadow: `0 4px 15px hsl(${catColor.h} ${catColor.s}% ${catColor.l}% / 0.25), inset 0 -3px 8px hsl(${catColor.h} ${catColor.s}% ${catColor.l + 10}% / 0.2), inset 0 2px 4px hsl(0 0% 100% / 0.4)`,
+          animation: `bubble-float-${index % 4} ${floatDuration}s ease-in-out ${floatDelay}s infinite`,
+        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onClick={() => onCategoryClick(bubble.category)}
+        title={bubble.name}
+      >
       {/* Bubble shine highlight */}
       <div
         className="absolute rounded-full pointer-events-none"
@@ -178,6 +182,7 @@ function Bubble({
       >
         {bubble.name}
       </span>
+      </div>
     </motion.div>
   );
 }
