@@ -182,6 +182,7 @@ function Bubble({
       >
         {bubble.name}
       </span>
+      </div>
     </motion.div>
   );
 }
