@@ -8,9 +8,13 @@ interface SkillBubble {
   category: string;
   combinedX: number;
   combinedY: number;
-  separatedX: number;
-  separatedY: number;
+  clusteredX: number;
+  clusteredY: number;
+  explodedX: number;
+  explodedY: number;
 }
+
+type Phase = 'combined' | 'clustered' | 'exploded';
 
 const CATEGORY_COLORS: Record<string, { h: number; s: number; l: number }> = {
   languages: { h: 250, s: 50, l: 75 },
@@ -31,34 +35,38 @@ function arrangeCombined(
   cx: number,
   cy: number
 ) {
-  const count = allSkills.length;
-  const positions: { x: number; y: number }[] = [];
-  // Spiral layout for combined cluster
-  allSkills.forEach((_, i) => {
-    const angle = (2.4 * i); // golden angle spread
+  return allSkills.map((_, i) => {
+    const angle = 2.4 * i;
     const r = 12 * Math.sqrt(i + 1);
-    positions.push({
-      x: cx + Math.cos(angle) * r,
-      y: cy + Math.sin(angle) * r,
-    });
+    return { x: cx + Math.cos(angle) * r, y: cy + Math.sin(angle) * r };
   });
-  return positions;
 }
 
-function arrangeSeparated(
+function arrangeCluster(
   skills: string[],
   centerX: number,
   centerY: number
 ) {
   const count = skills.length;
-  const radius = Math.min(25 + count * 7, 75);
+  const radius = Math.min(18 + count * 5, 55);
   return skills.map((_, i) => {
     const angle = (2 * Math.PI * i) / count - Math.PI / 2;
     const r = i === 0 ? 0 : radius * (0.5 + (i / count) * 0.5);
-    return {
-      x: centerX + Math.cos(angle) * r,
-      y: centerY + Math.sin(angle) * r,
-    };
+    return { x: centerX + Math.cos(angle) * r, y: centerY + Math.sin(angle) * r };
+  });
+}
+
+function arrangeExploded(
+  skills: string[],
+  centerX: number,
+  centerY: number
+) {
+  const count = skills.length;
+  const radius = Math.min(40 + count * 12, 120);
+  return skills.map((_, i) => {
+    const angle = (2 * Math.PI * i) / count - Math.PI / 2;
+    const r = radius * (0.6 + (i / count) * 0.4);
+    return { x: centerX + Math.cos(angle) * r, y: centerY + Math.sin(angle) * r };
   });
 }
 
@@ -75,18 +83,36 @@ function getClusterCenters(w: number, h: number) {
   };
 }
 
+function getTargetPosition(
+  bubble: SkillBubble,
+  phase: Phase,
+  explodedCategory: string | null
+) {
+  if (phase === 'combined') {
+    return { x: bubble.combinedX, y: bubble.combinedY };
+  }
+  if (phase === 'clustered') {
+    return { x: bubble.clusteredX, y: bubble.clusteredY };
+  }
+  // exploded: only the clicked category explodes, others stay clustered
+  if (bubble.category === explodedCategory) {
+    return { x: bubble.explodedX, y: bubble.explodedY };
+  }
+  return { x: bubble.clusteredX, y: bubble.clusteredY };
+}
+
 function Bubble({
   bubble,
   index,
-  isSeparated,
-  blendFactor,
-  onClick,
+  phase,
+  explodedCategory,
+  onCategoryClick,
 }: {
   bubble: SkillBubble;
   index: number;
-  isSeparated: boolean;
-  blendFactor: number; // 0 = combined, 1 = fully separated
-  onClick: () => void;
+  phase: Phase;
+  explodedCategory: string | null;
+  onCategoryClick: (category: string) => void;
 }) {
   const [isHovered, setIsHovered] = useState(false);
   const { resolvedTheme } = useTheme();
@@ -94,10 +120,7 @@ function Bubble({
 
   const size = bubble.name.length > 15 ? 78 : bubble.name.length > 10 ? 68 : 58;
   const catColor = CATEGORY_COLORS[bubble.category];
-
-  // Interpolate position based on blendFactor
-  const targetX = bubble.combinedX + (bubble.separatedX - bubble.combinedX) * blendFactor;
-  const targetY = bubble.combinedY + (bubble.separatedY - bubble.combinedY) * blendFactor;
+  const target = getTargetPosition(bubble, phase, explodedCategory);
 
   const floatDelay = (index * 0.7) % 3;
   const floatDuration = 3 + (index % 3);
@@ -112,11 +135,7 @@ function Bubble({
         marginTop: -size / 2,
       }}
       initial={{ x: bubble.combinedX, y: bubble.combinedY, scale: 0 }}
-      animate={{
-        x: targetX,
-        y: targetY,
-        scale: 1,
-      }}
+      animate={{ x: target.x, y: target.y, scale: 1 }}
       transition={{
         x: { type: 'spring', stiffness: 15, damping: 8, mass: 1.5 },
         y: { type: 'spring', stiffness: 15, damping: 8, mass: 1.5 },
@@ -136,7 +155,10 @@ function Bubble({
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        onClick={onClick}
+        onClick={(e) => {
+          e.stopPropagation();
+          onCategoryClick(bubble.category);
+        }}
         title={bubble.name}
       >
         <div
@@ -171,9 +193,16 @@ export default function SkillsBubbles() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerRect, setContainerRect] = useState<DOMRect | null>(null);
   const [bubbles, setBubbles] = useState<SkillBubble[]>([]);
-  const [blendFactor, setBlendFactor] = useState(0); // 0=combined, 1=separated
-  const [isSeparated, setIsSeparated] = useState(false);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [phase, setPhase] = useState<Phase>('combined');
+  const [explodedCategory, setExplodedCategory] = useState<string | null>(null);
+  const mergeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearTimer = () => {
+    if (mergeTimerRef.current) {
+      clearTimeout(mergeTimerRef.current);
+      mergeTimerRef.current = null;
+    }
+  };
 
   useEffect(() => {
     const measure = () => {
@@ -193,8 +222,8 @@ export default function SkillsBubbles() {
     const cx = w / 2;
     const cy = h / 2;
     const centers = getClusterCenters(w, h);
-
     const categories = ['languages', 'frameworks', 'tools', 'hardware'] as const;
+
     const allSkills: { name: string; category: string }[] = [];
     categories.forEach((cat) => {
       (photographerInfo.skills[cat] as string[]).forEach((name) => {
@@ -204,65 +233,88 @@ export default function SkillsBubbles() {
 
     const combinedPositions = arrangeCombined(allSkills, cx, cy);
 
-    // Build separated positions per category
-    const separatedMap: Record<string, { x: number; y: number }[]> = {};
+    const clusteredMap: Record<string, { x: number; y: number }[]> = {};
+    const explodedMap: Record<string, { x: number; y: number }[]> = {};
     categories.forEach((cat) => {
       const skills = photographerInfo.skills[cat] as string[];
-      separatedMap[cat] = arrangeSeparated(skills, centers[cat].x, centers[cat].y);
+      clusteredMap[cat] = arrangeCluster(skills, centers[cat].x, centers[cat].y);
+      explodedMap[cat] = arrangeExploded(skills, centers[cat].x, centers[cat].y);
     });
 
     const catCounters: Record<string, number> = { languages: 0, frameworks: 0, tools: 0, hardware: 0 };
     const bubblesData: SkillBubble[] = allSkills.map((skill, i) => {
       const catIdx = catCounters[skill.category]++;
-      const sep = separatedMap[skill.category][catIdx];
+      const cl = clusteredMap[skill.category][catIdx];
+      const ex = explodedMap[skill.category][catIdx];
       return {
         name: skill.name,
         category: skill.category,
         combinedX: combinedPositions[i].x,
         combinedY: combinedPositions[i].y,
-        separatedX: sep.x,
-        separatedY: sep.y,
+        clusteredX: cl.x,
+        clusteredY: cl.y,
+        explodedX: ex.x,
+        explodedY: ex.y,
       };
     });
 
     setBubbles(bubblesData);
   }, [containerRect]);
 
-  const handleClick = useCallback(() => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
+  const schedulemergeBack = useCallback(() => {
+    clearTimer();
+    mergeTimerRef.current = setTimeout(() => {
+      setPhase('combined');
+      setExplodedCategory(null);
+    }, 5000);
+  }, []);
 
-    if (!isSeparated) {
-      // Separate: quickly go to 1
-      setBlendFactor(1);
-      setIsSeparated(true);
-
-      // After 3 seconds, slowly come back over 8 seconds
-      const delay = setTimeout(() => {
-        let step = 0;
-        const totalSteps = 40;
-        intervalRef.current = setInterval(() => {
-          step++;
-          const factor = 1 - step / totalSteps;
-          setBlendFactor(Math.max(0, factor));
-          if (step >= totalSteps) {
-            if (intervalRef.current) clearInterval(intervalRef.current);
-            intervalRef.current = null;
-            setIsSeparated(false);
-            setBlendFactor(0);
-          }
-        }, 200); // 200ms * 40 = 8 seconds
-      }, 3000);
-
-      return () => clearTimeout(delay);
+  // Click on the container (background) when combined → separate into clusters
+  const handleContainerClick = useCallback(() => {
+    if (phase === 'combined') {
+      clearTimer();
+      setPhase('clustered');
+      schedulemergeBack();
     } else {
-      // If already separated, clicking again resets
-      setBlendFactor(0);
-      setIsSeparated(false);
+      // clicking background resets
+      clearTimer();
+      setPhase('combined');
+      setExplodedCategory(null);
     }
-  }, [isSeparated]);
+  }, [phase, schedulemergeBack]);
+
+  // Click on a bubble → if clustered, explode that category
+  const handleCategoryClick = useCallback((category: string) => {
+    if (phase === 'combined') {
+      // First click separates into clusters
+      clearTimer();
+      setPhase('clustered');
+      schedulemergeBack();
+    } else if (phase === 'clustered') {
+      // Second click on a cluster explodes it
+      clearTimer();
+      setExplodedCategory(category);
+      setPhase('exploded');
+      schedulemergeBack();
+    } else if (phase === 'exploded') {
+      if (explodedCategory === category) {
+        // Clicking same exploded category → back to clustered
+        clearTimer();
+        setExplodedCategory(null);
+        setPhase('clustered');
+        schedulemergeBack();
+      } else {
+        // Clicking different category → explode that one instead
+        clearTimer();
+        setExplodedCategory(category);
+        schedulemergeBack();
+      }
+    }
+  }, [phase, explodedCategory, schedulemergeBack]);
+
+  useEffect(() => {
+    return () => clearTimer();
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -308,23 +360,23 @@ export default function SkillsBubbles() {
       </div>
 
       <p className="text-center text-xs text-muted-foreground font-light">
-        Click the cluster to separate · They'll slowly merge back
+        Click to separate · Click a cluster to expand · Auto-merges after 5s
       </p>
 
       <div
         ref={containerRef}
         className="relative w-full overflow-hidden rounded-sm border border-border bg-background cursor-pointer"
         style={{ height: '500px' }}
-        onClick={handleClick}
+        onClick={handleContainerClick}
       >
         {bubbles.map((bubble, i) => (
           <Bubble
             key={`${bubble.category}-${bubble.name}`}
             bubble={bubble}
             index={i}
-            isSeparated={isSeparated}
-            blendFactor={blendFactor}
-            onClick={handleClick}
+            phase={phase}
+            explodedCategory={explodedCategory}
+            onCategoryClick={handleCategoryClick}
           />
         ))}
       </div>
