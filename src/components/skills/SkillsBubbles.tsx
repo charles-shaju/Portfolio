@@ -283,7 +283,7 @@ export default function SkillsBubbles() {
     mergeTimerRef.current = setTimeout(() => {
       setPhase('combined');
       setExplodedCategory(null);
-    }, 5000);
+    }, 3000);
   }, []);
 
   // Click on the container (background) when combined → separate into clusters
