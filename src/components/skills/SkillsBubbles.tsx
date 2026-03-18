@@ -35,11 +35,28 @@ function arrangeCombined(
   cx: number,
   cy: number
 ) {
-  return allSkills.map((_, i) => {
-    const angle = 2.4 * i;
-    const r = 12 * Math.sqrt(i + 1);
-    return { x: cx + Math.cos(angle) * r, y: cy + Math.sin(angle) * r };
+  // Interleave categories so colors are mixed in the spiral
+  const byCategory: Record<string, number[]> = {};
+  allSkills.forEach((s, i) => {
+    if (!byCategory[s.category]) byCategory[s.category] = [];
+    byCategory[s.category].push(i);
   });
+  const cats = Object.keys(byCategory);
+  const interleaved: number[] = [];
+  const maxLen = Math.max(...cats.map(c => byCategory[c].length));
+  for (let j = 0; j < maxLen; j++) {
+    for (const cat of cats) {
+      if (j < byCategory[cat].length) interleaved.push(byCategory[cat][j]);
+    }
+  }
+
+  const positions: { x: number; y: number }[] = new Array(allSkills.length);
+  interleaved.forEach((originalIdx, spiralIdx) => {
+    const angle = 2.4 * spiralIdx;
+    const r = 12 * Math.sqrt(spiralIdx + 1);
+    positions[originalIdx] = { x: cx + Math.cos(angle) * r, y: cy + Math.sin(angle) * r };
+  });
+  return positions;
 }
 
 function arrangeCluster(
