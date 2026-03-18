@@ -377,7 +377,7 @@ export default function SkillsBubbles() {
       </div>
 
       <p className="text-center text-xs text-muted-foreground font-light">
-        Click to separate · Click a cluster to expand · Auto-merges after 5s
+        Click to separate · Click a cluster to expand · Auto-merges after 3s
       </p>
 
       <div
