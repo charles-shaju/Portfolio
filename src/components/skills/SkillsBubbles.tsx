@@ -35,11 +35,28 @@ function arrangeCombined(
   cx: number,
   cy: number
 ) {
-  return allSkills.map((_, i) => {
-    const angle = 2.4 * i;
-    const r = 12 * Math.sqrt(i + 1);
-    return { x: cx + Math.cos(angle) * r, y: cy + Math.sin(angle) * r };
+  // Interleave categories so colors are mixed in the spiral
+  const byCategory: Record<string, number[]> = {};
+  allSkills.forEach((s, i) => {
+    if (!byCategory[s.category]) byCategory[s.category] = [];
+    byCategory[s.category].push(i);
   });
+  const cats = Object.keys(byCategory);
+  const interleaved: number[] = [];
+  const maxLen = Math.max(...cats.map(c => byCategory[c].length));
+  for (let j = 0; j < maxLen; j++) {
+    for (const cat of cats) {
+      if (j < byCategory[cat].length) interleaved.push(byCategory[cat][j]);
+    }
+  }
+
+  const positions: { x: number; y: number }[] = new Array(allSkills.length);
+  interleaved.forEach((originalIdx, spiralIdx) => {
+    const angle = 2.4 * spiralIdx;
+    const r = 12 * Math.sqrt(spiralIdx + 1);
+    positions[originalIdx] = { x: cx + Math.cos(angle) * r, y: cy + Math.sin(angle) * r };
+  });
+  return positions;
 }
 
 function arrangeCluster(
@@ -137,8 +154,8 @@ function Bubble({
       initial={{ x: bubble.combinedX, y: bubble.combinedY, scale: 0 }}
       animate={{ x: target.x, y: target.y, scale: 1 }}
       transition={{
-        x: { type: 'spring', stiffness: 15, damping: 8, mass: 1.5 },
-        y: { type: 'spring', stiffness: 15, damping: 8, mass: 1.5 },
+        x: { type: 'spring', stiffness: 8, damping: 12, mass: 2.5 },
+        y: { type: 'spring', stiffness: 8, damping: 12, mass: 2.5 },
         scale: { type: 'spring', stiffness: 200, damping: 15 },
       }}
     >
@@ -266,7 +283,7 @@ export default function SkillsBubbles() {
     mergeTimerRef.current = setTimeout(() => {
       setPhase('combined');
       setExplodedCategory(null);
-    }, 5000);
+    }, 3000);
   }, []);
 
   // Click on the container (background) when combined → separate into clusters
@@ -360,7 +377,7 @@ export default function SkillsBubbles() {
       </div>
 
       <p className="text-center text-xs text-muted-foreground font-light">
-        Click to separate · Click a cluster to expand · Auto-merges after 5s
+        Click to separate · Click a cluster to expand · Auto-merges after 3s
       </p>
 
       <div
