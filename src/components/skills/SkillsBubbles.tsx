@@ -154,8 +154,8 @@ function Bubble({
       initial={{ x: bubble.combinedX, y: bubble.combinedY, scale: 0 }}
       animate={{ x: target.x, y: target.y, scale: 1 }}
       transition={{
-        x: { type: 'spring', stiffness: 8, damping: 12, mass: 2.5 },
-        y: { type: 'spring', stiffness: 8, damping: 12, mass: 2.5 },
+        x: { type: 'spring', stiffness: 4, damping: 14, mass: 4 },
+        y: { type: 'spring', stiffness: 4, damping: 14, mass: 4 },
         scale: { type: 'spring', stiffness: 200, damping: 15 },
       }}
     >
