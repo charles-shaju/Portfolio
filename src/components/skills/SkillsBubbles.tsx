@@ -53,7 +53,7 @@ function arrangeCombined(
   const positions: { x: number; y: number }[] = new Array(allSkills.length);
   interleaved.forEach((originalIdx, spiralIdx) => {
     const angle = 2.4 * spiralIdx;
-    const r = 12 * Math.sqrt(spiralIdx + 1);
+    const r = 22 * Math.sqrt(spiralIdx + 1);
     positions[originalIdx] = { x: cx + Math.cos(angle) * r, y: cy + Math.sin(angle) * r };
   });
   return positions;
