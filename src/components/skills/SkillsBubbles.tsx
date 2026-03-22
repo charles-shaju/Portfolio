@@ -41,7 +41,7 @@ function arrangeCombined(
     if (!byCategory[s.category]) byCategory[s.category] = [];
     byCategory[s.category].push(i);
   });
-  const cats = Object.keys(byCategory);
+  const cats = Object.keys(byCategory).sort(() => Math.random() - 0.5);
   const interleaved: number[] = [];
   const maxLen = Math.max(...cats.map(c => byCategory[c].length));
   for (let j = 0; j < maxLen; j++) {
