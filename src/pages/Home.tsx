@@ -22,18 +22,10 @@ export default function Home() {
       <div className="min-h-screen">
         {/* Hero Section - Animated circuit board background */}
         <section className="relative h-screen w-full overflow-hidden bg-[hsl(210,30%,8%)]">
-          {/* Video Background */}
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-            ref={(el) => { if (el) el.playbackRate = 0.5; }}
-            src="/videos/hero-bg.mp4"
-          />
+          {/* Animated Background */}
+          <CircuitBackground />
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[hsl(210,30%,8%)]/80 via-[hsl(210,30%,8%)]/70 to-[hsl(210,30%,8%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[hsl(210,30%,8%)]/60 via-[hsl(210,30%,8%)]/40 to-[hsl(210,30%,8%)]" />
 
           {/* Hero Content */}
           <div className="relative h-full flex flex-col items-center justify-center px-6">
