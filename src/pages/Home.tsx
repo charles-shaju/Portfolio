@@ -25,7 +25,7 @@ export default function Home() {
           {/* Animated Background */}
           <CircuitBackground />
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[hsl(210,30%,8%)]/60 via-[hsl(210,30%,8%)]/40 to-[hsl(210,30%,8%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[hsl(210,30%,8%)]/30 via-transparent to-[hsl(210,30%,8%)]/80" />
 
           {/* Hero Content */}
           <div className="relative h-full flex flex-col items-center justify-center px-6">

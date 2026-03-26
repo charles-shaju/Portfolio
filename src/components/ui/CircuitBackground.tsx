@@ -58,9 +58,9 @@ export function CircuitBackground() {
           const dy = nodes[i].y - nodes[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < maxDist) {
-            const alpha = (1 - dist / maxDist) * 0.15;
+            const alpha = (1 - dist / maxDist) * 0.35;
             ctx.strokeStyle = `rgba(0, 210, 211, ${alpha})`;
-            ctx.lineWidth = 0.8;
+            ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -71,9 +71,9 @@ export function CircuitBackground() {
 
       // Draw nodes
       nodes.forEach((node) => {
-        ctx.fillStyle = 'rgba(0, 210, 211, 0.3)';
+        ctx.fillStyle = 'rgba(0, 210, 211, 0.6)';
         ctx.beginPath();
-        ctx.arc(node.x, node.y, 1.5, 0, Math.PI * 2);
+        ctx.arc(node.x, node.y, 2, 0, Math.PI * 2);
         ctx.fill();
       });
 
@@ -94,7 +94,7 @@ export function CircuitBackground() {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full"
-      style={{ opacity: 0.6 }}
+      style={{ opacity: 1 }}
     />
   );
 }
