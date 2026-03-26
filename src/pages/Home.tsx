@@ -25,10 +25,10 @@ export default function Home() {
           {/* Animated Background */}
           <CircuitBackground />
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[hsl(210,30%,8%)]/30 via-transparent to-[hsl(210,30%,8%)]/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[hsl(210,30%,8%)]/30 via-transparent to-[hsl(210,30%,8%)]/80 pointer-events-none" />
 
           {/* Hero Content */}
-          <div className="relative h-full flex flex-col items-center justify-center px-6">
+          <div className="relative h-full flex flex-col items-center justify-center px-6 pointer-events-none">
             <motion.div
               className="text-center space-y-6 max-w-4xl"
               initial={{ opacity: 0, y: 30 }}
@@ -86,7 +86,7 @@ export default function Home() {
                 
                 <Link
                   to="/contact"
-                  className="px-6 py-2.5 text-white/70 text-sm font-light tracking-wide hover:text-white transition-colors">
+                  className="pointer-events-auto px-6 py-2.5 text-white/70 text-sm font-light tracking-wide hover:text-white transition-colors">
                   
                   Get in Touch →
                 </Link>
