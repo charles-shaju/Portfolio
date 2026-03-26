@@ -71,9 +71,9 @@ export function CircuitBackground() {
 
       // Draw nodes
       nodes.forEach((node) => {
-        ctx.fillStyle = 'rgba(0, 210, 211, 0.3)';
+        ctx.fillStyle = 'rgba(0, 210, 211, 0.6)';
         ctx.beginPath();
-        ctx.arc(node.x, node.y, 1.5, 0, Math.PI * 2);
+        ctx.arc(node.x, node.y, 2, 0, Math.PI * 2);
         ctx.fill();
       });
 
