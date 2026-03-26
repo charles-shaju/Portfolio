@@ -28,7 +28,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-[hsl(210,30%,8%)]/30 via-transparent to-[hsl(210,30%,8%)]/80 pointer-events-none" />
 
           {/* Hero Content */}
-          <div className="relative h-full flex flex-col items-center justify-center px-6">
+          <div className="relative h-full flex flex-col items-center justify-center px-6 pointer-events-none">
             <motion.div
               className="text-center space-y-6 max-w-4xl"
               initial={{ opacity: 0, y: 30 }}
