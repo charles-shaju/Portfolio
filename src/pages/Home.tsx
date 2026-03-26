@@ -86,7 +86,7 @@ export default function Home() {
                 
                 <Link
                   to="/contact"
-                  className="px-6 py-2.5 text-white/70 text-sm font-light tracking-wide hover:text-white transition-colors">
+                  className="pointer-events-auto px-6 py-2.5 text-white/70 text-sm font-light tracking-wide hover:text-white transition-colors">
                   
                   Get in Touch →
                 </Link>
