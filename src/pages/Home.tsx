@@ -29,69 +29,61 @@ export default function Home() {
 
           {/* Hero Content */}
           <div className="relative h-full flex flex-col items-center justify-center px-6 pointer-events-none">
-            <motion.div
-              className="text-center space-y-6 max-w-4xl"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: "easeOut" }}>
-              
-              
+            <div className="text-center space-y-6 max-w-4xl">
+              <motion.div
+                className="overflow-hidden"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}>
+                <motion.h1
+                  className="text-5xl md:text-7xl lg:text-8xl font-extralight tracking-widest text-white uppercase"
+                  initial={{ y: '100%', opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.3, ease: [0.33, 1, 0.68, 1] }}>
+                  {photographerInfo.name.split('').map((char, i) => (
+                    <motion.span
+                      key={i}
+                      initial={{ opacity: 0, y: 40 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.4 + i * 0.04, ease: 'easeOut' }}
+                      className="inline-block"
+                      style={{ display: char === ' ' ? 'inline' : 'inline-block' }}>
+                      {char === ' ' ? '\u00A0' : char.toUpperCase()}
+                    </motion.span>
+                  ))}
+                </motion.h1>
+              </motion.div>
 
-
-
-
-
-
-              
-
-              <motion.h1
-                className="text-5xl md:text-7xl lg:text-8xl font-extralight tracking-widest text-white uppercase"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.2 }}>
-                
-                {photographerInfo.name.toUpperCase()}
-              </motion.h1>
-              
-              <motion.p
-                className="text-xl md:text-2xl font-light tracking-wide text-white/80"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.4 }}>
-                
-                {photographerInfo.tagline}
-              </motion.p>
+              <motion.div className="overflow-hidden">
+                <motion.p
+                  className="text-xl md:text-2xl font-light tracking-wide text-white/80"
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.9, ease: 'easeOut' }}>
+                  {photographerInfo.tagline}
+                </motion.p>
+              </motion.div>
 
               <motion.p
                 className="text-base md:text-lg font-light leading-relaxed text-white/60 max-w-2xl mx-auto"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.6 }}>
-                
+                initial={{ opacity: 0, filter: 'blur(8px)' }}
+                animate={{ opacity: 1, filter: 'blur(0px)' }}
+                transition={{ duration: 1, delay: 1.2 }}>
                 {photographerInfo.heroIntroduction}
               </motion.p>
 
-              {/* CTA Buttons */}
               <motion.div
                 className="flex flex-wrap items-center justify-center gap-4 pt-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.8 }}>
-                
-                
-
-
-
-
-                
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 1.5, ease: 'easeOut' }}>
                 <Link
                   to="/contact"
                   className="pointer-events-auto px-6 py-2.5 text-white/70 text-sm font-light tracking-wide hover:text-white transition-colors">
-                  
                   Get in Touch →
                 </Link>
               </motion.div>
-            </motion.div>
+            </div>
 
             {/* Scroll Indicator */}
             <motion.div
