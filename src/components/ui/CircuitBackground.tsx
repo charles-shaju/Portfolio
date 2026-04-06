@@ -85,7 +85,7 @@ export function CircuitBackground() {
             const mouseDist = Math.sqrt((midX - mouse.x) ** 2 + (midY - mouse.y) ** 2);
             const mouseBoost = mouseDist < mouseRadius ? (1 - mouseDist / mouseRadius) * 0.5 : 0;
             const alpha = (1 - dist / maxDist) * 0.35 + mouseBoost;
-            ctx.strokeStyle = `rgba(0, 210, 211, ${alpha})`;
+            ctx.strokeStyle = `rgba(156, 163, 175, ${alpha})`;
             ctx.lineWidth = 1 + mouseBoost;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
@@ -103,7 +103,7 @@ export function CircuitBackground() {
         const nearMouse = dist < mouseRadius;
         const brightness = nearMouse ? 0.6 + (1 - dist / mouseRadius) * 0.4 : 0.6;
         const radius = nearMouse ? 2 + (1 - dist / mouseRadius) * 2 : 2;
-        ctx.fillStyle = `rgba(0, 210, 211, ${brightness})`;
+        ctx.fillStyle = `rgba(156, 163, 175, ${brightness})`;
         ctx.beginPath();
         ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
         ctx.fill();
