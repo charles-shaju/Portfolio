@@ -211,7 +211,7 @@ export default function About() {
               </div>
               
               {/* Social Links */}
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 max-w-sm mx-auto">
                 {photographerInfo.socialLinks.instagram && (
                   <a
                     href={photographerInfo.socialLinks.instagram}
