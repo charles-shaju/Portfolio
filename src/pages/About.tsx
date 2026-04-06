@@ -472,7 +472,7 @@ export default function About() {
                     className="w-full gap-2"
                   >
                     <a
-                      href="https://charles-shaju.github.io/assets/media/Charles%20Shjau%20Resume.pdf"
+                      href="/Charles_Shaju_Resume.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       download
