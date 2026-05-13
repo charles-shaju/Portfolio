@@ -40,17 +40,28 @@ export default function Home() {
                   initial={{ y: '100%', opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.3, ease: [0.33, 1, 0.68, 1] }}>
-                  {photographerInfo.name.split('').map((char, i) => (
-                    <motion.span
-                      key={i}
-                      initial={{ opacity: 0, y: 40 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: 0.4 + i * 0.04, ease: 'easeOut' }}
-                      className="inline-block"
-                      style={{ display: char === ' ' ? 'inline' : 'inline-block' }}>
-                      {char === ' ' ? '\u00A0' : char.toUpperCase()}
-                    </motion.span>
-                  ))}
+                  {(() => {
+                    const words = photographerInfo.name.split(' ');
+                    let charIndex = 0;
+                    return words.map((word, wi) => (
+                      <span key={wi} className="inline-block whitespace-nowrap">
+                        {word.split('').map((char) => {
+                          const i = charIndex++;
+                          return (
+                            <motion.span
+                              key={i}
+                              initial={{ opacity: 0, y: 40 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.5, delay: 0.4 + i * 0.04, ease: 'easeOut' }}
+                              className="inline-block">
+                              {char.toUpperCase()}
+                            </motion.span>
+                          );
+                        })}
+                        {wi < words.length - 1 && '\u00A0'}
+                      </span>
+                    ));
+                  })()}
                 </motion.h1>
               </motion.div>
 
