@@ -6,6 +6,7 @@ import { ScrollIndicator } from '@/components/ui/ScrollIndicator';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { CircuitBackground } from '@/components/ui/CircuitBackground';
+import { ShaderGradientBackground } from '@/components/ui/ShaderGradientBackground';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -22,10 +23,13 @@ export default function Home() {
       <div className="min-h-screen">
         {/* Hero Section - Animated circuit board background */}
         <section className="relative h-screen w-full overflow-hidden bg-[hsl(210,30%,8%)]">
-          {/* Animated Background */}
-          <CircuitBackground />
+          {/* Animated Background — WebGL aurora shader + subtle circuit overlay */}
+          <ShaderGradientBackground />
+          <div className="absolute inset-0 opacity-30 mix-blend-screen pointer-events-none">
+            <CircuitBackground />
+          </div>
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[hsl(210,30%,8%)]/30 via-transparent to-[hsl(210,30%,8%)]/80 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[hsl(210,30%,8%)]/40 via-transparent to-[hsl(210,30%,8%)]/85 pointer-events-none" />
 
           {/* Hero Content */}
           <div className="relative h-full flex flex-col items-center justify-center px-6 pointer-events-none">
