@@ -391,7 +391,7 @@ export default function About() {
             </div>
 
             {/* Skills Bubbles */}
-            <SkillsBubbles />
+            <SkillsBadges />
           </motion.div>
         </div>
       </section>
