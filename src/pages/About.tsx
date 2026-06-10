@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Instagram, Linkedin, Download, FileText, MapPin, GraduationCap, Award, Briefcase } from 'lucide-react';
-import SkillsBubbles from '@/components/skills/SkillsBubbles';
+import SkillsBadges from '@/components/skills/SkillsBadges';
 import { photographerInfo } from '@/data/photographer';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
