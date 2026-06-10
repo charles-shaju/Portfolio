@@ -77,13 +77,17 @@ export default function SkillsBadges() {
             </h4>
             <div className="flex flex-wrap gap-2.5">
               {(photographerInfo.skills[cat] as string[]).map((skill) => (
-                <img
+                <span
                   key={skill}
-                  src={badgeUrl(skill)}
-                  alt={skill}
-                  loading="lazy"
-                  className="h-7 md:h-8 transition-transform duration-200 hover:-translate-y-0.5 hover:drop-shadow-[0_4px_12px_hsl(var(--primary)/0.4)]"
-                />
+                  className="inline-flex rounded-lg overflow-hidden ring-1 ring-border/50 transition-all duration-200 hover:-translate-y-0.5 hover:ring-primary/60 hover:shadow-[0_4px_12px_hsl(var(--primary)/0.35)]"
+                >
+                  <img
+                    src={badgeUrl(skill)}
+                    alt={skill}
+                    loading="lazy"
+                    className="h-7 md:h-8 block"
+                  />
+                </span>
               ))}
             </div>
           </motion.div>
