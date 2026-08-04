@@ -179,6 +179,18 @@ All colors MUST be HSL.
   }
 }
 
+@keyframes card-cycle {
+  0%, 45% { opacity: 1; transform: translateY(0); }
+  50%, 95% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes data-cycle {
+  0%, 45% { opacity: 0; transform: translateY(10px); }
+  50%, 95% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(10px); }
+}
+
 @layer base {
   * {
     @apply border-border;
