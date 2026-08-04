@@ -157,6 +157,8 @@ All colors MUST be HSL.
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-card-cycle: card-cycle 10s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  --animate-data-cycle: data-cycle 10s infinite cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes accordion-down {
