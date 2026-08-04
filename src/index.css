@@ -118,6 +118,8 @@ All colors MUST be HSL.
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-cyan: hsl(187 94% 43%);
+  --color-accent-cyan-foreground: hsl(0 0% 98%);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
