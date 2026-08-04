@@ -112,7 +112,7 @@ function TerminalProjectCard({ project, index = 0 }: { project: Project; index?:
     >
       <Link
         to={`/project/${project.slug}`}
-        className="group block relative h-96 overflow-hidden rounded-sm border border-accent-cyan/20 bg-slate-900/40 backdrop-blur-md transition-colors hover:border-accent-cyan/50"
+        className="group block relative h-96 overflow-hidden rounded-sm border border-accent-cyan/20 bg-slate-900 transition-colors hover:border-accent-cyan/50"
       >
         {/* Decorative HUD corners */}
         <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-accent-cyan/40 z-20" />
