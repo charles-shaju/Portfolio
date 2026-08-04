@@ -170,7 +170,7 @@ function TerminalProjectCard({ project, index = 0 }: { project: Project; index?:
 
         {/* Secondary view: technical diagnostics */}
         <div
-          className="absolute inset-0 p-6 flex flex-col bg-slate-900/90 opacity-0 animate-data-cycle group-hover:[animation-play-state:paused]"
+          className="absolute inset-0 p-6 flex flex-col bg-slate-900 opacity-0 animate-data-cycle group-hover:[animation-play-state:paused]"
           style={{ animationDelay: `${delay}s` }}
         >
           <div className="font-mono text-xs text-accent-cyan mb-6 flex justify-between">
