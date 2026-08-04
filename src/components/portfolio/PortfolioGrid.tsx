@@ -37,6 +37,7 @@ export function PortfolioGrid({ projects }: PortfolioGridProps) {
               aspectRatio="landscape"
               showCategory={true}
               index={index}
+              variant="terminal"
             />
           </motion.div>
         ))}
