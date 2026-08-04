@@ -118,6 +118,8 @@ All colors MUST be HSL.
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-cyan: hsl(187 94% 43%);
+  --color-accent-cyan-foreground: hsl(0 0% 98%);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -155,6 +157,8 @@ All colors MUST be HSL.
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-card-cycle: card-cycle 10s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  --animate-data-cycle: data-cycle 10s infinite cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes accordion-down {
@@ -175,6 +179,18 @@ All colors MUST be HSL.
   }
 }
 
+@keyframes card-cycle {
+  0%, 45% { opacity: 1; transform: translateY(0); }
+  50%, 95% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes data-cycle {
+  0%, 45% { opacity: 0; transform: translateY(10px); }
+  50%, 95% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(10px); }
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -193,5 +209,14 @@ All colors MUST be HSL.
 
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
+  }
+
+  .scanline {
+    background: linear-gradient(
+      to bottom,
+      transparent 50%,
+      rgba(6, 182, 212, 0.05) 50%
+    );
+    background-size: 100% 4px;
   }
 }
