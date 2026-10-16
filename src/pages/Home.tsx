@@ -5,13 +5,25 @@ import { ProjectCard } from '@/components/portfolio/ProjectCard';
 import { ScrollIndicator } from '@/components/ui/ScrollIndicator';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SEOHead } from '@/components/seo/SEOHead';
-import { CircuitBackground } from '@/components/ui/CircuitBackground';
-import { ShaderGradientBackground } from '@/components/ui/ShaderGradientBackground';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 /**
- * Homepage with immersive hero section and featured projects grid
+ * Technical specification rows shown in the drafting-sheet side panel
+ */
+const heroSpecs = [
+  { label: 'Experience', value: '3+ YRS' },
+  { label: 'Projects Built', value: '05' },
+  { label: 'Patents', value: '01' },
+  { label: 'Certifications', value: '02' },
+  { label: 'Base', value: 'KOCHI, IN' },
+  { label: 'Status', value: 'OPEN TO ROLES' },
+];
+
+/**
+ * Homepage — drafting-document hero with charcoal & ember theme
+ * Framed technical drawing sheet: name + introduction on the left,
+ * specification table on the right, document metadata below.
  */
 export default function Home() {
   const featuredProjects = getFeaturedProjects();
@@ -19,133 +31,151 @@ export default function Home() {
   return (
     <>
       <SEOHead />
-      
+
       <div className="min-h-screen">
-        {/* Hero Section - Animated circuit board background */}
-        <section className="relative h-screen w-full overflow-hidden bg-[hsl(210,30%,8%)]">
-          {/* Animated Background — WebGL aurora shader + subtle circuit overlay */}
-          <ShaderGradientBackground />
-          <div className="absolute inset-0 opacity-30 mix-blend-screen pointer-events-none">
-            <CircuitBackground />
-          </div>
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[hsl(210,30%,8%)]/40 via-transparent to-[hsl(210,30%,8%)]/85 pointer-events-none" />
+        {/* Hero Section — technical drafting sheet */}
+        <section className="relative min-h-screen w-full overflow-hidden bg-background">
+          {/* Drafting grid texture */}
+          <div
+            className="absolute inset-0 pointer-events-none opacity-[0.05]"
+            style={{
+              backgroundImage:
+                'linear-gradient(hsl(30 12% 93%) 1px, transparent 1px), linear-gradient(90deg, hsl(30 12% 93%) 1px, transparent 1px)',
+              backgroundSize: '56px 56px',
+            }}
+          />
+          {/* Ember ambient glows */}
+          <div className="absolute -top-40 right-0 size-[480px] rounded-full bg-primary/10 blur-[140px] pointer-events-none" />
+          <div className="absolute bottom-0 -left-40 size-[420px] rounded-full bg-primary/5 blur-[120px] pointer-events-none" />
 
-          {/* Hero Content */}
-          <div className="relative h-full flex flex-col items-center justify-center px-6 pointer-events-none">
-            <div className="text-center space-y-6 max-w-4xl">
-              <motion.div
-                className="overflow-hidden"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}>
-                <motion.h1
-                  className="text-5xl md:text-7xl lg:text-8xl font-extralight tracking-widest text-white uppercase"
-                  initial={{ y: '100%', opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.3, ease: [0.33, 1, 0.68, 1] }}>
-                  {(() => {
-                    const words = photographerInfo.name.split(' ');
-                    let charIndex = 0;
-                    return words.map((word, wi) => (
-                      <span key={wi} className="inline-block whitespace-nowrap">
-                        {word.split('').map((char) => {
-                          const i = charIndex++;
-                          return (
-                            <motion.span
-                              key={i}
-                              initial={{ opacity: 0, y: 40 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ duration: 0.5, delay: 0.4 + i * 0.04, ease: 'easeOut' }}
-                              className="inline-block">
-                              {char.toUpperCase()}
-                            </motion.span>
-                          );
-                        })}
-                        {wi < words.length - 1 && '\u00A0'}
-                      </span>
-                    ));
-                  })()}
-                </motion.h1>
-              </motion.div>
-
-              <motion.div className="overflow-hidden">
-                <motion.p
-                  className="text-xl md:text-2xl font-light tracking-wide text-white/80"
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.9, ease: 'easeOut' }}>
-                  {photographerInfo.tagline}
-                </motion.p>
-              </motion.div>
-
-              <motion.p
-                className="text-base md:text-lg font-light leading-relaxed text-white/60 max-w-2xl mx-auto"
-                initial={{ opacity: 0, filter: 'blur(8px)' }}
-                animate={{ opacity: 1, filter: 'blur(0px)' }}
-                transition={{ duration: 1, delay: 1.2 }}>
-                {photographerInfo.heroIntroduction}
-              </motion.p>
-
-              <motion.div
-                className="flex flex-wrap items-center justify-center gap-4 pt-4"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 1.5, ease: 'easeOut' }}>
-                <Link
-                  to="/contact"
-                  className="pointer-events-auto px-6 py-2.5 text-white/70 text-sm font-light tracking-wide hover:text-white transition-colors">
-                  Get in Touch →
-                </Link>
-              </motion.div>
-            </div>
-
-            {/* Scroll Indicator */}
+          {/* Document frame */}
+          <div className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-24">
             <motion.div
-              className="absolute bottom-12"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2, duration: 0.8 }}>
-              
-              <ScrollIndicator />
+              className="relative w-full max-w-6xl border border-border bg-card/70 backdrop-blur-sm shadow-[0_30px_80px_-30px_hsl(0_0%_0%/0.6)]"
+              initial={{ opacity: 0, y: 32 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: [0.33, 1, 0.68, 1] }}
+            >
+              {/* Corner registration marks */}
+              <span className="absolute -top-px -left-px size-7 border-t-2 border-l-2 border-primary/80" />
+              <span className="absolute -top-px -right-px size-7 border-t-2 border-r-2 border-primary/80" />
+              <span className="absolute -bottom-px -left-px size-7 border-b-2 border-l-2 border-primary/80" />
+              <span className="absolute -bottom-px -right-px size-7 border-b-2 border-r-2 border-primary/80" />
+
+              <div className="grid lg:grid-cols-[1.25fr_1fr]">
+                {/* Left — identity */}
+                <div className="p-8 sm:p-12 lg:p-14 space-y-8">
+                  <motion.p
+                    className="text-[10px] sm:text-xs tracking-[0.4em] uppercase text-muted-foreground"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                  >
+                    {photographerInfo.tagline}
+                  </motion.p>
+
+                  <motion.h1
+                    className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-widest text-foreground uppercase leading-tight"
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.45, ease: [0.33, 1, 0.68, 1] }}
+                  >
+                    {photographerInfo.name}
+                  </motion.h1>
+
+                  <motion.div
+                    className="w-16 h-px bg-primary"
+                    initial={{ scaleX: 0, originX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 0.7, delay: 0.7 }}
+                  />
+
+                  <motion.p
+                    className="max-w-xl text-base md:text-lg font-light leading-relaxed text-muted-foreground"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.85 }}
+                  >
+                    {photographerInfo.heroIntroduction}
+                  </motion.p>
+
+                  <motion.div
+                    className="flex flex-wrap items-center gap-4 pt-2"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 1.05 }}
+                  >
+                    <Link
+                      to="/portfolio"
+                      className="group inline-flex items-center gap-3 border border-primary/60 bg-primary/10 px-7 py-3.5 text-xs font-medium tracking-[0.25em] uppercase text-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
+                    >
+                      View Projects
+                      <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                    <Link
+                      to="/contact"
+                      className="inline-flex items-center border border-border px-7 py-3.5 text-xs font-medium tracking-[0.25em] uppercase text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
+                    >
+                      Get in Touch
+                    </Link>
+                  </motion.div>
+                </div>
+
+                {/* Right — technical specifications */}
+                <div className="border-t lg:border-t-0 lg:border-l border-border">
+                  <div className="p-8 sm:p-12 lg:p-14 lg:pl-10">
+                    <motion.p
+                      className="text-[10px] tracking-[0.35em] uppercase text-muted-foreground mb-8"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 0.6 }}
+                    >
+                      Technical Specifications
+                    </motion.p>
+                    <div>
+                      {heroSpecs.map((spec, index) => (
+                        <motion.div
+                          key={spec.label}
+                          className="flex items-center justify-between border-b border-border/70 py-3.5 last:border-0"
+                          initial={{ opacity: 0, x: 16 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.5, delay: 0.7 + index * 0.08 }}
+                        >
+                          <span className="text-[10px] tracking-[0.25em] uppercase text-muted-foreground">
+                            {spec.label}
+                          </span>
+                          <span className="text-sm tracking-wider text-foreground">
+                            {spec.value}
+                          </span>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Document metadata footer */}
+              <div className="flex items-center justify-between border-t border-border px-6 sm:px-10 py-4 text-[9px] sm:text-[10px] tracking-[0.25em] uppercase text-muted-foreground/70">
+                <span>DOC — CS/EMB/2026</span>
+                <span className="hidden sm:block">Kalamassery · Cochin · Kerala</span>
+                <span>REV 2.4</span>
+              </div>
             </motion.div>
           </div>
-        </section>
 
-
-        {/* Stats Bar */}
-        <section className="py-16 md:py-20 px-6 lg:px-8 border-b border-border bg-accent/30">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-              {[
-                { value: '3+', label: 'Years Experience' },
-                { value: '5', label: 'Projects Built' },
-                { value: '1', label: 'Patent Published' },
-                { value: '2', label: 'Certifications' },
-              ].map((stat, index) => (
-                <ScrollReveal key={stat.label} delay={index * 0.1}>
-                  <div className="text-center space-y-2">
-                    <motion.span
-                      className="block text-4xl md:text-5xl font-extralight tracking-wide text-foreground"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: index * 0.15 }}
-                    >
-                      {stat.value}
-                    </motion.span>
-                    <p className="text-sm md:text-base font-light tracking-wide text-muted-foreground uppercase">
-                      {stat.label}
-                    </p>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
+          {/* Scroll Indicator */}
+          <motion.div
+            className="absolute bottom-6 left-1/2 -translate-x-1/2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.4, duration: 0.8 }}
+          >
+            <ScrollIndicator />
+          </motion.div>
         </section>
 
         {/* Introduction Section */}
-        <section className="py-24 md:py-32 px-6 lg:px-8 bg-background">
+        <section className="py-24 md:py-32 px-6 lg:px-8 bg-background border-t border-border">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <ScrollReveal>
               <div className="space-y-6">
@@ -198,7 +228,7 @@ export default function Home() {
               <Link
                 to="/portfolio"
                 className="group inline-flex items-center gap-2 text-lg font-light tracking-wide text-foreground hover:text-muted-foreground transition-colors">
-                
+
                 <span>View All Projects</span>
                 <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
               </Link>
@@ -207,5 +237,4 @@ export default function Home() {
         </section>
       </div>
     </>);
-
 }
