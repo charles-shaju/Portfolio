@@ -40,7 +40,7 @@ export default function Home() {
             className="absolute inset-0 pointer-events-none opacity-[0.05]"
             style={{
               backgroundImage:
-                'linear-gradient(hsl(30 12% 93%) 1px, transparent 1px), linear-gradient(90deg, hsl(30 12% 93%) 1px, transparent 1px)',
+                'linear-gradient(var(--foreground) 1px, transparent 1px), linear-gradient(90deg, var(--foreground) 1px, transparent 1px)',
               backgroundSize: '56px 56px',
             }}
           />
@@ -51,7 +51,7 @@ export default function Home() {
           {/* Document frame */}
           <div className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-24">
             <motion.div
-              className="relative w-full max-w-6xl border border-border bg-card/70 backdrop-blur-sm shadow-[0_30px_80px_-30px_hsl(0_0%_0%/0.6)]"
+              className="relative w-full max-w-6xl border border-border bg-card/70 backdrop-blur-sm shadow-[0_30px_80px_-30px_hsl(0_0%_0%/0.35)]"
               initial={{ opacity: 0, y: 32 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: [0.33, 1, 0.68, 1] }}
