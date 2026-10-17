@@ -112,13 +112,13 @@ function TerminalProjectCard({ project, index = 0 }: { project: Project; index?:
     >
       <Link
         to={`/project/${project.slug}`}
-        className="group block relative h-80 md:h-96 overflow-hidden rounded-sm border border-accent-cyan/20 bg-slate-900 transition-colors hover:border-accent-cyan/50"
+        className="group block relative h-80 md:h-96 overflow-hidden rounded-sm border border-primary/20 bg-card transition-colors hover:border-primary/50"
       >
         {/* Decorative HUD corners */}
-        <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-accent-cyan/40 z-20" />
-        <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-accent-cyan/40 z-20" />
-        <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-accent-cyan/40 z-20" />
-        <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-accent-cyan/40 z-20" />
+        <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary/40 z-20" />
+        <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary/40 z-20" />
+        <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-primary/40 z-20" />
+        <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary/40 z-20" />
 
         {/* Scanline overlay */}
         <div className="pointer-events-none absolute inset-0 scanline z-10" />
@@ -128,7 +128,7 @@ function TerminalProjectCard({ project, index = 0 }: { project: Project; index?:
           className="absolute inset-0 p-5 flex flex-col animate-card-cycle group-hover:[animation-play-state:paused]"
           style={{ animationDelay: `${delay}s` }}
         >
-          <div className="relative aspect-video mb-4 overflow-hidden rounded-sm border border-white/10 bg-muted">
+          <div className="relative aspect-video mb-4 overflow-hidden rounded-sm border border-border bg-muted">
             {!isLoaded && <div className="absolute inset-0 bg-muted" />}
             <img
               src={project.coverImage}
@@ -140,19 +140,19 @@ function TerminalProjectCard({ project, index = 0 }: { project: Project; index?:
               loading={index < 6 ? 'eager' : 'lazy'}
               onLoad={() => setIsLoaded(true)}
             />
-            <div className="absolute inset-0 bg-accent-cyan/10 mix-blend-multiply" />
+            <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
           </div>
 
           <div className="space-y-1">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-accent-cyan/80">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-primary/80">
               {serial}
             </span>
-            <h3 className="font-mono text-lg font-bold text-slate-100 line-clamp-2">
+            <h3 className="font-mono text-lg font-bold text-foreground line-clamp-2">
               {project.title}
             </h3>
           </div>
 
-          <p className="mt-3 text-sm text-slate-400 leading-relaxed line-clamp-3">
+          <p className="mt-3 text-sm text-muted-foreground leading-relaxed line-clamp-3">
             {project.description}
           </p>
 
@@ -160,7 +160,7 @@ function TerminalProjectCard({ project, index = 0 }: { project: Project; index?:
             {primaryTech.map((tech) => (
               <span
                 key={tech}
-                className="px-2 py-0.5 text-[10px] bg-accent-cyan/10 border border-accent-cyan/30 text-accent-cyan font-medium uppercase tracking-tighter rounded-xs"
+                className="px-2 py-0.5 text-[10px] bg-primary/10 border border-primary/30 text-primary font-medium uppercase tracking-tighter rounded-xs"
               >
                 {tech}
               </span>
@@ -170,50 +170,50 @@ function TerminalProjectCard({ project, index = 0 }: { project: Project; index?:
 
         {/* Secondary view: technical diagnostics */}
         <div
-          className="absolute inset-0 p-6 flex flex-col bg-slate-900 opacity-0 animate-data-cycle group-hover:[animation-play-state:paused]"
+          className="absolute inset-0 p-6 flex flex-col bg-card opacity-0 animate-data-cycle group-hover:[animation-play-state:paused]"
           style={{ animationDelay: `${delay}s` }}
         >
-          <div className="font-mono text-xs text-accent-cyan mb-6 flex justify-between">
+          <div className="font-mono text-xs text-primary mb-6 flex justify-between">
             <span>SYSTEM_DIAGNOSTICS</span>
             <span className="animate-pulse">● ONLINE</span>
           </div>
 
           <div className="space-y-6">
             <div>
-              <div className="flex justify-between text-[10px] text-slate-500 mb-1 uppercase tracking-widest">
+              <div className="flex justify-between text-[10px] text-muted-foreground mb-1 uppercase tracking-widest">
                 <span>Project Readiness</span>
-                <span className="text-accent-cyan">{progress}%</span>
+                <span className="text-primary">{progress}%</span>
               </div>
-              <div className="h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+              <div className="h-1 w-full bg-muted rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-accent-cyan/50 transition-all duration-1000"
+                  className="h-full bg-primary/50 transition-all duration-1000"
                   style={{ width: `${progress}%` }}
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className="border-l border-accent-cyan/30 pl-3">
-                <span className="block font-mono text-[10px] text-slate-500 uppercase">Category</span>
-                <span className="font-mono text-sm text-slate-200 capitalize">{project.category}</span>
+              <div className="border-l border-primary/30 pl-3">
+                <span className="block font-mono text-[10px] text-muted-foreground uppercase">Category</span>
+                <span className="font-mono text-sm text-foreground capitalize">{project.category}</span>
               </div>
-              <div className="border-l border-accent-cyan/30 pl-3">
-                <span className="block font-mono text-[10px] text-slate-500 uppercase">Year</span>
-                <span className="font-mono text-sm text-slate-200">{project.year}</span>
+              <div className="border-l border-primary/30 pl-3">
+                <span className="block font-mono text-[10px] text-muted-foreground uppercase">Year</span>
+                <span className="font-mono text-sm text-foreground">{project.year}</span>
               </div>
             </div>
 
-            <div className="p-3 bg-accent-cyan/5 rounded-sm border border-accent-cyan/10">
-              <span className="block font-mono text-[10px] text-accent-cyan/70 mb-2 tracking-tighter">
+            <div className="p-3 bg-primary/5 rounded-sm border border-primary/10">
+              <span className="block font-mono text-[10px] text-primary/70 mb-2 tracking-tighter">
                 {stackLabel}
               </span>
-              <p className="font-mono text-[11px] text-slate-300 leading-tight">
+              <p className="font-mono text-[11px] text-muted-foreground leading-tight">
                 {project.techStack?.join(', ') ?? 'N/A'}
               </p>
             </div>
           </div>
 
-          <div className="mt-auto w-full py-2 border border-accent-cyan/40 text-accent-cyan text-[10px] font-mono uppercase tracking-widest text-center group-hover:bg-accent-cyan/10 transition-colors">
+          <div className="mt-auto w-full py-2 border border-primary/40 text-primary text-[10px] font-mono uppercase tracking-widest text-center group-hover:bg-primary/10 transition-colors">
             View Project _
           </div>
         </div>
