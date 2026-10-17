@@ -122,6 +122,9 @@ function TerminalProjectCard({ project, index = 0 }: { project: Project; index?:
 
         {/* Scanline overlay */}
         <div className="pointer-events-none absolute inset-0 scanline z-10" />
+        {/* Drafting grid + hover ember spread from corner */}
+        <div className="pointer-events-none absolute inset-0 page-grid opacity-70 z-10" />
+        <div className="pointer-events-none absolute -top-24 -right-24 size-56 rounded-full bg-primary/0 blur-3xl z-10 transition-all duration-700 ease-out group-hover:bg-primary/25 group-hover:size-[28rem]" />
 
         {/* Primary view: project visuals and overview */}
         <div
