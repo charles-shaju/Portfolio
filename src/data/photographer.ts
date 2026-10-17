@@ -27,10 +27,13 @@ Whether working on underwater ROVs, autonomous surface vehicles, or IoT telemetr
     { title: 'Geodata Processing using Python & ML', issuer: 'ISRO', year: '2025' }
   ],
   patent: {
-    title: 'AN UNDERWATER REMOTELY OPERATED VEHICLE FOR STRUCTURAL HEALTH MONITORING (UROV-SHM)',
+    title: 'An Underwater Remotely Operated Vehicle for Structural Health Monitoring (UROV-SHM)',
+    role: 'Co-inventor',
     description: 'UROV-SHM executes detailed underwater inspections of dams, tunnels, ship hulls, and bridge piers. Swappable batteries, fiber tethered telemetry, and AI-enhanced sonar/video analytics give real-time crack measurement, precise positioning, and mission resilience in turbulent conditions.',
-    applicationNo: '202241040473 A',
-    date: '12 Jul 2024'
+    applicationNo: '202421040473',
+    filedDate: '24 May 2024',
+    publishedDate: '12 July 2024 (u/s 11A)',
+    status: 'Under Examination — Indian Patent Office'
   },
   education: 'MCA (Pursuing), Rajagiri College of Social Science',
   location: 'Kalamassery, Cochin, Kerala',

@@ -347,8 +347,8 @@ export default function About() {
                     <FileText className="size-5" />
                   </div>
                   <div>
-                    <p className="text-xs font-light tracking-widest uppercase text-muted-foreground">Published Patent</p>
-                    <p className="text-sm text-muted-foreground">Indian Application No. {photographerInfo.patent.applicationNo} · {photographerInfo.patent.date}</p>
+                    <p className="text-xs font-light tracking-widest uppercase text-muted-foreground">Patent Application (Published, Under Examination)</p>
+                    <p className="text-sm text-muted-foreground">{photographerInfo.patent.role} · Application No. {photographerInfo.patent.applicationNo} · Filed {photographerInfo.patent.filedDate} · Published {photographerInfo.patent.publishedDate}</p>
                   </div>
                 </div>
                 <h3 className="text-xl md:text-2xl font-light tracking-wide text-foreground">
@@ -357,6 +357,11 @@ export default function About() {
                 <p className="text-base font-light leading-relaxed text-muted-foreground">
                   {photographerInfo.patent.description}
                 </p>
+                <div>
+                  <span className="inline-flex items-center border border-border bg-muted/40 px-3 py-1 text-[10px] tracking-[0.25em] uppercase text-muted-foreground">
+                    {photographerInfo.patent.status}
+                  </span>
+                </div>
               </motion.div>
             )}
 
@@ -451,9 +456,9 @@ export default function About() {
                   <div className="flex items-start gap-3">
                     <FileText className="size-5 text-muted-foreground mt-0.5" />
                     <div>
-                      <p className="text-sm font-light tracking-wide text-muted-foreground">Patent</p>
+                      <p className="text-sm font-light tracking-wide text-muted-foreground">Patent Application — {photographerInfo.patent.role}</p>
                       <p className="font-light text-foreground text-sm">{photographerInfo.patent.title}</p>
-                      <p className="text-xs text-muted-foreground mt-1">Application No. {photographerInfo.patent.applicationNo} · {photographerInfo.patent.date}</p>
+                      <p className="text-xs text-muted-foreground mt-1">Application No. {photographerInfo.patent.applicationNo} · Filed {photographerInfo.patent.filedDate} · Published {photographerInfo.patent.publishedDate} · Under Examination</p>
                     </div>
                   </div>
                 )}
