@@ -9,7 +9,7 @@ export const projects: Project[] = [
     slug: 'underwater-rov',
     coverImage: 'https://charles-shaju.github.io/assets/media/UROV.jpeg',
     description: 'ROV platform that surveys dam walls, bridge pilings, and submerged infrastructure for cracks using Pixhawk guidance, embedded control loops, and multi-camera vision. Published as Indian Patent Application No. 202241040473 A.',
-    techStack: ['Pixhawk', 'ArduPilot', 'MAVLink', 'OpenCV', 'Python', 'ESP32'],
+    techStack: ['Pixhawk', 'ArduPilot', 'MAVLink', 'Python', 'ESP32'],
     location: 'Kerala, India',
     images: [
       {
@@ -40,7 +40,7 @@ export const projects: Project[] = [
     slug: 'aquascanner-catamaran',
     coverImage: 'https://charles-shaju.github.io/assets/media/Catamaran.jpeg',
     description: 'Autonomous twin-hull vessel that deploys an embedded echosounder suite to chart dam reservoirs and inland waterways for structural assessment and sediment mapping.',
-    techStack: ['ESP32', 'Echosounder', 'GPS', 'Autonomous Navigation', 'Python'],
+    techStack: ['ESP32', 'Raspberry Pi', 'Echosounder', 'GPS', 'Autonomous Navigation', 'QGroundControl', 'Wireless Communication', 'Embedded C/C++', 'Python', 'PWM', 'UART', 'SPI', 'I2C'],
     location: 'Kerala, India',
     images: [
       {
@@ -71,7 +71,7 @@ export const projects: Project[] = [
     slug: 'smart-altimeter',
     coverImage: 'https://charles-shaju.github.io/assets/media/Altimeter.jpeg',
     description: 'Prototype high-precision barometric altimeter with auto/manual calibration routines, onboard data logging, and telemetry streaming for UAV telemetry stacks.',
-    techStack: ['BMP390', 'ESP32', 'I2C', 'Telemetry', 'C++'],
+    techStack: ['BMP390', 'ESP32', 'I2C', 'Telemetry', 'Embedded C/C++'],
     location: 'Kerala, India',
     images: [
       {
@@ -90,7 +90,7 @@ export const projects: Project[] = [
     slug: 'gps-tracker',
     coverImage: 'https://charles-shaju.github.io/assets/media/GPS%20tracking.png',
     description: 'Portable tracker that streams GNSS fixes from an ESP32-based board to Firebase for live fleet monitoring, push alerts, and historical route analytics.',
-    techStack: ['ESP32', 'Firebase', 'GPS/GNSS', 'Real-time Database', 'JavaScript'],
+    techStack: ['ESP32', 'Firebase', 'GPS/GNSS', 'Real-time Database'],
     location: 'Kerala, India',
     images: [
       {
