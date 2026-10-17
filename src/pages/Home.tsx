@@ -34,7 +34,7 @@ export default function Home() {
 
       <div className="min-h-screen">
         {/* Hero Section — technical drafting sheet */}
-        <section className="relative min-h-screen w-full overflow-hidden bg-background">
+        <section className="relative min-h-screen w-full overflow-hidden">
           {/* Drafting grid texture */}
           <div
             className="absolute inset-0 pointer-events-none opacity-[0.05]"
@@ -175,7 +175,7 @@ export default function Home() {
         </section>
 
         {/* Introduction Section */}
-        <section className="py-24 md:py-32 px-6 lg:px-8 bg-background border-t border-border">
+        <section className="py-24 md:py-32 px-6 lg:px-8 border-t border-border">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <ScrollReveal>
               <div className="space-y-6">
