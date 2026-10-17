@@ -131,7 +131,7 @@ function TerminalProjectCard({ project, index = 0 }: { project: Project; index?:
           className="absolute inset-0 p-5 flex flex-col animate-card-cycle group-hover:[animation-play-state:paused]"
           style={{ animationDelay: `${delay}s` }}
         >
-          <div className="relative aspect-video mb-4 overflow-hidden rounded-sm border border-border bg-muted">
+          <div className="relative h-32 md:h-40 mb-4 shrink-0 overflow-hidden rounded-sm border border-border bg-muted">
             {!isLoaded && <div className="absolute inset-0 bg-muted" />}
             <img
               src={project.coverImage}
@@ -155,11 +155,11 @@ function TerminalProjectCard({ project, index = 0 }: { project: Project; index?:
             </h3>
           </div>
 
-          <p className="mt-3 text-sm text-muted-foreground leading-relaxed line-clamp-3">
+          <p className="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-2">
             {project.description}
           </p>
 
-          <div className="mt-auto flex flex-wrap gap-2">
+          <div className="mt-auto pt-3 flex flex-wrap gap-2 max-h-[3.25rem] overflow-hidden">
             {primaryTech.map((tech) => (
               <span
                 key={tech}
