@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 const heroSpecs = [
   { label: 'Experience', value: '3+ YRS' },
   { label: 'Projects Built', value: '05' },
-  { label: 'Patents', value: '01' },
+  { label: 'Patent Applications', value: '01' },
   { label: 'Certifications', value: '02' },
   { label: 'Base', value: 'KOCHI, IN' },
   { label: 'Status', value: 'OPEN TO ROLES' },

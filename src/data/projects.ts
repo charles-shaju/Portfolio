@@ -8,7 +8,7 @@ export const projects: Project[] = [
     year: '2024',
     slug: 'underwater-rov',
     coverImage: 'https://charles-shaju.github.io/assets/media/UROV.jpeg',
-    description: 'ROV platform that surveys dam walls, bridge pilings, and submerged infrastructure for cracks using Pixhawk guidance, embedded control loops, and multi-camera vision. Published as Indian Patent Application No. 202241040473 A.',
+    description: 'ROV platform that surveys dam walls, bridge pilings, and submerged infrastructure for cracks using Pixhawk guidance, embedded control loops, and multi-camera vision. Published as Indian Patent Application No. 202421040473.',
     techStack: ['Pixhawk', 'ArduPilot', 'MAVLink', 'Python', 'ESP32'],
     location: 'Kerala, India',
     images: [
