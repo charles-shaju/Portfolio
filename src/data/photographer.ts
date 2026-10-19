@@ -23,8 +23,9 @@ Whether working on underwater ROVs, autonomous surface vehicles, or IoT telemetr
     ]
   },
   certifications: [
-    { title: 'ASAP AI-Machine Learning Developer', issuer: 'Kerala ASAP', year: '2024' },
-    { title: 'Geodata Processing using Python & ML', issuer: 'ISRO', year: '2025' }
+    { title: 'Computer Vision Engineer', issuer: 'MathWorks', year: '2026', url: 'https://www.coursera.org/account/accomplishments/specialization/H4G7QUDF59UG' },
+    { title: 'Geodata Processing using Python & ML', issuer: 'ISRO', year: '2025', url: 'https://isrolms.iirs.gov.in/mod/customcert/verify_certificate.php?contextid=1049408' },
+    { title: 'AI-Machine Learning Developer', issuer: 'Kerala ASAP', year: '2024', url: 'https://asapkerala.gov.in/aiml/' }
   ],
   patent: {
     title: 'An Underwater Remotely Operated Vehicle for Structural Health Monitoring (UROV-SHM)',
