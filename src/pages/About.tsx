@@ -1,11 +1,20 @@
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Instagram, Linkedin, Download, FileText, MapPin, GraduationCap, Award, Briefcase } from 'lucide-react';
+import { Linkedin, Download, FileText, MapPin, GraduationCap, Award } from 'lucide-react';
 import SkillsBadges from '@/components/skills/SkillsBadges';
 import { photographerInfo } from '@/data/photographer';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { SEOHead } from '@/components/seo/SEOHead';
+
+const aboutSubtitle = 'Robotics & Embedded Systems Engineer | Marine Robotics';
+
+const aboutParagraphs = [
+  "I'm an MCA student at Rajagiri College of Social Science and a part-time embedded systems engineer at i4 Marine Technologies, a marine robotics company where I was one of the first employees.",
+  'In my first two years full-time, I did whatever the company needed: setting up our first office and workshop, sourcing tools and equipment, wiring and configuring our autonomous vessels and underwater ROVs, and testing and debugging them until they worked in the field. That included tuning PID control on an 80 kg catamaran and supporting surveys at 4 dams.',
+  "I started in software, and I'm now moving toward robot software. I'm building a ROS 2 robot with its own scanning lidar and sensor fusion, and I'm adding camera-based navigation to it. I've also built a vision system, using Roboflow, that detects and counts nuts and bolts in video. I want to work on perception, control and simulation in a team that tests and ships its work.",
+];
+
 
 const timeline = [
   {
@@ -36,7 +45,7 @@ const timeline = [
     year: '2025',
     title: 'Started MCA',
     org: 'Rajagiri College of Social Sciences',
-    description: 'Pursuing Master of Computer Applications with focus on embedded systems and AI-driven robotics research.',
+    description: 'Pursuing Master of Computer Applications with focus on embedded systems and robotics research.',
   },
 ];
 
@@ -166,7 +175,7 @@ export default function About() {
     <>
       <SEOHead
         title="About"
-        description={`Learn about ${photographerInfo.name}, ${photographerInfo.tagline}. ${photographerInfo.biography.split('\n\n')[0]}`}
+        description={`Learn about ${photographerInfo.name}, ${aboutSubtitle}. ${aboutParagraphs[0]}`}
         image={photographerInfo.portraitImage}
       />
       
@@ -212,17 +221,6 @@ export default function About() {
               
               {/* Social Links */}
               <div className="flex items-center gap-4 max-w-sm mx-auto">
-                {photographerInfo.socialLinks.instagram && (
-                  <a
-                    href={photographerInfo.socialLinks.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 border border-border rounded-sm hover:bg-accent transition-colors"
-                    aria-label="Instagram"
-                  >
-                    <Instagram className="size-5" />
-                  </a>
-                )}
                 {photographerInfo.socialLinks.linkedin && (
                   <a
                     href={photographerInfo.socialLinks.linkedin}
@@ -272,7 +270,7 @@ export default function About() {
                   {photographerInfo.name}
                 </h2>
                 <p className="text-xl text-muted-foreground font-light tracking-wide">
-                  {photographerInfo.tagline}
+                  {aboutSubtitle}
                 </p>
               </div>
 
@@ -280,7 +278,7 @@ export default function About() {
 
               {/* Biography */}
               <div className="space-y-4">
-                {photographerInfo.biography.split('\n\n').map((paragraph, index) => (
+                {aboutParagraphs.map((paragraph, index) => (
                   <p
                     key={index}
                     className="text-base md:text-lg font-light leading-relaxed text-muted-foreground"
