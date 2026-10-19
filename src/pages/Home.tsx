@@ -12,10 +12,9 @@ import { Link } from 'react-router-dom';
  * Technical specification rows shown in the drafting-sheet side panel
  */
 const heroSpecs = [
-  { label: 'Experience', value: '3+ YRS' },
-  { label: 'Projects Built', value: '05' },
-  { label: 'Patent Applications', value: '01' },
-  { label: 'Certifications', value: '02' },
+  { label: 'Experience', value: '2 YRS FULL-TIME + PART-TIME' },
+  { label: 'Patent Application', value: '1 · CO-INVENTOR' },
+  { label: 'Focus', value: 'ROS 2 · CONTROL · PERCEPTION' },
   { label: 'Base', value: 'KOCHI, IN' },
   { label: 'Status', value: 'OPEN TO ROLES' },
 ];
@@ -66,12 +65,12 @@ export default function Home() {
                 {/* Left — identity */}
                 <div className="p-8 sm:p-12 lg:p-14 space-y-8">
                   <motion.p
-                    className="text-[10px] sm:text-xs tracking-[0.4em] uppercase text-muted-foreground"
+                    className="text-[10px] sm:text-xs tracking-[0.22em] sm:tracking-[0.4em] uppercase leading-relaxed text-muted-foreground"
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.3 }}
                   >
-                    {photographerInfo.tagline}
+                    Robotics &amp; Embedded Systems Engineer
                   </motion.p>
 
                   <motion.h1
@@ -96,25 +95,27 @@ export default function Home() {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.85 }}
                   >
-                    {photographerInfo.heroIntroduction}
+                    Two years of marine robotics on real dams: PID-tuned autonomous
+                    surface vessels and underwater ROVs. Now building ROS 2,
+                    perception and control skills.
                   </motion.p>
 
                   <motion.div
-                    className="flex flex-wrap items-center gap-4 pt-2"
+                    className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2"
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 1.05 }}
                   >
                     <Link
                       to="/portfolio"
-                      className="group inline-flex items-center gap-3 border border-primary/60 bg-primary/10 px-7 py-3.5 text-xs font-medium tracking-[0.25em] uppercase text-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
+                      className="group inline-flex w-full sm:w-auto items-center justify-between sm:justify-center gap-3 border border-primary/60 bg-primary/10 px-7 py-3.5 text-xs font-medium tracking-[0.25em] uppercase text-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
                     >
                       View Projects
                       <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                     </Link>
                     <Link
                       to="/contact"
-                      className="inline-flex items-center border border-border px-7 py-3.5 text-xs font-medium tracking-[0.25em] uppercase text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
+                      className="inline-flex w-full sm:w-auto items-center justify-center border border-border px-7 py-3.5 text-xs font-medium tracking-[0.25em] uppercase text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
                     >
                       Get in Touch
                     </Link>
@@ -136,15 +137,15 @@ export default function Home() {
                       {heroSpecs.map((spec, index) => (
                         <motion.div
                           key={spec.label}
-                          className="flex items-center justify-between border-b border-border/70 py-3.5 last:border-0"
+                          className="flex items-baseline justify-between gap-4 border-b border-border/70 py-3.5 last:border-0"
                           initial={{ opacity: 0, x: 16 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.5, delay: 0.7 + index * 0.08 }}
                         >
-                          <span className="text-[10px] tracking-[0.25em] uppercase text-muted-foreground">
+                          <span className="shrink-0 text-[10px] tracking-[0.25em] uppercase text-muted-foreground">
                             {spec.label}
                           </span>
-                          <span className="text-sm tracking-wider text-foreground">
+                          <span className="min-w-0 flex-1 text-right text-sm tracking-wider text-foreground">
                             {spec.value}
                           </span>
                         </motion.div>
@@ -155,10 +156,10 @@ export default function Home() {
               </div>
 
               {/* Document metadata footer */}
-              <div className="flex items-center justify-between border-t border-border px-6 sm:px-10 py-4 text-[9px] sm:text-[10px] tracking-[0.25em] uppercase text-muted-foreground/70">
-                <span>DOC — CS/EMB/2026</span>
+              <div className="flex items-center justify-between gap-3 border-t border-border px-6 sm:px-10 py-4 text-[9px] sm:text-[10px] tracking-[0.25em] uppercase text-muted-foreground/70">
+                <span>Portfolio</span>
                 <span className="hidden sm:block">Kalamassery · Cochin · Kerala</span>
-                <span>REV 2.4</span>
+                <span>ROS 2 · Ardupilot · Python</span>
               </div>
             </motion.div>
           </div>
