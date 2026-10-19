@@ -1,92 +1,40 @@
 import { motion } from 'framer-motion';
 import { photographerInfo } from '@/data/photographer';
 
-// Map skill name -> { logo slug (simpleicons), color (brand hex without #), logoColor }
-const SKILL_META: Record<string, { logo: string; color: string; logoColor?: string }> = {
-  // Languages
-  'Python': { logo: 'python', color: '3776AB', logoColor: 'white' },
-  'C / C++': { logo: 'cplusplus', color: '00599C', logoColor: 'white' },
-  'Java': { logo: 'openjdk', color: 'ED8B00', logoColor: 'white' },
-  'SQL': { logo: 'mysql', color: '4479A1', logoColor: 'white' },
-  'Bash / Shell scripting': { logo: 'gnubash', color: '4EAA25', logoColor: 'white' },
-
-  // Frameworks
-  'TensorFlow': { logo: 'tensorflow', color: 'FF6F00', logoColor: 'white' },
-  'OpenCV': { logo: 'opencv', color: '5C3EE8', logoColor: 'white' },
-  'Django': { logo: 'django', color: '092E20', logoColor: 'white' },
-  'MATLAB': { logo: 'mathworks', color: '0076A8', logoColor: 'white' },
-
-  // Tools
-  'Git & GitHub': { logo: 'github', color: '181717', logoColor: 'white' },
-  'VS Code': { logo: 'visualstudiocode', color: '007ACC', logoColor: 'white' },
-  'QGroundControl': { logo: 'dronedeploy', color: '00B4FF', logoColor: 'white' },
-  'KiCad': { logo: 'kicad', color: '314CB0', logoColor: 'white' },
-  'Linux': { logo: 'linux', color: 'FCC624', logoColor: 'black' },
-  'Serial/UART/I2C/SPI debugging': { logo: 'rasberrypi', color: '8B5CF6', logoColor: 'white' },
-
-  // Hardware
-  'ESP32 / ESP8266': { logo: 'espressif', color: 'E7352C', logoColor: 'white' },
-  'Raspberry Pi': { logo: 'raspberrypi', color: 'A22846', logoColor: 'white' },
-  'Pixhawk (MAVLink, ArduPilot)': { logo: 'dronedeploy', color: '2E7D32', logoColor: 'white' },
-  'LoRa modules (SX1276/SX1278)': { logo: 'semanticscholar', color: '00897B', logoColor: 'white' },
-  'Sonar systems': { logo: 'soundcharts', color: '0277BD', logoColor: 'white' },
-  'IMU, GPS, Barometer sensors': { logo: 'googleearth', color: '4285F4', logoColor: 'white' },
-  'BLDC motors + ESCs': { logo: 'rotaryinternational', color: 'D32F2F', logoColor: 'white' },
-  'Underwater cameras': { logo: 'gopro', color: '212121', logoColor: 'white' },
-  'Custom ROVs & ASVs': { logo: 'arduino', color: '00979D', logoColor: 'white' },
-};
-
-const CATEGORY_LABELS: Record<string, string> = {
-  languages: 'Languages',
-  frameworks: 'Frameworks',
-  tools: 'Tools',
-  hardware: 'Hardware',
-};
-
-function badgeUrl(name: string) {
-  const meta = SKILL_META[name] ?? { logo: 'codeforces', color: '64748B', logoColor: 'white' };
-  const label = encodeURIComponent(name).replace(/-/g, '--').replace(/_/g, '__');
-  return `https://img.shields.io/badge/${label}-${meta.color}?style=for-the-badge&logo=${meta.logo}&logoColor=${meta.logoColor ?? 'white'}`;
-}
-
 export default function SkillsBadges() {
-  const categories = Object.keys(CATEGORY_LABELS) as Array<keyof typeof photographerInfo.skills>;
-
   return (
     <div className="space-y-10">
       <div className="text-center space-y-3">
         <h3 className="text-2xl md:text-3xl font-light tracking-wide">Technical Skills</h3>
         <p className="text-sm md:text-base font-mono text-muted-foreground">
-          Self-Learner <span className="text-primary">|</span> ML Enthusiast{' '}
-          <span className="text-primary">|</span> Python
+          Grouped by how I use them
         </p>
       </div>
 
       <div className="space-y-8">
-        {categories.map((cat, ci) => (
+        {photographerInfo.skills.map((group, gi) => (
           <motion.div
-            key={cat}
+            key={group.tier}
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.4, delay: ci * 0.08 }}
+            transition={{ duration: 0.4, delay: gi * 0.08 }}
             className="space-y-3"
           >
-            <h4 className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-mono">
-              {CATEGORY_LABELS[cat]}
-            </h4>
-            <div className="flex flex-wrap gap-2.5">
-              {(photographerInfo.skills[cat] as string[]).map((skill) => (
+            <div className="border-l border-border pl-4 space-y-1">
+              <h4 className="text-xs uppercase tracking-[0.2em] font-mono text-foreground">
+                {group.tier}
+              </h4>
+              <p className="text-xs font-light text-muted-foreground">{group.description}</p>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {group.items.map((skill) => (
                 <span
                   key={skill}
-                  className="inline-flex rounded-lg overflow-hidden ring-1 ring-border/50 transition-all duration-200 hover:-translate-y-0.5 hover:ring-primary/60 hover:shadow-[0_4px_12px_hsl(var(--primary)/0.35)]"
+                  className="inline-flex max-w-full items-center rounded-full border border-border px-3 py-1.5 text-xs font-light leading-snug text-muted-foreground break-words transition-colors duration-200 hover:border-primary/70 hover:bg-primary/10 hover:text-foreground"
                 >
-                  <img
-                    src={badgeUrl(skill)}
-                    alt={skill}
-                    loading="lazy"
-                    className="h-7 md:h-8 block"
-                  />
+                  {skill}
                 </span>
               ))}
             </div>
