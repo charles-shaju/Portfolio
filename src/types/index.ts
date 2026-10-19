@@ -34,11 +34,11 @@ export interface PersonInfo {
   biography: string;
   approach: string;
   skills: {
-    languages: string[];
-    frameworks: string[];
-    tools: string[];
-    hardware: string[];
-  };
+    tier: string;
+    description: string;
+    items: string[];
+  }[];
+
   certifications: { title: string; issuer: string; year: string; url?: string }[];
   patent?: { title: string; description: string; role: string; applicationNo: string; filedDate: string; publishedDate: string; status: string };
   education: string;
