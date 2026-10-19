@@ -12,16 +12,61 @@ I thrive on projects involving real-time systems, robotics, automation, underwat
   approach: `My engineering is guided by three principles: robust embedded design, intelligent automation, and field-tested reliability. I believe the best systems emerge when hardware and software work in harmony, when sensor fusion provides actionable data, and when autonomous platforms perform reliably in challenging real-world conditions.
 
 Whether working on underwater ROVs, autonomous surface vehicles, or IoT telemetry systems, I strive to build solutions that solve real problems and push the boundaries of what embedded systems can achieve.`,
-  skills: {
-    languages: ['Python', 'C / C++', 'Java', 'SQL', 'Bash / Shell scripting'],
-    frameworks: ['TensorFlow', 'OpenCV', 'Django', 'MATLAB'],
-    tools: ['Git & GitHub', 'VS Code', 'QGroundControl', 'KiCad', 'Linux', 'Serial/UART/I2C/SPI debugging'],
-    hardware: [
-      'ESP32 / ESP8266', 'Raspberry Pi', 'Pixhawk (MAVLink, ArduPilot)',
-      'LoRa modules (SX1276/SX1278)', 'Sonar systems', 'IMU, GPS, Barometer sensors',
-      'BLDC motors + ESCs', 'Underwater cameras', 'Custom ROVs & ASVs'
-    ]
-  },
+  skills: [
+    {
+      tier: 'Used on real projects',
+      description: 'Wired, tuned, flown or debugged on vessels and surveys.',
+      items: [
+        'Python',
+        'Embedded C/C++ (Arduino, PlatformIO)',
+        'ESP32',
+        'Raspberry Pi',
+        'Pixhawk',
+        'ArduPilot',
+        'ArduSub',
+        'MAVLink',
+        'PID tuning',
+        'IMU / GPS / depth / pressure sensors',
+        'sonar / echosounder integration',
+        'BLDC motors + ESCs',
+        'UDP telemetry',
+        'LoRa (SX1276/78)',
+        'UART / I2C / SPI debugging',
+        'Git & GitHub',
+        'Linux',
+        'Bash',
+      ],
+    },
+    {
+      tier: 'Working knowledge',
+      description: 'Used in builds and study; productive with a bit of guidance.',
+      items: [
+        'ROS 2',
+        'RViz',
+        'EKF sensor fusion (robot_localization)',
+        'RF-DETR + ByteTrack (via Roboflow)',
+        'MATLAB (computer vision, not Simulink)',
+        'JavaScript (Blockly)',
+        'FluidNC / GRBL',
+        'KiCad',
+        'STM32',
+        'Onshape (basic)',
+        'SQL',
+        'Java',
+      ],
+    },
+    {
+      tier: 'Coursework basics',
+      description: 'From courses and certifications; used in small projects.',
+      items: ['TensorFlow', 'Django'],
+    },
+    {
+      tier: 'Learning now',
+      description: 'Currently studying and building with.',
+      items: ['MiDaS monocular depth'],
+    },
+  ],
+
   certifications: [
     { title: 'Computer Vision Engineer', issuer: 'MathWorks', year: '2026', url: 'https://www.coursera.org/account/accomplishments/specialization/H4G7QUDF59UG' },
     { title: 'Geodata Processing using Python & ML', issuer: 'ISRO', year: '2025', url: 'https://isrolms.iirs.gov.in/mod/customcert/verify_certificate.php?contextid=1049408' },
