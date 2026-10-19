@@ -23,16 +23,17 @@ Whether working on underwater ROVs, autonomous surface vehicles, or IoT telemetr
     ]
   },
   certifications: [
-    { title: 'ASAP AI-Machine Learning Developer', issuer: 'Kerala ASAP', year: '2024' },
-    { title: 'Geodata Processing using Python & ML', issuer: 'ISRO', year: '2025' }
+    { title: 'Computer Vision Engineer', issuer: 'MathWorks', year: '2026', url: 'https://www.coursera.org/account/accomplishments/specialization/H4G7QUDF59UG' },
+    { title: 'Geodata Processing using Python & ML', issuer: 'ISRO', year: '2025', url: 'https://isrolms.iirs.gov.in/mod/customcert/verify_certificate.php?contextid=1049408' },
+    { title: 'AI-Machine Learning Developer', issuer: 'Kerala ASAP', year: '2024', url: 'https://asapkerala.gov.in/aiml/' }
   ],
   patent: {
     title: 'An Underwater Remotely Operated Vehicle for Structural Health Monitoring (UROV-SHM)',
     role: 'Co-inventor',
-    description: 'UROV-SHM executes detailed underwater inspections of dams, tunnels, ship hulls, and bridge piers. Swappable batteries, fiber tethered telemetry, and AI-enhanced sonar/video analytics give real-time crack measurement, precise positioning, and mission resilience in turbulent conditions.',
+    description: 'The application describes an underwater ROV for inspecting dams, tunnels, ship hulls and bridge piers, with swappable batteries, fibre-tethered telemetry and sonar/video analytics for crack measurement. I built and tested a 6-thruster Pixhawk/ArduSub ROV, which was deployed for inspection at one dam.',
     applicationNo: '202421040473',
     filedDate: '24 May 2024',
-    publishedDate: '12 July 2024 (u/s 11A)',
+    publishedDate: '12 Jul 2024',
     status: 'Under Examination — Indian Patent Office'
   },
   education: 'MCA (Pursuing), Rajagiri College of Social Science',
