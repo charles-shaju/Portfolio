@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Linkedin, Download, FileText, MapPin, GraduationCap, Award } from 'lucide-react';
+import { Linkedin, Download, FileText, MapPin, GraduationCap, Award, ExternalLink } from 'lucide-react';
 import SkillsBadges from '@/components/skills/SkillsBadges';
 import { photographerInfo } from '@/data/photographer';
 import { Button } from '@/components/ui/button';
@@ -312,7 +312,7 @@ export default function About() {
       {/* Timeline Section */}
       <TimelineSection />
 
-      {/* Achievements Section */}
+      {/* Patent & Certifications Section */}
       <section id="achievements" className="py-16 md:py-24 px-6 lg:px-8 border-t border-border">
         <div className="max-w-5xl mx-auto">
           <motion.div
@@ -324,10 +324,10 @@ export default function About() {
           >
             <div className="text-center space-y-4">
               <h2 className="text-4xl md:text-5xl font-light tracking-wide">
-                Achievements
+                Patent &amp; Certifications
               </h2>
               <p className="text-lg text-muted-foreground font-light">
-                Credentials, certifications, and published work
+                Patent application and verified credentials
               </p>
             </div>
 
@@ -346,7 +346,7 @@ export default function About() {
                   </div>
                   <div>
                     <p className="text-xs font-light tracking-widest uppercase text-muted-foreground">Patent Application (Published, Under Examination)</p>
-                    <p className="text-sm text-muted-foreground">{photographerInfo.patent.role} · Application No. {photographerInfo.patent.applicationNo} · Filed {photographerInfo.patent.filedDate} · Published {photographerInfo.patent.publishedDate}</p>
+                    <p className="text-sm text-muted-foreground">Indian Application No. {photographerInfo.patent.applicationNo} · Filed {photographerInfo.patent.filedDate} · Published {photographerInfo.patent.publishedDate} · {photographerInfo.patent.role}</p>
                   </div>
                 </div>
                 <h3 className="text-xl md:text-2xl font-light tracking-wide text-foreground">
@@ -363,31 +363,44 @@ export default function About() {
               </motion.div>
             )}
 
-            {/* Certifications Grid */}
+            {/* Certifications */}
             <div>
               <h3 className="text-2xl font-light tracking-wide mb-6">Certifications</h3>
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-3 gap-6">
                 {photographerInfo.certifications.map((cert, index) => (
                   <motion.div
                     key={index}
-                    className="group p-6 border border-border rounded-sm hover:bg-accent/30 transition-colors space-y-3"
+                    className="group flex flex-col p-5 border border-border rounded-sm hover:bg-accent/30 transition-colors space-y-3"
                     initial={{ opacity: 0.8, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.1 * index }}
                   >
                     <div className="flex items-start justify-between">
-                      <div className="p-2.5 rounded-sm bg-accent">
-                        <Award className="size-5 text-muted-foreground group-hover:text-foreground transition-colors" />
+                      <div className="p-2 rounded-sm bg-accent">
+                        <Award className="size-4 text-muted-foreground group-hover:text-foreground transition-colors" />
                       </div>
                       <span className="text-sm font-light text-muted-foreground">{cert.year}</span>
                     </div>
-                    <h4 className="text-lg font-light tracking-wide text-foreground">
+                    <h4 className="text-base font-light tracking-wide text-foreground">
                       {cert.title}
                     </h4>
-                    <p className="text-sm font-light text-muted-foreground">
-                      Issued by {cert.issuer}
-                    </p>
+                    {cert.issuer && (
+                      <p className="text-xs font-light text-muted-foreground">
+                        Issued by {cert.issuer}
+                      </p>
+                    )}
+                    {cert.url && (
+                      <a
+                        href={cert.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-auto inline-flex items-center gap-1.5 pt-1 text-[10px] tracking-[0.25em] uppercase text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        <ExternalLink className="size-3" />
+                        Verify
+                      </a>
+                    )}
                   </motion.div>
                 ))}
               </div>
