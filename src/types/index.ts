@@ -39,7 +39,7 @@ export interface PersonInfo {
     tools: string[];
     hardware: string[];
   };
-  certifications: { title: string; issuer: string; year: string }[];
+  certifications: { title: string; issuer: string; year: string; url?: string }[];
   patent?: { title: string; description: string; role: string; applicationNo: string; filedDate: string; publishedDate: string; status: string };
   education: string;
   location: string;
