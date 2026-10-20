@@ -369,23 +369,19 @@ export default function About() {
             )}
 
             {/* Certifications */}
-            <div>
-              <h3 className="text-2xl font-light tracking-wide mb-6">Certifications</h3>
-              <div className="grid md:grid-cols-3 gap-6">
+            <DocFrame cornerClassName="size-5" bodyClassName="p-6 sm:p-8 space-y-6">
+              <h3 className="text-2xl font-light tracking-wide">Certifications</h3>
+              <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border">
                 {photographerInfo.certifications.map((cert, index) => (
                   <motion.div
                     key={index}
-                    className="h-full"
+                    className="group flex h-full flex-col p-5 space-y-3 transition-colors hover:bg-accent/30"
                     initial={{ opacity: 0.8, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.1 * index }}
                   >
-                    <DocFrame
-                      cornerClassName="size-4"
-                      className="h-full group transition-colors hover:border-primary/50"
-                      bodyClassName="flex h-full flex-col p-5 space-y-3"
-                    >
+
 
                     <div className="flex items-start justify-between">
                       <div className="p-2 rounded-sm bg-accent">
@@ -412,12 +408,11 @@ export default function About() {
                         Verify
                       </a>
                     )}
-                    </DocFrame>
                   </motion.div>
                 ))}
-
               </div>
-            </div>
+            </DocFrame>
+
 
             {/* Skills Bubbles */}
             <SkillsBadges />
