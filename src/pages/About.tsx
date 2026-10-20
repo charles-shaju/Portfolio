@@ -433,7 +433,18 @@ export default function About() {
             <Separator />
 
             {/* Resume Summary Card */}
-            <div className="grid md:grid-cols-2 gap-8">
+            <DocFrame
+              cornerClassName="size-7"
+              bodyClassName="grid md:grid-cols-2 gap-8 p-8 sm:p-10"
+              footer={
+                <>
+                  <span>Résumé</span>
+                  <span className="hidden sm:block">Kalamassery · Cochin · Kerala</span>
+                  <span>{photographerInfo.email}</span>
+                </>
+              }
+            >
+
               {/* Left - Quick Info */}
               <div className="space-y-6">
                 <div className="flex items-start gap-3">
@@ -477,7 +488,7 @@ export default function About() {
 
               {/* Right - Availability + Download */}
               <div className="space-y-6">
-                <div className="p-6 border border-border rounded-sm bg-accent/30 space-y-4">
+                <div className="p-6 bg-accent/30 space-y-4">
                   <h3 className="text-lg font-light tracking-wide">Current Status</h3>
                   <p className="text-sm font-light text-muted-foreground leading-relaxed">
                     {photographerInfo.availability}
@@ -499,7 +510,8 @@ export default function About() {
                   </Button>
                 </div>
               </div>
-            </div>
+            </DocFrame>
+
           </motion.div>
         </div>
       </section>
