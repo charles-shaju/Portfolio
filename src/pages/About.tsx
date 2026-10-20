@@ -2,6 +2,8 @@ import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-mot
 import { useRef, useState } from 'react';
 import { Linkedin, Download, FileText, MapPin, GraduationCap, Award, ExternalLink } from 'lucide-react';
 import SkillsBadges from '@/components/skills/SkillsBadges';
+import { DocFrame } from '@/components/ui/DocFrame';
+
 import { photographerInfo } from '@/data/photographer';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -334,12 +336,13 @@ export default function About() {
             {/* Patent */}
             {photographerInfo.patent && (
               <motion.div
-                className="p-8 border border-border rounded-sm bg-accent/20 space-y-4"
                 initial={{ opacity: 0.8, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.1 }}
               >
+                <DocFrame bodyClassName="p-8 space-y-4">
+
                 <div className="flex items-center gap-3">
                   <div className="p-2.5 rounded-sm bg-primary text-primary-foreground">
                     <FileText className="size-5" />
@@ -360,22 +363,26 @@ export default function About() {
                     {photographerInfo.patent.status}
                   </span>
                 </div>
+                </DocFrame>
               </motion.div>
+
             )}
 
             {/* Certifications */}
-            <div>
-              <h3 className="text-2xl font-light tracking-wide mb-6">Certifications</h3>
-              <div className="grid md:grid-cols-3 gap-6">
+            <DocFrame cornerClassName="size-5" bodyClassName="p-6 sm:p-8 space-y-6">
+              <h3 className="text-2xl font-light tracking-wide">Certifications</h3>
+              <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border">
                 {photographerInfo.certifications.map((cert, index) => (
                   <motion.div
                     key={index}
-                    className="group flex flex-col p-5 border border-border rounded-sm hover:bg-accent/30 transition-colors space-y-3"
+                    className="group flex h-full flex-col p-5 space-y-3 transition-colors hover:bg-accent/30"
                     initial={{ opacity: 0.8, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.1 * index }}
                   >
+
+
                     <div className="flex items-start justify-between">
                       <div className="p-2 rounded-sm bg-accent">
                         <Award className="size-4 text-muted-foreground group-hover:text-foreground transition-colors" />
@@ -404,7 +411,8 @@ export default function About() {
                   </motion.div>
                 ))}
               </div>
-            </div>
+            </DocFrame>
+
 
             {/* Skills Bubbles */}
             <SkillsBadges />
@@ -433,7 +441,18 @@ export default function About() {
             <Separator />
 
             {/* Resume Summary Card */}
-            <div className="grid md:grid-cols-2 gap-8">
+            <DocFrame
+              cornerClassName="size-7"
+              bodyClassName="grid md:grid-cols-2 gap-8 p-8 sm:p-10"
+              footer={
+                <>
+                  <span>Résumé</span>
+                  <span className="hidden sm:block">Kalamassery · Cochin · Kerala</span>
+                  <span>{photographerInfo.email}</span>
+                </>
+              }
+            >
+
               {/* Left - Quick Info */}
               <div className="space-y-6">
                 <div className="flex items-start gap-3">
@@ -477,7 +496,7 @@ export default function About() {
 
               {/* Right - Availability + Download */}
               <div className="space-y-6">
-                <div className="p-6 border border-border rounded-sm bg-accent/30 space-y-4">
+                <div className="p-6 bg-accent/30 space-y-4">
                   <h3 className="text-lg font-light tracking-wide">Current Status</h3>
                   <p className="text-sm font-light text-muted-foreground leading-relaxed">
                     {photographerInfo.availability}
@@ -499,7 +518,8 @@ export default function About() {
                   </Button>
                 </div>
               </div>
-            </div>
+            </DocFrame>
+
           </motion.div>
         </div>
       </section>
