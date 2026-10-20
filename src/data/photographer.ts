@@ -63,8 +63,9 @@ Whether working on underwater ROVs, autonomous surface vehicles, or IoT telemetr
     {
       tier: 'Learning now',
       description: 'Currently studying and building with.',
-      items: ['MiDaS monocular depth', 'Camera-based navigation'],
+      items: ['MiDaS monocular depth'],
     },
+
 
   ],
 
