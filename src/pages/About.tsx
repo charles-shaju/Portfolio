@@ -203,7 +203,7 @@ export default function About() {
       {/* Portrait and Biography - Split Layout */}
       <section className="py-16 md:py-24 px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-start">
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-16 md:items-center">
             {/* Portrait Image */}
             <motion.div
               className="space-y-6"
@@ -369,49 +369,52 @@ export default function About() {
             )}
 
             {/* Certifications */}
-            <DocFrame cornerClassName="size-5" bodyClassName="p-6 sm:p-8 space-y-6">
+            <div className="space-y-6">
               <h3 className="text-2xl font-light tracking-wide">Certifications</h3>
-              <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border">
+              <div className="grid gap-6 md:grid-cols-3">
                 {photographerInfo.certifications.map((cert, index) => (
                   <motion.div
                     key={index}
-                    className="group flex h-full flex-col p-5 space-y-3 transition-colors hover:bg-accent/30"
+                    className="h-full"
                     initial={{ opacity: 0.8, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.1 * index }}
                   >
-
-
-                    <div className="flex items-start justify-between">
-                      <div className="p-2 rounded-sm bg-accent">
-                        <Award className="size-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                    <DocFrame
+                      className="h-full"
+                      bodyClassName="group flex h-full flex-col p-5 space-y-3 transition-colors hover:bg-accent/30"
+                    >
+                      <div className="flex items-start justify-between">
+                        <div className="p-2 rounded-sm bg-accent">
+                          <Award className="size-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                        </div>
+                        <span className="text-sm font-light text-muted-foreground">{cert.year}</span>
                       </div>
-                      <span className="text-sm font-light text-muted-foreground">{cert.year}</span>
-                    </div>
-                    <h4 className="text-base font-light tracking-wide text-foreground">
-                      {cert.title}
-                    </h4>
-                    {cert.issuer && (
-                      <p className="text-xs font-light text-muted-foreground">
-                        Issued by {cert.issuer}
-                      </p>
-                    )}
-                    {cert.url && (
-                      <a
-                        href={cert.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-auto inline-flex items-center gap-1.5 pt-1 text-[10px] tracking-[0.25em] uppercase text-muted-foreground hover:text-foreground transition-colors"
-                      >
-                        <ExternalLink className="size-3" />
-                        Verify
-                      </a>
-                    )}
+                      <h4 className="text-base font-light tracking-wide text-foreground">
+                        {cert.title}
+                      </h4>
+                      {cert.issuer && (
+                        <p className="text-xs font-light text-muted-foreground">
+                          Issued by {cert.issuer}
+                        </p>
+                      )}
+                      {cert.url && (
+                        <a
+                          href={cert.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-auto inline-flex items-center gap-1.5 pt-1 text-[10px] tracking-[0.25em] uppercase text-muted-foreground hover:text-foreground transition-colors"
+                        >
+                          <ExternalLink className="size-3" />
+                          Verify
+                        </a>
+                      )}
+                    </DocFrame>
                   </motion.div>
                 ))}
               </div>
-            </DocFrame>
+            </div>
 
 
             {/* Skills Bubbles */}
@@ -442,7 +445,6 @@ export default function About() {
 
             {/* Resume Summary Card */}
             <DocFrame
-              cornerClassName="size-7"
               bodyClassName="grid md:grid-cols-2 gap-8 p-8 sm:p-10"
               footer={
                 <>
