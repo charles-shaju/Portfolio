@@ -21,19 +21,21 @@ export default function SkillsBadges() {
             transition={{ duration: 0.4, delay: gi * 0.08 }}
             className="space-y-3"
           >
-            <div className="border-l border-border pl-4 space-y-1">
-              <h4 className="text-xs uppercase tracking-[0.2em] font-mono text-foreground">
+            <div className="border-l border-border pl-4 space-y-1.5">
+              <h4 className="text-sm md:text-base uppercase tracking-[0.2em] font-mono text-foreground">
                 {group.tier}
               </h4>
-              <p className="text-xs font-light text-muted-foreground">{group.description}</p>
+              <p className="text-sm font-light text-muted-foreground">{group.description}</p>
             </div>
+
 
             <div className="flex flex-wrap gap-2">
               {group.items.map((skill) => (
                 <span
                   key={skill}
-                  className="inline-flex max-w-full items-center rounded-full border border-border px-3 py-1.5 text-xs font-light leading-snug text-muted-foreground break-words transition-colors duration-200 hover:border-primary/70 hover:bg-primary/10 hover:text-foreground"
+                  className="inline-flex max-w-full items-center rounded-full border border-border px-3.5 py-2 text-sm font-light leading-snug text-muted-foreground break-words transition-colors duration-200 hover:border-primary/70 hover:bg-primary/10 hover:text-foreground"
                 >
+
                   {skill}
                 </span>
               ))}

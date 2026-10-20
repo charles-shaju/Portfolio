@@ -2,6 +2,8 @@ import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-mot
 import { useRef, useState } from 'react';
 import { Linkedin, Download, FileText, MapPin, GraduationCap, Award, ExternalLink } from 'lucide-react';
 import SkillsBadges from '@/components/skills/SkillsBadges';
+import { DocFrame } from '@/components/ui/DocFrame';
+
 import { photographerInfo } from '@/data/photographer';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -334,12 +336,13 @@ export default function About() {
             {/* Patent */}
             {photographerInfo.patent && (
               <motion.div
-                className="p-8 border border-border rounded-sm bg-accent/20 space-y-4"
                 initial={{ opacity: 0.8, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.1 }}
               >
+                <DocFrame bodyClassName="p-8 space-y-4">
+
                 <div className="flex items-center gap-3">
                   <div className="p-2.5 rounded-sm bg-primary text-primary-foreground">
                     <FileText className="size-5" />
@@ -360,7 +363,9 @@ export default function About() {
                     {photographerInfo.patent.status}
                   </span>
                 </div>
+                </DocFrame>
               </motion.div>
+
             )}
 
             {/* Certifications */}
@@ -370,12 +375,18 @@ export default function About() {
                 {photographerInfo.certifications.map((cert, index) => (
                   <motion.div
                     key={index}
-                    className="group flex flex-col p-5 border border-border rounded-sm hover:bg-accent/30 transition-colors space-y-3"
+                    className="h-full"
                     initial={{ opacity: 0.8, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.1 * index }}
                   >
+                    <DocFrame
+                      cornerClassName="size-4"
+                      className="h-full group transition-colors hover:border-primary/50"
+                      bodyClassName="flex h-full flex-col p-5 space-y-3"
+                    >
+
                     <div className="flex items-start justify-between">
                       <div className="p-2 rounded-sm bg-accent">
                         <Award className="size-4 text-muted-foreground group-hover:text-foreground transition-colors" />
@@ -401,8 +412,10 @@ export default function About() {
                         Verify
                       </a>
                     )}
+                    </DocFrame>
                   </motion.div>
                 ))}
+
               </div>
             </div>
 
