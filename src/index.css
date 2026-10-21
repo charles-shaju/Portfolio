@@ -29,6 +29,12 @@ Theme: Charcoal & Ember — classic, professional, engineering-grade.
   --input: hsl(30 10% 82%);
   --ring: hsl(12 75% 50%);
   --radius: 0.25rem;
+
+  /* Ember keycap skill chips */
+  --keycap-face-top: hsl(36 30% 100%);
+  --keycap-face-bottom: hsl(36 18% 92%);
+  --keycap-edge: hsl(30 12% 66%);
+  --keycap-highlight: hsl(0 0% 100%);
   --sidebar-background: hsl(36 20% 94%);
   --sidebar-foreground: hsl(0 0% 20%);
   --sidebar-primary: hsl(12 75% 50%);
@@ -79,6 +85,12 @@ Theme: Charcoal & Ember — classic, professional, engineering-grade.
   --border: hsl(0 0% 16%);
   --input: hsl(0 0% 16%);
   --ring: hsl(12 79% 57%);
+
+  /* Ember keycap skill chips */
+  --keycap-face-top: hsl(0 0% 16%);
+  --keycap-face-bottom: hsl(0 0% 11%);
+  --keycap-edge: hsl(0 0% 3%);
+  --keycap-highlight: hsl(0 0% 27%);
   --sidebar-background: hsl(0 0% 9%);
   --sidebar-foreground: hsl(30 12% 80%);
   --sidebar-primary: hsl(12 79% 57%);
