@@ -29,11 +29,11 @@ export default function SkillsBadges() {
             </div>
 
 
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2.5 md:gap-3">
               {group.items.map((skill) => (
                 <span
                   key={skill}
-                  className="inline-flex max-w-full items-center rounded-full border border-border px-3.5 py-2 text-sm font-light leading-snug text-muted-foreground break-words transition-colors duration-200 hover:border-primary/70 hover:bg-primary/10 hover:text-foreground"
+                  className="skill-keycap"
                 >
 
                   {skill}

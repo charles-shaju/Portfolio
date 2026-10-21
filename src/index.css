@@ -29,6 +29,12 @@ Theme: Charcoal & Ember — classic, professional, engineering-grade.
   --input: hsl(30 10% 82%);
   --ring: hsl(12 75% 50%);
   --radius: 0.25rem;
+
+  /* Ember keycap skill chips */
+  --keycap-face-top: hsl(36 30% 100%);
+  --keycap-face-bottom: hsl(36 18% 92%);
+  --keycap-edge: hsl(30 12% 66%);
+  --keycap-highlight: hsl(0 0% 100%);
   --sidebar-background: hsl(36 20% 94%);
   --sidebar-foreground: hsl(0 0% 20%);
   --sidebar-primary: hsl(12 75% 50%);
@@ -79,6 +85,12 @@ Theme: Charcoal & Ember — classic, professional, engineering-grade.
   --border: hsl(0 0% 16%);
   --input: hsl(0 0% 16%);
   --ring: hsl(12 79% 57%);
+
+  /* Ember keycap skill chips */
+  --keycap-face-top: hsl(0 0% 16%);
+  --keycap-face-bottom: hsl(0 0% 11%);
+  --keycap-edge: hsl(0 0% 3%);
+  --keycap-highlight: hsl(0 0% 27%);
   --sidebar-background: hsl(0 0% 9%);
   --sidebar-foreground: hsl(30 12% 80%);
   --sidebar-primary: hsl(12 79% 57%);
@@ -224,4 +236,36 @@ Theme: Charcoal & Ember — classic, professional, engineering-grade.
   background: radial-gradient(520px circle at var(--mx, 50%) var(--my, -20%),
     color-mix(in srgb, var(--primary) 14%, transparent), transparent 60%);
   transition: opacity .3s;
+}
+
+/* Ember keycap skill chips — themed per light/dark via --keycap-* tokens */
+.skill-keycap {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  overflow-wrap: break-word;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.85rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--foreground);
+  background-image: linear-gradient(180deg, var(--keycap-face-top), var(--keycap-face-bottom));
+  box-shadow:
+    0 2px 0 0 var(--keycap-edge),
+    inset 0 1px 0 0 var(--keycap-highlight);
+  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.skill-keycap:hover {
+  border-color: color-mix(in srgb, var(--primary) 70%, transparent);
+  box-shadow:
+    0 2px 0 0 var(--keycap-edge),
+    inset 0 1px 0 0 color-mix(in srgb, var(--primary) 45%, transparent),
+    0 0 0 3px color-mix(in srgb, var(--primary) 12%, transparent);
+  transform: translateY(-1px);
+}
+.skill-keycap:active {
+  transform: translateY(1px);
+  box-shadow: 0 0 0 0 var(--keycap-edge), inset 0 1px 0 0 color-mix(in srgb, var(--primary) 30%, transparent);
 }
