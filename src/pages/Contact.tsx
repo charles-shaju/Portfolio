@@ -3,7 +3,6 @@ import { Mail, Phone, MapPin } from 'lucide-react';
 import { photographerInfo } from '@/data/photographer';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { Separator } from '@/components/ui/separator';
-import { SEOHead } from '@/components/seo/SEOHead';
 
 /**
  * Contact page with form and contact information
@@ -12,10 +11,6 @@ import { SEOHead } from '@/components/seo/SEOHead';
 export default function Contact() {
   return (
     <>
-      <SEOHead
-        title="Contact"
-        description={`Get in touch with ${photographerInfo.name} for photography inquiries, collaborations, and project bookings. ${photographerInfo.availability}`}
-      />
       
       <div className="min-h-screen">
         {/* Hero Section */}

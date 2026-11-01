@@ -1,6 +1,5 @@
 import { projects } from '@/data/projects';
 import { PortfolioGrid } from '@/components/portfolio/PortfolioGrid';
-import { SEOHead } from '@/components/seo/SEOHead';
 import { motion } from 'framer-motion';
 
 /**
@@ -11,10 +10,6 @@ export default function Portfolio() {
 
   return (
     <>
-      <SEOHead 
-        title="Portfolio"
-        description="Browse my complete project portfolio featuring robotics, IoT, embedded systems, AI, and marine technology projects."
-      />
       
       <div className="min-h-screen">
         {/* Hero Section */}

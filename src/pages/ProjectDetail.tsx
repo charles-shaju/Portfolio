@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { useParams, Navigate, Link } from 'react-router-dom';
+import { useParams, Navigate, Link } from '@/lib/router-compat';
 import { motion } from 'framer-motion';
 import { Calendar, MapPin, Cpu, ExternalLink, ArrowLeft, ArrowRight } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
-import { SEOHead } from '@/components/seo/SEOHead';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { getProjectBySlug, getAdjacentProjects } from '@/data/projects';
 import { ImageWithLightbox } from '@/components/portfolio/ImageWithLightbox';
@@ -35,12 +34,6 @@ export default function ProjectDetail() {
 
   return (
     <>
-      <SEOHead
-        title={project.title}
-        description={project.description}
-        image={project.coverImage}
-        type="article"
-      />
       
       <div className="min-h-screen">
         {/* Hero Image - 70vh */}
