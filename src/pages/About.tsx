@@ -7,7 +7,6 @@ import { DocFrame } from '@/components/ui/DocFrame';
 import { photographerInfo } from '@/data/photographer';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { SEOHead } from '@/components/seo/SEOHead';
 
 const aboutSubtitle = 'Robotics & Embedded Systems Engineer | Marine Robotics';
 
@@ -175,11 +174,6 @@ function TimelineSection() {
 export default function About() {
   return (
     <>
-      <SEOHead
-        title="About"
-        description={`Learn about ${photographerInfo.name}, ${aboutSubtitle}. ${aboutParagraphs[0]}`}
-        image={photographerInfo.portraitImage}
-      />
       
       <div className="min-h-screen">
         {/* Hero Section */}

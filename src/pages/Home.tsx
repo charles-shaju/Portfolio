@@ -4,9 +4,8 @@ import { getFeaturedProjects } from '@/data/projects';
 import { ProjectCard } from '@/components/portfolio/ProjectCard';
 import { ScrollIndicator } from '@/components/ui/ScrollIndicator';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
-import { SEOHead } from '@/components/seo/SEOHead';
 import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/router-compat';
 
 /**
  * Technical specification rows shown in the drafting-sheet side panel
@@ -29,7 +28,6 @@ export default function Home() {
 
   return (
     <>
-      <SEOHead />
 
       <div className="min-h-screen">
         {/* Hero Section — technical drafting sheet */}

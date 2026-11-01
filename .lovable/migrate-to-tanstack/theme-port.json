@@ -1,0 +1,12 @@
+{
+  "customizations": [
+    { "token": "Charcoal & Ember :root/.dark color tokens", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--keycap-* tokens", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--font-sans / --font-heading", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "Shugar --ds-* tokens", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": ".page-grid", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": ".cursor-glow", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": ".skill-keycap", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": ".hide-scrollbar", "source": "src/index.css", "reappliedIn": "src/styles.css" }
+  ]
+}

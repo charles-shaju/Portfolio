@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SEOHead } from "@/components/seo/SEOHead";
 
 /**
  * 404 Not Found page with branded design and smooth animations
@@ -11,10 +10,6 @@ import { SEOHead } from "@/components/seo/SEOHead";
 const NotFound = () => {
   return (
     <>
-      <SEOHead
-        title="Page Not Found"
-        description="The page you're looking for doesn't exist. Return to the homepage to continue browsing."
-      />
       
       <main className="min-h-[calc(100vh-8rem)] flex items-center justify-center px-6">
         <motion.div
