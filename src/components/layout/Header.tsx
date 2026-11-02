@@ -31,7 +31,7 @@ export function Header() {
   const handleNavClick = (path: string) => (e: React.MouseEvent) => {
     if (path.includes('#')) {
       e.preventDefault();
-      const [pathname, hash] = path.split('#');
+      const [pathname = '/', hash = ''] = path.split('#');
       if (location.pathname === pathname) {
         document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
       } else {
