@@ -178,7 +178,7 @@ export const Button = ({
       tabIndex={0}
       className={clsx(
         "flex justify-center items-center gap-0.5 duration-150",
-        sizes[+svgOnly][size],
+        sizes[+svgOnly]?.[size],
         (disabled || loading) ? "bg-gray-100 text-gray-700 border border-gray-400 cursor-not-allowed" : types[type],
         shapes[shape][size],
         shadow && "shadow-border-small border-none",
