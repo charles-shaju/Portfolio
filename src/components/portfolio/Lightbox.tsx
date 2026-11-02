@@ -87,6 +87,8 @@ export function Lightbox({
     }
   };
 
+  if (!currentImage) return null;
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent 
