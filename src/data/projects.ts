@@ -162,7 +162,7 @@ export const getAdjacentProjects = (currentSlug: string): { prev: Project | null
   const currentIndex = projects.findIndex(p => p.slug === currentSlug);
   
   return {
-    prev: currentIndex > 0 ? projects[currentIndex - 1] : null,
-    next: currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null
+    prev: currentIndex > 0 ? (projects[currentIndex - 1] ?? null) : null,
+    next: currentIndex < projects.length - 1 ? (projects[currentIndex + 1] ?? null) : null
   };
 };

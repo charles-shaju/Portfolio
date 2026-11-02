@@ -51,11 +51,11 @@ export function Lightbox({
 
   // Touch gesture handlers
   const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStart(e.targetTouches[0].clientX);
+    setTouchStart((e.targetTouches[0]?.clientX ?? 0));
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
+    setTouchEnd((e.targetTouches[0]?.clientX ?? 0));
   };
 
   const handleTouchEnd = () => {
@@ -86,6 +86,8 @@ export function Lightbox({
       onNavigate(currentIndex + 1);
     }
   };
+
+  if (!currentImage) return null;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
