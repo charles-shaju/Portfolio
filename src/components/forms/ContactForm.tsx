@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { motion } from 'framer-motion';
-import { Loader2, CheckCircle2 } from 'lucide-react';
+import { Loader2, Mail } from 'lucide-react';
 import { photographerInfo } from '@/data/photographer';
 import {
   Form,
@@ -228,6 +228,11 @@ export function ContactForm() {
           </div>
         )}
 
+        {/* Handoff note */}
+        <p className="text-xs text-muted-foreground font-light leading-relaxed">
+          Submitting opens your email app with this message pre-filled — you send it from there.
+        </p>
+
         {/* Submit Button */}
         <Button
           type="submit"
@@ -237,10 +242,10 @@ export function ContactForm() {
           {isSubmitting ? (
             <>
               <Loader2 className="mr-2 size-5 animate-spin" />
-              Sending...
+              Opening email app...
             </>
           ) : (
-            'Send Message'
+            'Open in Email App'
           )}
         </Button>
       </form>
