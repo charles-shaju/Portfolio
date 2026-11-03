@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { motion } from 'framer-motion';
-import { Loader2, CheckCircle2 } from 'lucide-react';
+import { Loader2, Mail } from 'lucide-react';
 import { photographerInfo } from '@/data/photographer';
 import {
   Form,
@@ -108,11 +108,15 @@ export function ContactForm() {
           animate={{ scale: 1 }}
           transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
         >
-          <CheckCircle2 className="size-16 mx-auto text-green-600 dark:text-green-400" />
+          <Mail className="size-16 mx-auto text-muted-foreground" />
         </motion.div>
-        <h3 className="text-2xl font-light tracking-wide">Message Sent!</h3>
+        <h3 className="text-2xl font-light tracking-wide">Draft ready in your email app</h3>
         <p className="text-muted-foreground font-light leading-relaxed">
-          Thank you for reaching out. I'll get back to you as soon as possible.
+          Your email app should have opened with the message pre-filled — send it from there to reach me. If nothing opened, write directly to{' '}
+          <a href={`mailto:${photographerInfo.email}`} className="underline hover:text-foreground transition-colors">
+            {photographerInfo.email}
+          </a>
+          .
         </p>
       </motion.div>
     );
@@ -224,6 +228,11 @@ export function ContactForm() {
           </div>
         )}
 
+        {/* Handoff note */}
+        <p className="text-xs text-muted-foreground font-light leading-relaxed">
+          Submitting opens your email app with this message pre-filled — you send it from there.
+        </p>
+
         {/* Submit Button */}
         <Button
           type="submit"
@@ -233,10 +242,10 @@ export function ContactForm() {
           {isSubmitting ? (
             <>
               <Loader2 className="mr-2 size-5 animate-spin" />
-              Sending...
+              Opening email app...
             </>
           ) : (
-            'Send Message'
+            'Open in Email App'
           )}
         </Button>
       </form>

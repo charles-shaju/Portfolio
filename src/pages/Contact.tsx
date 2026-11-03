@@ -47,7 +47,7 @@ export default function Contact() {
                   Send a Message
                 </h2>
                 <p className="text-muted-foreground font-light">
-                  Fill out the form below and I'll get back to you within 24-48 hours. {photographerInfo.availability}
+                  Fill out the form below — when you submit, it opens your email app with the message ready to send to me.
                 </p>
               </div>
 
