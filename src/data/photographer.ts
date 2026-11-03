@@ -1,4 +1,5 @@
 import type { PersonInfo } from '@/types';
+import portraitAsset from '@/assets/charles-portrait.png.asset.json';
 
 export const photographerInfo: PersonInfo = {
   name: 'Charles Shaju',
@@ -94,5 +95,5 @@ Whether working on underwater ROVs, autonomous surface vehicles, or IoT telemetr
     twitter: 'https://x.com/Mr__CS',
     medium: 'https://medium.com/@charles-shaju'
   },
-  portraitImage: 'https://charles-shaju.github.io/assets/media/Charles-Shaju.jpeg'
+  portraitImage: portraitAsset.url
 };
