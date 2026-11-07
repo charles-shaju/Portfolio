@@ -1,5 +1,5 @@
 import type { PersonInfo } from '@/types';
-import portraitAsset from '@/assets/charles-portrait.png.asset.json';
+import portraitAsset from '@/assets/professional-black-background-portrait.png.asset.json';
 
 export const photographerInfo: PersonInfo = {
   name: 'Charles Shaju',
