@@ -2,7 +2,9 @@
  * Core TypeScript interfaces for Charles Shaju's Portfolio
  */
 
-export type ProjectCategory = 'robotics' | 'iot' | 'embedded' | 'ai' | 'marine';
+export type ProjectCategory = 'robotics' | 'embedded' | 'marine';
+
+export type ProjectStatus = 'Completed' | 'Field-tested' | 'In progress' | 'Prototype';
 
 export type AspectRatio = 'portrait' | 'landscape' | 'square';
 
@@ -18,13 +20,20 @@ export interface Project {
   id: string;
   title: string;
   category: ProjectCategory;
-  year: string;
-  coverImage: string;
+  year?: string;
+  status: ProjectStatus;
+  role?: string;
+  problem: string;
+  whatBuilt: string;
+  result?: string;
+  statusDetail?: string;
+  coverImage?: string;
   images: ProjectImage[];
   description: string;
   techStack?: string[];
   location?: string;
   slug: string;
+  links?: { label: string; url: string }[];
 }
 
 export interface PersonInfo {
