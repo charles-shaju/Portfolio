@@ -7,7 +7,7 @@ export const Route = createFileRoute("/portfolio")({
     pageHead({
       title: "Portfolio",
       description:
-        "Robotics, IoT and embedded systems projects by Charles Shaju: underwater ROV, autonomous catamaran, smart altimeter, GPS tracker, LoRa mesh and more.",
+        "Six marine robotics, autonomous systems and embedded hardware projects by Charles Shaju, including a field-tested underwater ROV, ROS 2 mobile robot and AquaScanner catamaran.",
       path: "/portfolio",
     }),
   component: Portfolio,

@@ -12,227 +12,83 @@ interface ProjectCardProps {
   variant?: 'default' | 'terminal';
 }
 
-/**
- * Project card component with image, hover overlay, and smooth animations
- * Used in homepage featured projects and portfolio grid
- */
-export function ProjectCard({ 
-  project, 
-  aspectRatio, 
-  showCategory = true,
-  index = 0,
-  variant = 'default'
-}: ProjectCardProps) {
+export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   const [isLoaded, setIsLoaded] = React.useState(false);
-  const ratio = aspectRatio || 'landscape';
-  
-  const aspectRatioClasses = {
-    portrait: 'aspect-[3/4]',
-    landscape: 'aspect-[3/2]',
-    square: 'aspect-square'
-  };
-
-  if (variant === 'terminal') {
-    return <TerminalProjectCard project={project} index={index} />;
-  }
+  const serial = `${project.category.toUpperCase()}${project.year ? ` // ${project.year}` : ''}`;
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.45, delay: index * 0.06 }}
+      className="h-full"
     >
       <Link
         to={`/project/${project.slug}`}
-        className="group block relative overflow-hidden rounded-sm"
+        className="group relative flex h-full min-h-[29rem] flex-col overflow-hidden rounded-sm border border-border bg-card p-4 transition-colors hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
-        {/* Image Container */}
-        <div className={cn('relative overflow-hidden bg-muted', aspectRatioClasses[ratio])}>
-          {/* Loading placeholder */}
-          {!isLoaded && (
-            <div className="absolute inset-0 bg-muted" />
-          )}
-          
-          <motion.img
-            src={project.coverImage}
-            alt={project.title}
-            className={cn(
-              'absolute inset-0 w-full h-full object-cover transition-all duration-700',
-              isLoaded ? 'opacity-100' : 'opacity-0',
-              'group-hover:scale-110'
-            )}
-            loading={index < 6 ? 'eager' : 'lazy'}
-            onLoad={() => setIsLoaded(true)}
-          />
-          
-          {/* Overlay with gradient and text */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <div className="absolute bottom-0 left-0 right-0 p-6 space-y-2">
-              <h3 className="text-white text-xl md:text-2xl font-light tracking-wide">
-                {project.title}
-              </h3>
-              {showCategory && (
-                <div className="flex items-center gap-3 text-sm text-white/80 font-light tracking-wide">
-                  <span className="capitalize">{project.category}</span>
-                  <span>•</span>
-                  <span>{project.year}</span>
-                </div>
-              )}
+        <div className="pointer-events-none absolute inset-0 page-grid opacity-30" />
+        <div className="relative mb-4 h-36 shrink-0 overflow-hidden rounded-sm border border-border bg-muted">
+          {project.coverImage ? (
+            <>
+              {!isLoaded && <div className="absolute inset-0 bg-muted" />}
+              <motion.img
+                src={project.coverImage}
+                alt={project.title}
+                className={cn(
+                  'absolute inset-0 size-full object-cover transition-opacity duration-500 group-hover:scale-[1.03]',
+                  isLoaded ? 'opacity-100' : 'opacity-0',
+                )}
+                loading={index < 6 ? 'eager' : 'lazy'}
+                onLoad={() => setIsLoaded(true)}
+              />
+            </>
+          ) : (
+            <div className="flex size-full items-center justify-center font-mono text-xs uppercase tracking-widest text-muted-foreground">
+              Image pending
             </div>
+          )}
+          <div className="absolute left-2 top-2 border border-border bg-background/90 px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+            {serial}
           </div>
-
-          {/* Subtle hover border effect */}
-          <div className="absolute inset-0 border-2 border-white/0 group-hover:border-white/10 transition-colors duration-500" />
         </div>
-      </Link>
-    </motion.div>
-  );
-}
 
-/**
- * Terminal schematic project card with time-based view cycling.
- * Primary view shows project image and overview;
- * secondary view reveals technical diagnostics and stack details.
- */
-function TerminalProjectCard({ project, index = 0 }: { project: Project; index?: number }) {
-  const [isLoaded, setIsLoaded] = React.useState(false);
-  const delay = (index % 6) * 1.5;
-  const serial = `${project.category.toUpperCase()} // ${project.year}`;
-  const stackLabel = ['ai', 'embedded', 'iot'].includes(project.category)
-    ? 'SOFTWARE_STACK'
-    : 'HARDWARE_STACK';
-  const primaryTech = project.techStack?.slice(0, 3) ?? [];
-  const progress = deriveProgress(project.title);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-    >
-      <Link
-        to={`/project/${project.slug}`}
-        className="group block relative h-80 md:h-96 overflow-hidden rounded-sm border border-primary/20 bg-card transition-colors hover:border-primary/50"
-      >
-        {/* Decorative HUD corners */}
-        <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary/40 z-20" />
-        <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary/40 z-20" />
-        <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-primary/40 z-20" />
-        <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary/40 z-20" />
-
-        {/* Scanline overlay */}
-        <div className="pointer-events-none absolute inset-0 scanline z-10" />
-        {/* Drafting grid + hover ember spread from corner */}
-        <div className="pointer-events-none absolute inset-0 page-grid opacity-70 z-10" />
-        <div className="pointer-events-none absolute -top-24 -right-24 size-56 rounded-full bg-primary/0 blur-3xl z-10 transition-all duration-700 ease-out group-hover:bg-primary/25 group-hover:size-[28rem]" />
-
-        {/* Primary view: project visuals and overview */}
-        <div
-          className="absolute inset-0 p-5 flex flex-col animate-card-cycle group-hover:[animation-play-state:paused]"
-          style={{ animationDelay: `${delay}s` }}
-        >
-          <div className="relative h-32 md:h-40 mb-4 shrink-0 overflow-hidden rounded-sm border border-border bg-muted">
-            {!isLoaded && <div className="absolute inset-0 bg-muted" />}
-            <img
-              src={project.coverImage}
-              alt={project.title}
-              className={cn(
-                'absolute inset-0 w-full h-full object-cover transition-opacity duration-500',
-                isLoaded ? 'opacity-100' : 'opacity-0'
-              )}
-              loading={index < 6 ? 'eager' : 'lazy'}
-              onLoad={() => setIsLoaded(true)}
-            />
-            <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
-          </div>
-
-          <div className="space-y-1">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-primary/80">
-              {serial}
-            </span>
-            <h3 className="font-mono text-lg font-bold text-foreground line-clamp-2">
+        <div className="relative flex flex-1 flex-col">
+          <div className="mb-2 flex items-start justify-between gap-3">
+            <h3 className="min-w-0 font-mono text-lg font-bold leading-snug text-foreground line-clamp-2">
               {project.title}
             </h3>
+            <span className="shrink-0 border border-border px-2 py-1 font-mono text-[10px] leading-tight text-muted-foreground">
+              {project.status}
+            </span>
           </div>
 
-          <p className="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-2">
+          <p className="text-sm leading-relaxed text-muted-foreground line-clamp-3">
             {project.description}
           </p>
 
-          <div className="mt-auto pt-3 flex flex-wrap gap-2 max-h-[3.25rem] overflow-hidden">
-            {primaryTech.map((tech) => (
-              <span
-                key={tech}
-                className="px-2 py-0.5 text-[10px] bg-primary/10 border border-primary/30 text-primary font-medium uppercase tracking-tighter rounded-xs"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        </div>
+          <p className="mt-2 text-xs leading-relaxed text-foreground/80">
+            <span className="font-mono text-muted-foreground">Role:</span>{' '}
+            {project.role ?? 'Not specified.'}
+          </p>
 
-        {/* Secondary view: technical diagnostics */}
-        <div
-          className="absolute inset-0 p-6 flex flex-col bg-card opacity-0 animate-data-cycle group-hover:[animation-play-state:paused]"
-          style={{ animationDelay: `${delay}s` }}
-        >
-          <div className="font-mono text-xs text-primary mb-6 flex justify-between">
-            <span>SYSTEM_DIAGNOSTICS</span>
-            <span className="animate-pulse">● ONLINE</span>
-          </div>
-
-          <div className="space-y-6">
-            <div>
-              <div className="flex justify-between text-[10px] text-muted-foreground mb-1 uppercase tracking-widest">
-                <span>Project Readiness</span>
-                <span className="text-primary">{progress}%</span>
-              </div>
-              <div className="h-1 w-full bg-muted rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-primary/50 transition-all duration-1000"
-                  style={{ width: `${progress}%` }}
-                />
-              </div>
+          <div className="mt-auto pt-4">
+            <div className="mb-4 flex max-h-[3.5rem] flex-wrap gap-2 overflow-hidden">
+              {project.techStack?.map((tech) => (
+                <span
+                  key={tech}
+                  className="rounded-xs border border-border bg-muted px-2 py-1 font-mono text-[10px] text-muted-foreground"
+                >
+                  {tech}
+                </span>
+              ))}
             </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div className="border-l border-primary/30 pl-3">
-                <span className="block font-mono text-[10px] text-muted-foreground uppercase">Category</span>
-                <span className="font-mono text-sm text-foreground capitalize">{project.category}</span>
-              </div>
-              <div className="border-l border-primary/30 pl-3">
-                <span className="block font-mono text-[10px] text-muted-foreground uppercase">Year</span>
-                <span className="font-mono text-sm text-foreground">{project.year}</span>
-              </div>
+            <div className="border-t border-border pt-3 font-mono text-xs uppercase tracking-widest text-primary group-hover:text-foreground">
+              View project <span aria-hidden="true">↗</span>
             </div>
-
-            <div className="p-3 bg-primary/5 rounded-sm border border-primary/10">
-              <span className="block font-mono text-[10px] text-primary/70 mb-2 tracking-tighter">
-                {stackLabel}
-              </span>
-              <p className="font-mono text-[11px] text-muted-foreground leading-tight">
-                {project.techStack?.join(', ') ?? 'N/A'}
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-auto w-full py-2 border border-primary/40 text-primary text-[10px] font-mono uppercase tracking-widest text-center group-hover:bg-primary/10 transition-colors">
-            View Project _
           </div>
         </div>
       </Link>
     </motion.div>
   );
-}
-
-/**
- * Derive a deterministic readiness percentage from a project title.
- */
-function deriveProgress(title: string): number {
-  let hash = 0;
-  for (let i = 0; i < title.length; i++) {
-    hash = (hash << 5) - hash + title.charCodeAt(i);
-    hash |= 0;
-  }
-  return 80 + (Math.abs(hash) % 19);
 }

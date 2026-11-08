@@ -1,5 +1,7 @@
-import { projects } from '@/data/projects';
+import { useMemo, useState } from 'react';
+import { getProjectsByCategory, projectCategories } from '@/data/projects';
 import { PortfolioGrid } from '@/components/portfolio/PortfolioGrid';
+import { CategoryFilter } from '@/components/portfolio/CategoryFilter';
 import { motion } from 'framer-motion';
 
 /**
@@ -7,6 +9,8 @@ import { motion } from 'framer-motion';
  * Features smooth animations and responsive layout
  */
 export default function Portfolio() {
+  const [activeCategory, setActiveCategory] = useState('all');
+  const visibleProjects = useMemo(() => getProjectsByCategory(activeCategory), [activeCategory]);
 
   return (
     <>
@@ -24,15 +28,22 @@ export default function Portfolio() {
                Projects
              </h1>
              <p className="text-lg md:text-xl text-muted-foreground font-light tracking-wide max-w-2xl mx-auto">
-               A curated collection of robotics, IoT, and embedded systems projects
+               Marine robotics, autonomous systems and embedded hardware
              </p>
           </motion.div>
         </div>
       </section>
 
       {/* Portfolio Grid - Edge to edge */}
-      <section className="py-12 md:py-16 px-2 md:px-4">
-        <PortfolioGrid projects={projects} />
+      <section className="mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-16">
+        <div className="mb-8">
+          <CategoryFilter
+            categories={projectCategories}
+            activeCategory={activeCategory}
+            onCategoryChange={setActiveCategory}
+          />
+        </div>
+        <PortfolioGrid projects={visibleProjects} />
       </section>
 
         {/* Bottom spacing */}
