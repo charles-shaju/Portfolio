@@ -63,7 +63,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
             </span>
           </div>
 
-          <p className="text-sm leading-relaxed text-muted-foreground line-clamp-3">
+          <p className="text-sm leading-relaxed text-muted-foreground">
             {project.description}
           </p>
 
