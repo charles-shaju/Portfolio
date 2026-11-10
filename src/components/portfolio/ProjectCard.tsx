@@ -14,7 +14,13 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   const [isLoaded, setIsLoaded] = React.useState(false);
+  const imageRef = React.useRef<HTMLImageElement>(null);
   const serial = `${project.category.toUpperCase()}${project.year ? ` // ${project.year}` : ''}`;
+
+  React.useEffect(() => {
+    const image = imageRef.current;
+    if (image?.complete && image.naturalWidth > 0) setIsLoaded(true);
+  }, [project.coverImage]);
 
   return (
     <motion.div
@@ -33,6 +39,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
             <>
               {!isLoaded && <div className="absolute inset-0 bg-muted" />}
               <motion.img
+                ref={imageRef}
                 src={project.coverImage}
                 alt={project.title}
                 className={cn(
