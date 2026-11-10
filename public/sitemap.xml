@@ -26,7 +26,17 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://charles-shaju.lovable.app/project/ros2-mobile-robot</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://charles-shaju.lovable.app/project/aquascanner-catamaran</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://charles-shaju.lovable.app/project/cnc-pen-plotter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -36,17 +46,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://charles-shaju.lovable.app/project/gps-tracker</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://charles-shaju.lovable.app/project/voice-assistant</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://charles-shaju.lovable.app/project/lora-mesh</loc>
+    <loc>https://charles-shaju.lovable.app/project/gps-module-obm</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
