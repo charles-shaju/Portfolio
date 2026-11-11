@@ -1,6 +1,8 @@
 import type { Project, ProjectCategory } from '@/types';
 import ros2RobotSide from '@/assets/ros2-robot-side.jpeg.asset.json';
 import ros2RobotFront from '@/assets/ros2-robot-front.jpeg.asset.json';
+import cncPlotterFull from '@/assets/cnc-plotter-full.jpeg.asset.json';
+import cncPlotterController from '@/assets/cnc-plotter-controller.jpeg.asset.json';
 
 export const projects: Project[] = [
   {
@@ -119,7 +121,25 @@ export const projects: Project[] = [
     slug: 'cnc-pen-plotter',
     description: 'Low-cost A3 XY pen plotter built to a client’s requirements, using ESP32, FluidNC (GRBL) and a servo pen-lift.',
     techStack: ['ESP32', 'FluidNC', 'GRBL', '3D printing'],
-    images: [],
+    links: [{ label: 'GitHub', url: 'https://github.com/charles-shaju/CNC-Plotter' }],
+    coverImage: cncPlotterFull.url,
+    coverAspect: 'portrait',
+    images: [
+      {
+        id: '4-1',
+        src: cncPlotterFull.url,
+        alt: 'Top view of the XY pen plotter with aluminium rails, 3D-printed carriages and a pen-drawn portrait on the bed',
+        caption: 'Full plotter: aluminium-rail XY frame, 3D-printed carriages and servo pen-lift, with a finished pen drawing.',
+        aspectRatio: 'portrait',
+      },
+      {
+        id: '4-2',
+        src: cncPlotterController.url,
+        alt: 'Hand-soldered controller board with an ESP32, two stepper drivers, an OLED display and a power module',
+        caption: 'Controller board: ESP32, two stepper drivers, OLED display and power module on hand-soldered perfboard.',
+        aspectRatio: 'landscape',
+      },
+    ],
   },
   {
     id: '5',
