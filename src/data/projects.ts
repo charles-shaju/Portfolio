@@ -4,6 +4,7 @@ import ros2RobotFront from '@/assets/ros2-robot-front.jpeg.asset.json';
 import cncPlotterFull from '@/assets/cnc-plotter-full.jpeg.asset.json';
 import cncPlotterController from '@/assets/cnc-plotter-controller.jpeg.asset.json';
 import bomSupplyChainInterface from '@/assets/bom-supply-chain-interface.png.asset.json';
+import workbenchBuild from '@/assets/gps-altimeter-workbench.jpeg.asset.json';
 
 export const projects: Project[] = [
   {
@@ -163,6 +164,13 @@ export const projects: Project[] = [
         alt: 'Smart altimeter module prototype on a workbench',
         aspectRatio: 'landscape',
       },
+      {
+        id: '5-2',
+        src: workbenchBuild.url,
+        alt: 'Workbench with two perfboard builds: an ESP32 board with an LCD, rotary knob and battery, and a board with a Quectel cellular module, beside a multimeter and soldering supplies',
+        caption: 'Bench build: ESP32 boards with LCD, rotary knob and battery, checked with a multimeter.',
+        aspectRatio: 'landscape',
+      },
     ],
   },
   {
@@ -177,7 +185,16 @@ export const projects: Project[] = [
     description: 'Tracks a boat’s location so fishermen can share it with shore in an emergency.',
     techStack: ['ESP32', 'GPS', 'IoT'],
     links: [{ label: 'GitHub', url: 'https://github.com/charles-shaju/OBM-IoT' }],
-    images: [],
+    coverImage: workbenchBuild.url,
+    images: [
+      {
+        id: '6-1',
+        src: workbenchBuild.url,
+        alt: 'Workbench with two perfboard builds: one with a Quectel cellular module and a small microcontroller board, one with an ESP32, LCD, rotary knob and battery, beside a multimeter and soldering supplies',
+        caption: 'Bench build: Quectel EC200U cellular module and ESP32 boards with LCD, knob and battery.',
+        aspectRatio: 'landscape',
+      },
+    ],
   },
   {
     id: '7',

@@ -100,6 +100,20 @@ describe('portfolio project records', () => {
     expect(gps?.links).toEqual([{ label: 'GitHub', url: 'https://github.com/charles-shaju/OBM-IoT' }]);
   });
 
+  it('attaches the supplied workbench photo to the altimeter and OBM GPS projects', () => {
+    const altimeter = projects.find((project) => project.slug === 'smart-altimeter');
+    const gps = projects.find((project) => project.slug === 'gps-module-obm');
+
+    expect(altimeter?.images.map((image) => image.src)).toContain(
+      '/__l5e/assets-v1/f02bd1d4-1fe9-4004-86eb-11c8bf0ec497/gps-altimeter-workbench.jpeg',
+    );
+    expect(gps?.images.map((image) => image.src)).toContain(
+      '/__l5e/assets-v1/f02bd1d4-1fe9-4004-86eb-11c8bf0ec497/gps-altimeter-workbench.jpeg',
+    );
+    expect(gps?.coverImage).toBe('/__l5e/assets-v1/f02bd1d4-1fe9-4004-86eb-11c8bf0ec497/gps-altimeter-workbench.jpeg');
+    expect(gps?.images.every((image) => image.aspectRatio === 'landscape')).toBe(true);
+  });
+
   it('adds the BOM supply chain agent as a Software prototype with its GitHub link', () => {
     const agent = projects.find((project) => project.slug === 'bom-supply-chain-agent');
 
