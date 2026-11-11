@@ -178,6 +178,20 @@ export const projects: Project[] = [
     links: [{ label: 'GitHub', url: 'https://github.com/charles-shaju/OBM-IoT' }],
     images: [],
   },
+  {
+    id: '7',
+    title: 'BOM Supply Chain Agent',
+    category: 'software',
+    status: 'Prototype',
+    problem: 'Pricing a bill of materials means searching several electronics vendors by hand and comparing mismatched listings.',
+    whatBuilt: 'A Flask web app that reads a CSV or Excel BOM, runs live product searches across Robu.in, Robocraze, ET Store, Amazon India, Flyrobo and Sunrom, uses Groq to normalise products and match specifications, and compares component-only purchase costs in an interactive dashboard. Deterministic safeguards reject common mismatches such as breakout boards for an ESP32, heat sinks for a motor driver, and wrong numeric variants, sizes or model numbers. Purchase calculations are pack-aware and exclude shipping; it selects high-confidence vendors by purchase cost, shows expandable alternatives, flags out-of-stock items and asks for manual confirmation on specification-review items. Results export to Excel.',
+    statusDetail: 'Upload a BOM, follow progress as each item is processed, review selected products and alternatives, then download the results. Upload size, BOM row count, concurrency and result expiry are limited.',
+    slug: 'bom-supply-chain-agent',
+    description: 'Flask web app that reads a bill of materials, searches electronics vendors and compares component-only purchase costs in an interactive dashboard.',
+    techStack: ['Python', 'Flask', 'Groq', 'CSV / Excel'],
+    links: [{ label: 'GitHub', url: 'https://github.com/charles-shaju/supply_chain_agent' }],
+    images: [],
+  },
 ];
 
 export const getProjectBySlug = (slug: string): Project | undefined => {
@@ -207,4 +221,5 @@ export const projectCategories: { id: 'all' | ProjectCategory; label: string }[]
   { id: 'marine', label: 'Marine' },
   { id: 'robotics', label: 'Robotics' },
   { id: 'embedded', label: 'Embedded' },
+  { id: 'software', label: 'Software' },
 ];

@@ -2,7 +2,7 @@
  * Core TypeScript interfaces for Charles Shaju's Portfolio
  */
 
-export type ProjectCategory = 'robotics' | 'embedded' | 'marine';
+export type ProjectCategory = 'robotics' | 'embedded' | 'marine' | 'software';
 
 export type ProjectStatus = 'Completed' | 'Field-tested' | 'In progress' | 'Prototype';
 
