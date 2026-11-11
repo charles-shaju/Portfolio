@@ -108,4 +108,12 @@ describe('portfolio project records', () => {
     expect(agent?.year).toBeUndefined();
     expect(agent?.links).toEqual([{ label: 'GitHub', url: 'https://github.com/charles-shaju/supply_chain_agent' }]);
   });
+
+  it('attaches the supplied supply chain screenshot as a contained cover and gallery image', () => {
+    const agent = projects.find((project) => project.slug === 'bom-supply-chain-agent');
+    expect(agent?.images).toHaveLength(1);
+    expect(agent?.images[0]?.src).toMatch(/\/bom-supply-chain-interface\.png$/);
+    expect(agent?.coverImage).toBe(agent?.images[0]?.src);
+    expect(agent?.coverFit).toBe('contain');
+  });
 });

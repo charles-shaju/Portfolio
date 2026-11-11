@@ -29,6 +29,7 @@ export interface Project {
   statusDetail?: string;
   coverImage?: string;
   coverAspect?: AspectRatio;
+  coverFit?: 'contain' | 'cover';
   images: ProjectImage[];
   description: string;
   techStack?: string[];
