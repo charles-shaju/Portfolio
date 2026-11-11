@@ -5,6 +5,13 @@ import cncPlotterFull from '@/assets/cnc-plotter-full.jpeg.asset.json';
 import cncPlotterController from '@/assets/cnc-plotter-controller.jpeg.asset.json';
 import bomSupplyChainInterface from '@/assets/bom-supply-chain-interface.png.asset.json';
 import workbenchBuild from '@/assets/gps-altimeter-workbench.jpeg.asset.json';
+import urovMain from '@/assets/underwater-rov-main.jpeg.asset.json';
+import urovTeam from '@/assets/underwater-rov-team.jpeg.asset.json';
+import urovGuiding from '@/assets/underwater-rov-guiding.jpeg.asset.json';
+import aquascannerMain from '@/assets/aquascanner-catamaran.jpeg.asset.json';
+import aquascannerFieldwork from '@/assets/aquascanner-dam-fieldwork.jpeg.asset.json';
+import aquascannerTesting from '@/assets/aquascanner-sensor-testing.jpeg.asset.json';
+import altimeterModule from '@/assets/smart-altimeter-module.jpeg.asset.json';
 
 export const projects: Project[] = [
   {
@@ -18,28 +25,28 @@ export const projects: Project[] = [
     whatBuilt: 'A Pixhawk-based ROV with multi-camera vision for submerged-structure inspection.',
     result: 'Used for a dam inspection. Indian patent application No. 202421040473, published and under examination (co-inventor).',
     slug: 'underwater-rov',
-    coverImage: 'https://charles-shaju.github.io/assets/media/UROV.jpeg',
+    coverImage: urovMain.url,
     description: 'Pixhawk-based ROV that inspects dam walls, bridge pilings and submerged structures for cracks using multi-camera vision.',
     techStack: ['Pixhawk', 'ArduPilot', 'MAVLink', 'Python', 'ESP32'],
     location: 'Kerala, India',
     images: [
       {
         id: '1-1',
-        src: 'https://charles-shaju.github.io/assets/media/UROV.jpeg',
+        src: urovMain.url,
         alt: 'Underwater ROV inspecting a submerged structure',
         aspectRatio: 'landscape',
       },
       {
         id: '1-2',
-        src: 'https://charles-shaju.github.io/assets/media/ROV%20team.jpeg',
+        src: urovTeam.url,
         alt: 'ROV team coordinating hardware, software and mission timelines',
         aspectRatio: 'landscape',
       },
       {
         id: '1-3',
-        src: 'https://charles-shaju.github.io/assets/media/Guiding.jpeg',
+        src: urovGuiding.url,
         alt: 'Guiding an underwater vehicle during a field trial',
-        aspectRatio: 'landscape',
+        aspectRatio: 'portrait',
       },
     ],
   },
@@ -87,26 +94,26 @@ export const projects: Project[] = [
     whatBuilt: 'An autonomous twin-hull vessel with an 80 kg payload for bathymetry and water-quality sampling.',
     result: 'Waypoint tracking tuned to under 1 m path drift. Used at 4 dam surveys.',
     slug: 'aquascanner-catamaran',
-    coverImage: 'https://charles-shaju.github.io/assets/media/Catamaran.jpeg',
+    coverImage: aquascannerMain.url,
     description: 'Autonomous twin-hull vessel with an 80 kg payload for dam bathymetry mapping and water-quality sampling.',
     techStack: ['ArduPilot', 'Pixhawk', 'ESP32', 'Raspberry Pi', 'Echosounder'],
     location: 'Kerala, India',
     images: [
       {
         id: '3-1',
-        src: 'https://charles-shaju.github.io/assets/media/Catamaran.jpeg',
+        src: aquascannerMain.url,
         alt: 'Autonomous AquaScanner catamaran performing a bathymetry scan',
         aspectRatio: 'landscape',
       },
       {
         id: '3-2',
-        src: 'https://charles-shaju.github.io/assets/media/Working.jpeg',
+        src: aquascannerFieldwork.url,
         alt: 'Field work at a dam using an echosounder for bathymetry mapping',
         aspectRatio: 'landscape',
       },
       {
         id: '3-3',
-        src: 'https://charles-shaju.github.io/assets/media/Working2.jpeg',
+        src: aquascannerTesting.url,
         alt: 'Groundwork and sensor testing at the dam before a mission',
         aspectRatio: 'landscape',
       },
@@ -152,7 +159,7 @@ export const projects: Project[] = [
     problem: 'Provide a high-precision barometric altitude reading with auto/manual calibration.',
     whatBuilt: 'A BMP390 and ESP32 altimeter module with calibration options and an OLED readout.',
     slug: 'smart-altimeter',
-    coverImage: 'https://charles-shaju.github.io/assets/media/Altimeter.jpeg',
+    coverImage: altimeterModule.url,
     description: 'High-precision BMP390 barometric altimeter with auto/manual calibration and an OLED readout, built on ESP32.',
     techStack: ['BMP390', 'ESP32', 'I2C'],
     links: [{ label: 'GitHub', url: 'https://github.com/charles-shaju/Smart_Altimeter' }],
@@ -160,7 +167,7 @@ export const projects: Project[] = [
     images: [
       {
         id: '5-1',
-        src: 'https://charles-shaju.github.io/assets/media/Altimeter.jpeg',
+        src: altimeterModule.url,
         alt: 'Smart altimeter module prototype on a workbench',
         aspectRatio: 'landscape',
       },

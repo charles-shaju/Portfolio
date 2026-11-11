@@ -130,4 +130,9 @@ describe('portfolio project records', () => {
     expect(agent?.coverImage).toBe(agent?.images[0]?.src);
     expect(agent?.coverFit).toBe('contain');
   });
+
+  it('never loads project photos from the retired github.io site', () => {
+    const sources = projects.flatMap((project) => [project.coverImage, ...project.images.map((image) => image.src)]);
+    expect(sources.filter((src) => src?.includes('charles-shaju.github.io'))).toEqual([]);
+  });
 });
