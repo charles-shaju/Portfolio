@@ -22,10 +22,11 @@ export function pageHead({ title, description, path, image = DEFAULT_OG_IMAGE, t
       { property: "og:description", content: description },
       { property: "og:type", content: type },
       { property: "og:url", content: url },
-      { property: "og:image", content: image },
+      ...(image.startsWith('https://') ? [{ property: "og:image", content: image }] : []),
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: fullTitle },
       { name: "twitter:description", content: description },
-      { name: "twitter:image", content: image },
+      ...(image.startsWith('https://') ? [{ name: "twitter:image", content: image }] : []),
     ],
     links: [{ rel: "canonical", href: url }],
   };
