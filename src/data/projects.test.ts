@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { getProjectsByCategory, projects } from './projects';
 
 describe('portfolio project records', () => {
-  it('keeps the six project cards in the requested order', () => {
+  it('keeps the project cards in the requested order', () => {
     expect(projects.map((project) => project.slug)).toEqual([
       'underwater-rov',
       'ros2-mobile-robot',
@@ -10,6 +10,7 @@ describe('portfolio project records', () => {
       'cnc-pen-plotter',
       'smart-altimeter',
       'gps-module-obm',
+      'bom-supply-chain-agent',
     ]);
   });
 
@@ -21,11 +22,12 @@ describe('portfolio project records', () => {
       'Completed',
       'Prototype',
       'In progress',
+      'Prototype',
     ]);
   });
 
-  it('filters projects into All, Marine, Robotics and Embedded groups', () => {
-    expect(getProjectsByCategory('all')).toHaveLength(6);
+  it('filters projects into All, Marine, Robotics, Embedded and Software groups', () => {
+    expect(getProjectsByCategory('all')).toHaveLength(7);
     expect(getProjectsByCategory('marine').map((project) => project.slug)).toEqual([
       'underwater-rov',
       'aquascanner-catamaran',
@@ -37,6 +39,9 @@ describe('portfolio project records', () => {
       'cnc-pen-plotter',
       'smart-altimeter',
       'gps-module-obm',
+    ]);
+    expect(getProjectsByCategory('software').map((project) => project.slug)).toEqual([
+      'bom-supply-chain-agent',
     ]);
   });
 
@@ -93,5 +98,14 @@ describe('portfolio project records', () => {
 
     expect(altimeter?.links).toEqual([{ label: 'GitHub', url: 'https://github.com/charles-shaju/Smart_Altimeter' }]);
     expect(gps?.links).toEqual([{ label: 'GitHub', url: 'https://github.com/charles-shaju/OBM-IoT' }]);
+  });
+
+  it('adds the BOM supply chain agent as a Software prototype with its GitHub link', () => {
+    const agent = projects.find((project) => project.slug === 'bom-supply-chain-agent');
+
+    expect(agent?.category).toBe('software');
+    expect(agent?.status).toBe('Prototype');
+    expect(agent?.year).toBeUndefined();
+    expect(agent?.links).toEqual([{ label: 'GitHub', url: 'https://github.com/charles-shaju/supply_chain_agent' }]);
   });
 });
