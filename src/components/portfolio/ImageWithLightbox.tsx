@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import type { ProjectImage } from '@/types';
 import { cn } from '@/lib/utils';
@@ -24,6 +24,13 @@ export function ImageWithLightbox({
 }: ImageWithLightboxProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  // Cached images can finish before React attaches onLoad, so check on mount.
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img?.complete && img.naturalWidth > 0) setIsLoaded(true);
+  }, [image.src]);
 
   const aspectRatioClasses = {
     portrait: 'aspect-[3/4]',
@@ -50,6 +57,7 @@ export function ImageWithLightbox({
 
         {/* Actual image */}
         <img
+          ref={imgRef}
           src={image.src}
           alt={image.alt}
           className={cn(

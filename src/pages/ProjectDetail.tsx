@@ -47,13 +47,13 @@ export default function ProjectDetail() {
                 src={project.coverImage}
                 alt=""
                 aria-hidden="true"
-                className="size-full scale-110 object-cover opacity-40 blur-2xl"
+                className="absolute inset-0 size-full scale-110 object-cover opacity-40 blur-2xl"
                 loading="eager"
               />
               <img
                 src={project.coverImage}
                 alt={project.title}
-                className="relative size-full object-contain"
+                className="absolute inset-0 size-full object-contain"
                 loading="eager"
                 fetchPriority="high"
               />
