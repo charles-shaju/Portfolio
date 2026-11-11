@@ -54,6 +54,7 @@ export const projects: Project[] = [
     techStack: ['ROS 2', 'Raspberry Pi', 'ESP32', 'BNO085', 'TFmini lidar', 'Python'],
     links: [{ label: 'GitHub', url: 'https://github.com/charles-shaju/ROS' }],
     coverImage: ros2RobotSide.url,
+    coverAspect: 'portrait',
     images: [
       {
         id: '2-1',
