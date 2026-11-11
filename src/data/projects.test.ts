@@ -86,4 +86,12 @@ describe('portfolio project records', () => {
     ]);
     expect(plotter?.coverImage).toBe('/__l5e/assets-v1/9f1da3a8-b784-47d2-a231-0a775863a8b0/cnc-plotter-full.jpeg');
   });
+
+  it('links the Smart Altimeter and OBM GPS projects to their GitHub repos', () => {
+    const altimeter = projects.find((project) => project.slug === 'smart-altimeter');
+    const gps = projects.find((project) => project.slug === 'gps-module-obm');
+
+    expect(altimeter?.links).toEqual([{ label: 'GitHub', url: 'https://github.com/charles-shaju/Smart_Altimeter' }]);
+    expect(gps?.links).toEqual([{ label: 'GitHub', url: 'https://github.com/charles-shaju/OBM-IoT' }]);
+  });
 });

@@ -153,6 +153,7 @@ export const projects: Project[] = [
     coverImage: 'https://charles-shaju.github.io/assets/media/Altimeter.jpeg',
     description: 'High-precision BMP390 barometric altimeter with auto/manual calibration and an OLED readout, built on ESP32.',
     techStack: ['BMP390', 'ESP32', 'I2C'],
+    links: [{ label: 'GitHub', url: 'https://github.com/charles-shaju/Smart_Altimeter' }],
     location: 'Kerala, India',
     images: [
       {
@@ -174,6 +175,7 @@ export const projects: Project[] = [
     slug: 'gps-module-obm',
     description: 'Tracks a boat’s location so fishermen can share it with shore in an emergency.',
     techStack: ['ESP32', 'GPS', 'IoT'],
+    links: [{ label: 'GitHub', url: 'https://github.com/charles-shaju/OBM-IoT' }],
     images: [],
   },
 ];
