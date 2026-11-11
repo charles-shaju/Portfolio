@@ -6,4 +6,4 @@
 - [x] Verify filtering, mobile layout, project detail navigation, and project data tests.
 - [x] Attach the two supplied photos to the ROS 2 Mobile Robot project.
 
-Project imagery that was not supplied remains marked as pending, and missing project years remain unstated.
+Project imagery that was not supplied remains marked as pending, and missing project years remain unstated.- [x] Add CNC Pen Plotter GitHub link and two photos (full plotter cover + controller board)
