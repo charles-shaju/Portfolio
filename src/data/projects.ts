@@ -3,6 +3,7 @@ import ros2RobotSide from '@/assets/ros2-robot-side.jpeg.asset.json';
 import ros2RobotFront from '@/assets/ros2-robot-front.jpeg.asset.json';
 import cncPlotterFull from '@/assets/cnc-plotter-full.jpeg.asset.json';
 import cncPlotterController from '@/assets/cnc-plotter-controller.jpeg.asset.json';
+import bomSupplyChainInterface from '@/assets/bom-supply-chain-interface.png.asset.json';
 
 export const projects: Project[] = [
   {
@@ -190,7 +191,16 @@ export const projects: Project[] = [
     description: 'Flask web app that reads a bill of materials, searches electronics vendors and compares component-only purchase costs in an interactive dashboard.',
     techStack: ['Python', 'Flask', 'Groq', 'CSV / Excel'],
     links: [{ label: 'GitHub', url: 'https://github.com/charles-shaju/supply_chain_agent' }],
-    images: [],
+    coverImage: bomSupplyChainInterface.url,
+    coverFit: 'contain',
+    images: [
+      {
+        id: '7-1',
+        src: bomSupplyChainInterface.url,
+        alt: 'BOM Supply Chain Agent interface showing component sourcing, a BOM upload form and an example component table',
+        aspectRatio: 'landscape',
+      },
+    ],
   },
 ];
 

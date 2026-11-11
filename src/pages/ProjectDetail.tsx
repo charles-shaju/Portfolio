@@ -6,6 +6,7 @@ import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { getProjectBySlug, getAdjacentProjects } from '@/data/projects';
 import { ImageWithLightbox } from '@/components/portfolio/ImageWithLightbox';
 import { Lightbox } from '@/components/portfolio/Lightbox';
+import { Button } from '@/components/ui/button';
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -20,10 +21,10 @@ export default function ProjectDetail() {
     { label: 'Overview', content: project.description },
     { label: 'Problem', content: project.problem },
     { label: 'What I built', content: project.whatBuilt },
-    { label: 'My role', content: project.role ?? 'Not specified.' },
+    ...(project.role ? [{ label: 'My role', content: project.role }] : []),
     {
       label: 'Result / Status',
-      content: [project.result, `Status: ${project.status}`, project.statusDetail].filter(Boolean).join('\n'),
+      content: [project.result, project.slug === 'cnc-pen-plotter' ? project.status : `Status: ${project.status}`, project.statusDetail].filter(Boolean).join('\n'),
     },
   ];
 
@@ -34,6 +35,11 @@ export default function ProjectDetail() {
 
   return (
     <div className="min-h-screen">
+      <div className="mx-auto max-w-5xl px-5 py-4 md:px-8">
+        <Button asChild variant="outline" size="sm" className="font-mono">
+          <Link to="/portfolio"><ArrowLeft />Back to Portfolio</Link>
+        </Button>
+      </div>
       <motion.div
         className="relative h-[min(48vh,34rem)] min-h-64 overflow-hidden border-b border-border bg-muted"
         initial={{ opacity: 0 }}
@@ -41,7 +47,7 @@ export default function ProjectDetail() {
         transition={{ duration: 0.6 }}
       >
         {project.coverImage ? (
-          project.coverAspect === 'portrait' ? (
+          project.coverAspect === 'portrait' || project.coverFit === 'contain' ? (
             <>
               <img
                 src={project.coverImage}
