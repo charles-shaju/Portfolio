@@ -41,16 +41,36 @@ export default function ProjectDetail() {
         transition={{ duration: 0.6 }}
       >
         {project.coverImage ? (
-          <>
-            <img
-              src={project.coverImage}
-              alt={project.title}
-              className="size-full object-cover"
-              loading="eager"
-              fetchPriority="high"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
-          </>
+          project.coverAspect === 'portrait' ? (
+            <>
+              <img
+                src={project.coverImage}
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 size-full scale-110 object-cover opacity-40 blur-2xl"
+                loading="eager"
+              />
+              <img
+                src={project.coverImage}
+                alt={project.title}
+                className="absolute inset-0 size-full object-contain"
+                loading="eager"
+                fetchPriority="high"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+            </>
+          ) : (
+            <>
+              <img
+                src={project.coverImage}
+                alt={project.title}
+                className="size-full object-cover"
+                loading="eager"
+                fetchPriority="high"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+            </>
+          )
         ) : (
           <div className="page-grid flex size-full items-center justify-center font-mono text-sm uppercase tracking-widest text-muted-foreground">
             Project images pending
@@ -128,7 +148,11 @@ export default function ProjectDetail() {
         <section className="px-5 py-8 md:px-8 md:py-12">
           <div className="mx-auto max-w-5xl space-y-8">
             {project.images.map((image, index) => (
-              <ScrollReveal key={image.id} delay={index * 0.08}>
+              <ScrollReveal
+                key={image.id}
+                delay={index * 0.08}
+                className={image.aspectRatio === 'portrait' ? 'mx-auto w-full max-w-lg' : 'w-full'}
+              >
                 <ImageWithLightbox
                   image={image}
                   onClick={() => openLightbox(index)}

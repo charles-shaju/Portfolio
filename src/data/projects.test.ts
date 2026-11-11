@@ -62,4 +62,17 @@ describe('portfolio project records', () => {
     expect(rov?.result).toContain('published and under examination');
     expect(rov?.result).toContain('co-inventor');
   });
+
+  it('attaches the two supplied ROS 2 robot photos to that project', () => {
+    const ros2 = projects.find((project) => project.slug === 'ros2-mobile-robot');
+
+    expect(ros2?.images).toHaveLength(2);
+    expect(ros2?.images.map((image) => image.src)).toEqual([
+      '/__l5e/assets-v1/dbf179eb-f0f1-47cd-9599-b2b5e15e74ed/ros2-robot-side.jpeg',
+      '/__l5e/assets-v1/4a3b2093-0bb1-46e4-acc3-8b027470b0cb/ros2-robot-front.jpeg',
+    ]);
+    expect(ros2?.images.every((image) => image.aspectRatio === 'portrait')).toBe(true);
+    expect(ros2?.coverImage).toBe('/__l5e/assets-v1/dbf179eb-f0f1-47cd-9599-b2b5e15e74ed/ros2-robot-side.jpeg');
+    expect(ros2?.coverAspect).toBe('portrait');
+  });
 });

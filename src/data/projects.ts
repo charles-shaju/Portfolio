@@ -1,4 +1,6 @@
 import type { Project, ProjectCategory } from '@/types';
+import ros2RobotSide from '@/assets/ros2-robot-side.jpeg.asset.json';
+import ros2RobotFront from '@/assets/ros2-robot-front.jpeg.asset.json';
 
 export const projects: Project[] = [
   {
@@ -51,7 +53,24 @@ export const projects: Project[] = [
     description: 'Wheeled ROS 2 Humble robot fusing IMU and wheel encoders with a Kalman filter, swept lidar and USB camera for obstacle detection.',
     techStack: ['ROS 2', 'Raspberry Pi', 'ESP32', 'BNO085', 'TFmini lidar', 'Python'],
     links: [{ label: 'GitHub', url: 'https://github.com/charles-shaju/ROS' }],
-    images: [],
+    coverImage: ros2RobotSide.url,
+    coverAspect: 'portrait',
+    images: [
+      {
+        id: '2-1',
+        src: ros2RobotSide.url,
+        alt: 'Side view of the three-tier ROS 2 robot with a Raspberry Pi, depth camera and differential-drive wheels held above a workbench',
+        caption: 'Side view: Raspberry Pi with active cooling, depth camera and differential-drive wheels.',
+        aspectRatio: 'portrait',
+      },
+      {
+        id: '2-2',
+        src: ros2RobotFront.url,
+        alt: 'Front view of the ROS 2 robot showing its stereo depth camera, upper pan-tilt sensor and dual drive motors',
+        caption: 'Front view: stereo depth camera, upper pan-tilt sensor and dual drive motors.',
+        aspectRatio: 'portrait',
+      },
+    ],
   },
   {
     id: '3',
