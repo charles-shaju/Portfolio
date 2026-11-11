@@ -8,4 +8,4 @@
 
 Project imagery that was not supplied remains marked as pending, and missing project years remain unstated.- [x] Add CNC Pen Plotter GitHub link and two photos (full plotter cover + controller board)
 - [x] GitHub links for Smart Altimeter + OBM GPS; add BOM Supply Chain Agent (Software filter)
-- [ ] Remove CNC result status prefix and unspecified role sections, add the BOM screenshot, and add top Portfolio navigation on project pages.
+- [x] Remove CNC result status prefix and unspecified role sections, add the BOM screenshot, and add top Portfolio navigation on project pages.
