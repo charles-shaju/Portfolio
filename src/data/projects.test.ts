@@ -75,4 +75,15 @@ describe('portfolio project records', () => {
     expect(ros2?.coverImage).toBe('/__l5e/assets-v1/dbf179eb-f0f1-47cd-9599-b2b5e15e74ed/ros2-robot-side.jpeg');
     expect(ros2?.coverAspect).toBe('portrait');
   });
+
+  it('attaches the CNC plotter GitHub link and two supplied photos', () => {
+    const plotter = projects.find((project) => project.slug === 'cnc-pen-plotter');
+
+    expect(plotter?.links).toEqual([{ label: 'GitHub', url: 'https://github.com/charles-shaju/CNC-Plotter' }]);
+    expect(plotter?.images.map((image) => image.src)).toEqual([
+      '/__l5e/assets-v1/9f1da3a8-b784-47d2-a231-0a775863a8b0/cnc-plotter-full.jpeg',
+      '/__l5e/assets-v1/18a94ced-8839-47fb-b9fb-82e1526a8274/cnc-plotter-controller.jpeg',
+    ]);
+    expect(plotter?.coverImage).toBe('/__l5e/assets-v1/9f1da3a8-b784-47d2-a231-0a775863a8b0/cnc-plotter-full.jpeg');
+  });
 });
