@@ -11,6 +11,7 @@ describe('portfolio project records', () => {
       'smart-altimeter',
       'gps-module-obm',
       'bom-supply-chain-agent',
+      'primevu-otto-blockly',
     ]);
   });
 
@@ -23,17 +24,19 @@ describe('portfolio project records', () => {
       'Prototype',
       'In progress',
       'Prototype',
+      'Prototype',
     ]);
   });
 
   it('filters projects into All, Marine, Robotics, Embedded and Software groups', () => {
-    expect(getProjectsByCategory('all')).toHaveLength(7);
+    expect(getProjectsByCategory('all')).toHaveLength(8);
     expect(getProjectsByCategory('marine').map((project) => project.slug)).toEqual([
       'underwater-rov',
       'aquascanner-catamaran',
     ]);
     expect(getProjectsByCategory('robotics').map((project) => project.slug)).toEqual([
       'ros2-mobile-robot',
+      'primevu-otto-blockly',
     ]);
     expect(getProjectsByCategory('embedded').map((project) => project.slug)).toEqual([
       'cnc-pen-plotter',
@@ -134,5 +137,13 @@ describe('portfolio project records', () => {
   it('never loads project photos from the retired github.io site', () => {
     const sources = projects.flatMap((project) => [project.coverImage, ...project.images.map((image) => image.src)]);
     expect(sources.filter((src) => src?.includes('charles-shaju.github.io'))).toEqual([]);
+  });
+
+  it('adds PrimeVU as a Robotics project linking to its live site with the calibration screenshot', () => {
+    const primevu = projects.find((project) => project.slug === 'primevu-otto-blockly');
+    expect(primevu?.category).toBe('robotics');
+    expect(primevu?.links).toEqual([{ label: 'Live site', url: 'https://charles-shaju.github.io/PrimeVU/' }]);
+    expect(primevu?.images[0]?.src).toMatch(/\/primevu-servo-calibration\.png$/);
+    expect(primevu?.coverFit).toBe('contain');
   });
 });

@@ -12,6 +12,7 @@ import aquascannerMain from '@/assets/aquascanner-catamaran.jpeg.asset.json';
 import aquascannerFieldwork from '@/assets/aquascanner-dam-fieldwork.jpeg.asset.json';
 import aquascannerTesting from '@/assets/aquascanner-sensor-testing.jpeg.asset.json';
 import altimeterModule from '@/assets/smart-altimeter-module.jpeg.asset.json';
+import primevuCalibration from '@/assets/primevu-servo-calibration.png.asset.json';
 
 export const projects: Project[] = [
   {
@@ -223,6 +224,30 @@ export const projects: Project[] = [
         src: bomSupplyChainInterface.url,
         alt: 'BOM Supply Chain Agent interface showing component sourcing, a BOM upload form and an example component table',
         aspectRatio: 'landscape',
+      },
+    ],
+  },
+  {
+    id: '8',
+    title: 'PrimeVU: Blockly Platform for Otto Robot',
+    category: 'robotics',
+    status: 'Prototype',
+    problem: 'Students need a simple way to drive and program an ESP32 Otto robot without writing code by hand.',
+    whatBuilt: 'A browser-based block-programming platform built with Google Blockly and JavaScript that connects over Bluetooth to an ESP32 Otto robot. Students can drive the robot with an on-screen joystick, trigger quick actions such as dance, wave and moonwalker, and program it with blocks while the generated commands are shown alongside. A calibration page adjusts the trim of each leg and foot servo from the browser, and a virtual serial monitor shows messages from the robot.',
+    statusDetail: 'Drive the robot with the joystick, program it with blocks, calibrate its servos and simulate movements from the browser.',
+    slug: 'primevu-otto-blockly',
+    description: 'Browser-based Blockly platform that connects over Bluetooth to an ESP32 Otto robot so students can drive, calibrate and program it with blocks.',
+    techStack: ['Google Blockly', 'JavaScript', 'ESP32', 'Bluetooth', 'Otto robot'],
+    links: [{ label: 'Live site', url: 'https://charles-shaju.github.io/PrimeVU/' }],
+    coverImage: primevuCalibration.url,
+    coverFit: 'contain',
+    images: [
+      {
+        id: '8-1',
+        src: primevuCalibration.url,
+        alt: 'PrimeVU wireless servo calibration page with up and down trim controls for the Otto robot legs and feet, and a virtual serial monitor',
+        aspectRatio: 'landscape',
+        caption: 'Servo calibration page with the virtual serial monitor',
       },
     ],
   },
