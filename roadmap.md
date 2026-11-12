@@ -12,3 +12,4 @@ Project imagery that was not supplied remains marked as pending, and missing pro
 - [x] Attach the supplied workbench photo to the Smart Altimeter gallery and the OBM GPS gallery and cover.
 
 - [x] Restore broken ROV, AquaScanner and Smart Altimeter photos (moved off retired github.io to site storage)
+- [x] Add PrimeVU Blockly platform for the ESP32 Otto robot (Robotics) with live-site link and calibration screenshot
