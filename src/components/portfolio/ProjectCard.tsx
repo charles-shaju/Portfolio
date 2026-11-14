@@ -74,11 +74,6 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
             {project.description}
           </p>
 
-          <p className="mt-2 text-xs leading-relaxed text-foreground/80">
-            <span className="font-mono text-muted-foreground">Role:</span>{' '}
-            {project.role ?? 'Not specified.'}
-          </p>
-
           <div className="mt-auto pt-4">
             <div className="mb-4 flex max-h-[3.5rem] flex-wrap gap-2 overflow-hidden">
               {project.techStack?.map((tech) => (
