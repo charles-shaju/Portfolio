@@ -21,7 +21,6 @@ export default function ProjectDetail() {
     { label: 'Overview', content: project.description },
     { label: 'Problem', content: project.problem },
     { label: 'What I built', content: project.whatBuilt },
-    ...(project.role ? [{ label: 'My role', content: project.role }] : []),
     {
       label: 'Result / Status',
       content: [project.result, project.slug === 'cnc-pen-plotter' ? project.status : `Status: ${project.status}`, project.statusDetail].filter(Boolean).join('\n'),
